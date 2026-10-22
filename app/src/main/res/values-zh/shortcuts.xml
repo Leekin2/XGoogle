@@ -1,6 +1,7 @@
 <resources>
     <string name="shortcut_assistant">Google 助理</string>
     <string name="shortcut_lens">Google 智能镜头</string>
+    <string name="shortcut_circle">圈定即搜</string>
     <string name="shortcut_wallet">Google 钱包</string>
     <string name="shortcut_home">家居控制</string>
 </resources>

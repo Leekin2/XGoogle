@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
     private var companionCheckedAt: Long? = null
     private var companionUpdateOffered = false
     private var state by mutableStateOf(XGoogleState())
-    private val texts get() = textsFor(state.language)
+    private val texts get() = textsFor(this, state.language)
     private val uiPreferences by lazy { getSharedPreferences("xgoogle_ui", MODE_PRIVATE) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -256,7 +256,7 @@ class MainActivity : ComponentActivity() {
                 }.onFailure {
                     companionCheckedAt = null
                     state = state.copy(companion = CompanionState.UNKNOWN)
-                    if (enableAfterCheck) error(if (it is RootShell.Failure) failureText(it, texts.errCheckCompanion) else texts.errCheckCompanion)
+                    if (enableAfterCheck) error(failureText(it, texts.errCheckCompanion))
                 }
             }
         }
@@ -409,7 +409,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    /** Words root and Wallet payment problems; other errors keep their own (already translated) text. */
+    /** Localize known failures and keep internal diagnostics out of the translated UI. */
     private fun failureText(failure: Throwable, fallback: String): String {
         val t = texts
         return when (failure) {
@@ -424,7 +424,7 @@ class MainActivity : ComponentActivity() {
                 WalletPayment.Problem.NO_NFC -> t.errNoNfc
                 else -> t.errWalletPayment
             }
-            else -> failure.message ?: fallback
+            else -> fallback
         }
     }
 

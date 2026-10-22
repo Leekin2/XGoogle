@@ -26,7 +26,7 @@ public final class CompanionInstaller {
         String state = last[0];
         if ("OLD".equals(state)) return "OUTDATED";
         if (!java.util.Set.of("MISSING", "DISABLED", "PENDING", "READY").contains(state))
-            throw new java.io.IOException("Ek modül durumu okunamadı");
+            throw new java.io.IOException(context.getString(R.string.err_check_companion_state));
         if ("READY".equals(state) && last.length > 1) {
             try { if (Integer.parseInt(last[1].trim()) < bundledVersion(context)) return "OUTDATED"; }
             catch (NumberFormatException unreadable) { /* an unreadable version is not reported as outdated */ }
