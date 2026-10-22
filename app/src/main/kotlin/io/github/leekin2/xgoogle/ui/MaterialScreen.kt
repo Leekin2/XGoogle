@@ -274,8 +274,9 @@ private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) 
     Group(t.groupSearch) {
         // Circle to Search's own options fold under it, so the list stays short.
         var circleOpen by rememberSaveable { mutableStateOf(false) }
+        var lensOpen by rememberSaveable { mutableStateOf(false) }
         val extra = if (circleOpen) 5 else 0
-        val count = 3 + extra
+        val count = 2 + extra + if (lensOpen) 1 else 0
         val circleOn = state.features[FeaturePolicy.NAVIGATION] == true
         SettingRow(0, count, Icons.Rounded.TouchApp, t.circle, t.circleSummary, { circleOpen = !circleOpen },
             modifier = Modifier.semantics { stateDescription = if (circleOn) t.switchOn else t.switchOff }) {
@@ -305,27 +306,64 @@ private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) 
                     { onSetting(FeaturePolicy.CIRCLE_DOUBLE_TAP, it) })
             }
         }
-        ToggleRow(t, 1 + extra, count, Icons.Rounded.CenterFocusStrong, t.lens, t.lensSummary,
-            state.features[FeaturePolicy.LENS] == true, available, { onSetting(FeaturePolicy.LENS, it) })
-        ToggleRow(t, 2 + extra, count, Icons.Rounded.PhotoCamera, t.cameraLens, t.cameraLensSummary,
-            state.features[FeaturePolicy.CAMERA_LENS] == true, available, { onSetting(FeaturePolicy.CAMERA_LENS, it) })
+        // The camera's Lens folds under Lens.
+        val lensOn = state.features[FeaturePolicy.LENS] == true
+        SettingRow(1 + extra, count, Icons.Rounded.CenterFocusStrong, t.lens, t.lensSummary, { lensOpen = !lensOpen },
+            modifier = Modifier.semantics { stateDescription = if (lensOn) t.switchOn else t.switchOff }) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                val turn by animateFloatAsState(if (lensOpen) 180f else 0f, label = "lensOptions")
+                Icon(Icons.Rounded.ExpandMore, t.lensOptions, Modifier.padding(end = 8.dp).rotate(turn))
+                SettingSwitch(lensOn, available) { onSetting(FeaturePolicy.LENS, it) }
+            }
+        }
+        AnimatedVisibility(lensOpen, enter = expandVertically(expandFrom = Alignment.Top) + fadeIn(), exit = shrinkVertically(shrinkTowards = Alignment.Top) + fadeOut()) {
+            ToggleRow(t, 2 + extra, count, Icons.Rounded.PhotoCamera, t.cameraLens, t.cameraLensSummary,
+                state.features[FeaturePolicy.CAMERA_LENS] == true, available, { onSetting(FeaturePolicy.CAMERA_LENS, it) })
+        }
     }
     Group(t.groupLock) {
-        ToggleRow(t, 0, 2, Icons.Rounded.DashboardCustomize, t.lockShortcuts, t.lockShortcutsSummary,
-            state.features[FeaturePolicy.QUICK_ENTRIES] == true, available, { onSetting(FeaturePolicy.QUICK_ENTRIES, it) })
-        ToggleRow(t, 1, 2, Icons.Rounded.AccountBalanceWallet, t.wallet, t.walletSummary,
-            state.features[FeaturePolicy.WALLET] == true, available, { onSetting(FeaturePolicy.WALLET, it) })
+        // The power-key Wallet folds under the lock screen shortcuts.
+        var lockOpen by rememberSaveable { mutableStateOf(false) }
+        val lockCount = if (lockOpen) 2 else 1
+        val lockOn = state.features[FeaturePolicy.QUICK_ENTRIES] == true
+        SettingRow(0, lockCount, Icons.Rounded.DashboardCustomize, t.lockShortcuts, t.lockShortcutsSummary, { lockOpen = !lockOpen },
+            modifier = Modifier.semantics { stateDescription = if (lockOn) t.switchOn else t.switchOff }) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                val turn by animateFloatAsState(if (lockOpen) 180f else 0f, label = "lockOptions")
+                Icon(Icons.Rounded.ExpandMore, t.lockOptions, Modifier.padding(end = 8.dp).rotate(turn))
+                SettingSwitch(lockOn, available) { onSetting(FeaturePolicy.QUICK_ENTRIES, it) }
+            }
+        }
+        AnimatedVisibility(lockOpen, enter = expandVertically(expandFrom = Alignment.Top) + fadeIn(), exit = shrinkVertically(shrinkTowards = Alignment.Top) + fadeOut()) {
+            ToggleRow(t, 1, lockCount, Icons.Rounded.AccountBalanceWallet, t.wallet, t.walletSummary,
+                state.features[FeaturePolicy.WALLET] == true, available, { onSetting(FeaturePolicy.WALLET, it) })
+        }
     }
     Group(t.groupSystem) {
-        ToggleRow(t, 0, 5, Icons.Rounded.LockOpen, t.gms, t.gmsSummary,
-            state.features[FeaturePolicy.GMS] == true, available, { onSetting(FeaturePolicy.GMS, it) })
-        ToggleRow(t, 1, 5, Icons.Rounded.Settings, t.googleEntry, t.googleEntrySummary,
-            state.features[FeaturePolicy.GOOGLE_ENTRY] == true, available, { onSetting(FeaturePolicy.GOOGLE_ENTRY, it) })
-        ToggleRow(t, 2, 5, Icons.Rounded.Timeline, t.timeline, t.timelineSummary,
-            state.features[FeaturePolicy.TIMELINE] == true, available, { onSetting(FeaturePolicy.TIMELINE, it) })
-        ToggleRow(t, 3, 5, Icons.Rounded.Key, t.passkey, t.passkeySummary,
-            state.features[FeaturePolicy.PASSKEY] == true, available, { onSetting(FeaturePolicy.PASSKEY, it) })
-        SettingRow(4, 5, Icons.Rounded.RestartAlt, t.restartApps, t.restartAppsSummary,
+        // The Google features that need Play services fold under the GMS switch.
+        var gmsOpen by rememberSaveable { mutableStateOf(false) }
+        val gmsExtra = if (gmsOpen) 3 else 0
+        val systemCount = 2 + gmsExtra
+        val gmsOn = state.features[FeaturePolicy.GMS] == true
+        SettingRow(0, systemCount, Icons.Rounded.LockOpen, t.gms, t.gmsSummary, { gmsOpen = !gmsOpen },
+            modifier = Modifier.semantics { stateDescription = if (gmsOn) t.switchOn else t.switchOff }) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                val turn by animateFloatAsState(if (gmsOpen) 180f else 0f, label = "gmsOptions")
+                Icon(Icons.Rounded.ExpandMore, t.gmsOptions, Modifier.padding(end = 8.dp).rotate(turn))
+                SettingSwitch(gmsOn, available) { onSetting(FeaturePolicy.GMS, it) }
+            }
+        }
+        AnimatedVisibility(gmsOpen, enter = expandVertically(expandFrom = Alignment.Top) + fadeIn(), exit = shrinkVertically(shrinkTowards = Alignment.Top) + fadeOut()) {
+            Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                ToggleRow(t, 1, systemCount, Icons.Rounded.Settings, t.googleEntry, t.googleEntrySummary,
+                    state.features[FeaturePolicy.GOOGLE_ENTRY] == true, available, { onSetting(FeaturePolicy.GOOGLE_ENTRY, it) })
+                ToggleRow(t, 2, systemCount, Icons.Rounded.Timeline, t.timeline, t.timelineSummary,
+                    state.features[FeaturePolicy.TIMELINE] == true, available, { onSetting(FeaturePolicy.TIMELINE, it) })
+                ToggleRow(t, 3, systemCount, Icons.Rounded.Key, t.passkey, t.passkeySummary,
+                    state.features[FeaturePolicy.PASSKEY] == true, available, { onSetting(FeaturePolicy.PASSKEY, it) })
+            }
+        }
+        SettingRow(1 + gmsExtra, systemCount, Icons.Rounded.RestartAlt, t.restartApps, t.restartAppsSummary,
             onClick = onRestartApps, enabled = state.connected && !state.restarting)
     }
 }

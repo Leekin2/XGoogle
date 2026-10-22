@@ -1,6 +1,7 @@
 <resources>
     <string name="shortcut_assistant">Google Ассистент</string>
     <string name="shortcut_lens">Google Объектив</string>
+    <string name="shortcut_circle">Обвести и найти</string>
     <string name="shortcut_wallet">Google Кошелёк</string>
     <string name="shortcut_home">Управление домом</string>
 </resources>

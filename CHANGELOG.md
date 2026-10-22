@@ -1,5 +1,16 @@
 # Değişiklikler / Changelog
 
+## XGoogle 1.3.5
+
+- Güç tuşu: Google varsayılan asistan değilken uzun basınca HyperOS'un kapatma menüsü yine hemen açılır; kenarda Google ışığı yanmaz.
+  Power button: when Google is not the default assistant, a long press opens the HyperOS power menu right away again; no Google light at the edge.
+- Ana sayfa kısaldı: Kamerada Google Lens, Google Cüzdan ve GMS'e bağlı seçenekler ilgili satırın altında açılır.
+  Shorter home screen: Camera Lens, Google Wallet and the GMS-dependent options fold under their parent rows.
+- Beş dildeki yazılar gözden geçirildi; Circle to Search kutucuğu çevrildi.
+  Texts reviewed in all five languages; the Circle to Search tile is translated.
+- Ek modül 1.3.5 (değişiklik yok, güncellemek isteğe bağlı).
+  Companion 1.3.5 (no changes, updating is optional).
+
 ## XGoogle 1.3.4
 
 - Ek modül KernelSU modül deposuna (SukiSU, KernelSU) eklenmek üzere hazırlandı; uygulamada değişiklik yok.

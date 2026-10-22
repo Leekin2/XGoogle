@@ -231,26 +231,82 @@ fun MiuixScreen(
                                 ) { onSetting(FeaturePolicy.CIRCLE_DOUBLE_TAP, it) }
                             }
                         }
-                        Toggle(Icons.Rounded.CenterFocusStrong, t.lens, t.lensSummary,
-                            state.features[FeaturePolicy.LENS] == true, available) { onSetting(FeaturePolicy.LENS, it) }
-                        Toggle(Icons.Rounded.PhotoCamera, t.cameraLens, t.cameraLensSummary,
-                            state.features[FeaturePolicy.CAMERA_LENS] == true, available) { onSetting(FeaturePolicy.CAMERA_LENS, it) }
+                        // The camera's Lens folds under Lens.
+                        var lensOpen by rememberSaveable { mutableStateOf(false) }
+                        val lensOn = state.features[FeaturePolicy.LENS] == true
+                        val lensTurn by animateFloatAsState(if (lensOpen) 180f else 0f, label = "lensOptions")
+                        BasicComponent(
+                            modifier = Modifier.semantics { stateDescription = if (lensOn) t.switchOn else t.switchOff },
+                            title = t.lens, summary = t.lensSummary,
+                            startAction = { RowIcon(Icons.Rounded.CenterFocusStrong) },
+                            endActions = {
+                                Icon(Icons.Rounded.ExpandMore, t.lensOptions,
+                                    Modifier.padding(end = 8.dp).rotate(lensTurn),
+                                    tint = MiuixTheme.colorScheme.onSurfaceVariantActions)
+                                Switch(lensOn, { onSetting(FeaturePolicy.LENS, it) }, enabled = available)
+                            },
+                            onClick = { lensOpen = !lensOpen }
+                        )
+                        AnimatedVisibility(lensOpen,
+                            enter = expandVertically(expandFrom = Alignment.Top) + fadeIn(),
+                            exit = shrinkVertically(shrinkTowards = Alignment.Top) + fadeOut()) {
+                            Toggle(Icons.Rounded.PhotoCamera, t.cameraLens, t.cameraLensSummary,
+                                state.features[FeaturePolicy.CAMERA_LENS] == true, available) { onSetting(FeaturePolicy.CAMERA_LENS, it) }
+                        }
                     }
                     Group(t.groupLock) {
-                        Toggle(Icons.Rounded.DashboardCustomize, t.lockShortcuts, t.lockShortcutsSummary,
-                            state.features[FeaturePolicy.QUICK_ENTRIES] == true, available) { onSetting(FeaturePolicy.QUICK_ENTRIES, it) }
-                        Toggle(Icons.Rounded.AccountBalanceWallet, t.wallet, t.walletSummary,
-                            state.features[FeaturePolicy.WALLET] == true, available) { onSetting(FeaturePolicy.WALLET, it) }
+                        // The power-key Wallet folds under the lock screen shortcuts.
+                        var lockOpen by rememberSaveable { mutableStateOf(false) }
+                        val lockOn = state.features[FeaturePolicy.QUICK_ENTRIES] == true
+                        val lockTurn by animateFloatAsState(if (lockOpen) 180f else 0f, label = "lockOptions")
+                        BasicComponent(
+                            modifier = Modifier.semantics { stateDescription = if (lockOn) t.switchOn else t.switchOff },
+                            title = t.lockShortcuts, summary = t.lockShortcutsSummary,
+                            startAction = { RowIcon(Icons.Rounded.DashboardCustomize) },
+                            endActions = {
+                                Icon(Icons.Rounded.ExpandMore, t.lockOptions,
+                                    Modifier.padding(end = 8.dp).rotate(lockTurn),
+                                    tint = MiuixTheme.colorScheme.onSurfaceVariantActions)
+                                Switch(lockOn, { onSetting(FeaturePolicy.QUICK_ENTRIES, it) }, enabled = available)
+                            },
+                            onClick = { lockOpen = !lockOpen }
+                        )
+                        AnimatedVisibility(lockOpen,
+                            enter = expandVertically(expandFrom = Alignment.Top) + fadeIn(),
+                            exit = shrinkVertically(shrinkTowards = Alignment.Top) + fadeOut()) {
+                            Toggle(Icons.Rounded.AccountBalanceWallet, t.wallet, t.walletSummary,
+                                state.features[FeaturePolicy.WALLET] == true, available) { onSetting(FeaturePolicy.WALLET, it) }
+                        }
                     }
                     Group(t.groupSystem) {
-                        Toggle(Icons.Rounded.LockOpen, t.gms, t.gmsSummary,
-                            state.features[FeaturePolicy.GMS] == true, available) { onSetting(FeaturePolicy.GMS, it) }
-                        Toggle(Icons.Rounded.Settings, t.googleEntry, t.googleEntrySummary,
-                            state.features[FeaturePolicy.GOOGLE_ENTRY] == true, available) { onSetting(FeaturePolicy.GOOGLE_ENTRY, it) }
-                        Toggle(Icons.Rounded.Timeline, t.timeline, t.timelineSummary,
-                            state.features[FeaturePolicy.TIMELINE] == true, available) { onSetting(FeaturePolicy.TIMELINE, it) }
-                        Toggle(Icons.Rounded.Key, t.passkey, t.passkeySummary,
-                            state.features[FeaturePolicy.PASSKEY] == true, available) { onSetting(FeaturePolicy.PASSKEY, it) }
+                        // The Google features that need Play services fold under the GMS switch.
+                        var gmsOpen by rememberSaveable { mutableStateOf(false) }
+                        val gmsOn = state.features[FeaturePolicy.GMS] == true
+                        val gmsTurn by animateFloatAsState(if (gmsOpen) 180f else 0f, label = "gmsOptions")
+                        BasicComponent(
+                            modifier = Modifier.semantics { stateDescription = if (gmsOn) t.switchOn else t.switchOff },
+                            title = t.gms, summary = t.gmsSummary,
+                            startAction = { RowIcon(Icons.Rounded.LockOpen) },
+                            endActions = {
+                                Icon(Icons.Rounded.ExpandMore, t.gmsOptions,
+                                    Modifier.padding(end = 8.dp).rotate(gmsTurn),
+                                    tint = MiuixTheme.colorScheme.onSurfaceVariantActions)
+                                Switch(gmsOn, { onSetting(FeaturePolicy.GMS, it) }, enabled = available)
+                            },
+                            onClick = { gmsOpen = !gmsOpen }
+                        )
+                        AnimatedVisibility(gmsOpen,
+                            enter = expandVertically(expandFrom = Alignment.Top) + fadeIn(),
+                            exit = shrinkVertically(shrinkTowards = Alignment.Top) + fadeOut()) {
+                            Column {
+                                Toggle(Icons.Rounded.Settings, t.googleEntry, t.googleEntrySummary,
+                                    state.features[FeaturePolicy.GOOGLE_ENTRY] == true, available) { onSetting(FeaturePolicy.GOOGLE_ENTRY, it) }
+                                Toggle(Icons.Rounded.Timeline, t.timeline, t.timelineSummary,
+                                    state.features[FeaturePolicy.TIMELINE] == true, available) { onSetting(FeaturePolicy.TIMELINE, it) }
+                                Toggle(Icons.Rounded.Key, t.passkey, t.passkeySummary,
+                                    state.features[FeaturePolicy.PASSKEY] == true, available) { onSetting(FeaturePolicy.PASSKEY, it) }
+                            }
+                        }
                         ArrowPreference(title = t.restartApps, summary = t.restartAppsSummary,
                             startAction = { RowIcon(Icons.Rounded.RestartAlt) }, onClick = onRestartApps,
                             enabled = state.connected && !state.restarting)

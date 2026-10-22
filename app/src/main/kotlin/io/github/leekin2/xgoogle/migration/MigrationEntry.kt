@@ -69,6 +69,7 @@ object MigrationEntry {
         OkGoogleHotwordCompatibilityHooker.hookSystemServer(loader)
         HomeControlsHooks.hookSystem(loader)
         XiaoAiNavRedirectHooks.hookSystem(loader)
+        PowerKeyAssistantHooks.hookSystem(loader)
         // Quick Share works only with the GMS restriction removed; its downloads link is fixed with it.
         if (FeatureConfig.enabled(FeaturePolicy.GMS)) QuickShareTileHooks.hookSystem(loader)
     }

@@ -1,6 +1,7 @@
 <resources>
     <string name="shortcut_assistant">Asistente de Google</string>
     <string name="shortcut_lens">Google Lens</string>
+    <string name="shortcut_circle">Rodea para buscar</string>
     <string name="shortcut_wallet">Google Wallet</string>
     <string name="shortcut_home">Control del hogar</string>
 </resources>

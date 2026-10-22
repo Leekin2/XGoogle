@@ -8,7 +8,7 @@
 
 ## Features
 
-- ✅ **Long-press power → Gemini / Google Assistant**
+- ✅ **Long-press power → Gemini / Google Assistant** (only while Google is the default assistant; otherwise the HyperOS power menu opens)
 - ✅ **Long-press the navigation handle → Circle to Search**
 - ✅ **Swipe in from the side and hold → Circle to Search** (needs XiaoAi, see below)
 - ✅ **Gestures are optional:** for the nav-handle hold, the side swipe-and-hold and the double tap you choose Circle to Search or XiaoAi (the function set in the system)
@@ -120,7 +120,7 @@ This project is not affiliated with Google or Xiaomi; trademarks belong to their
 
 ### Özellikler
 
-- ✅ **Güç tuşuna basılı tut → Gemini / Google Asistan**
+- ✅ **Güç tuşuna basılı tut → Gemini / Google Asistan** (yalnızca Google varsayılan asistanken; değilse HyperOS'un kapatma menüsü açılır)
 - ✅ **Alt çubuğa basılı tut → Circle to Search**
 - ✅ **Kenardan içeri kaydırıp tut → Circle to Search** (XiaoAi gerekir, aşağıya bakın)
 - ✅ **Hareketler tercihe bağlı:** alt çubuğa basılı tutma, kenardan kaydırıp tutma ve çift dokunma için Circle to Search ya da XiaoAi (sistemde seçili işlev) seçilir
