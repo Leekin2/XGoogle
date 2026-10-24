@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Static framework overlay: the Google defaults of HyperOS 4 international that XGoogle needs,
+     without the rest of GmsConfigOverlayCommon (WebView, location, gallery and other roles). -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.github.leekin2.xgoogle.overlay.framework" android:versionCode="1" android:versionName="1.0">
+    <overlay android:targetPackage="android" android:isStatic="true" android:priority="20" />
+    <application android:hasCode="false" />
+</manifest>

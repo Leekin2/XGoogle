@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Values as in HyperOS 4 international (nezha OS4.0.0.10.XPAMIXM) GmsConfigOverlayGSA,
+     CircleToSearchOverlay and GmsConfigOverlayCommon. -->
+<resources>
+    <string name="config_defaultAssistant" translatable="false">com.google.android.googlequicksearchbox</string>
+    <bool name="config_allowDisablingAssistDisclosure">true</bool>
+    <string name="config_defaultContextualSearchPackageName" translatable="false">com.google.android.googlequicksearchbox</string>
+    <string name="config_systemAutomotiveProjection" translatable="false">com.google.android.projection.gearhead</string>
+    <string name="config_defaultNearbySharingComponent" translatable="false">com.google.android.gms/com.google.android.gms.nearby.sharing.ShareSheetActivity</string>
+</resources>
