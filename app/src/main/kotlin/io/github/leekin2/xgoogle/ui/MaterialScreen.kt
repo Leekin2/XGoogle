@@ -57,6 +57,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.semantics.selected
 import androidx.compose.material.icons.rounded.RestartAlt
+import androidx.compose.material.icons.rounded.SettingsBackupRestore
 import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.HighlightOff
 import androidx.compose.material.icons.rounded.HourglassTop
@@ -134,6 +135,7 @@ fun MaterialScreen(
     onRestartApps: () -> Unit,
     onCheckUpdates: () -> Unit,
     onSupport: () -> Unit,
+    onRestore: () -> Unit,
     /** Kept by the caller, so switching between the two looks stays on the same tab. */
     tab: Int,
     onTab: (Int) -> Unit
@@ -166,7 +168,7 @@ fun MaterialScreen(
                     .then(if (state.look.blur) Modifier.layerBackdrop(backdrop).background(background) else Modifier)
                     .verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)) {
                     Spacer(Modifier.height(12.dp))
-                    if (tab == 0) HomeTab(state, t, onSetting, onAssistant, onStatus, onRestartApps)
+                    if (tab == 0) HomeTab(state, t, onSetting, onAssistant, onStatus, onRestartApps, onRestore)
                     else SettingsTab(state, t, onIconVisibility, onAbout, onTelegram, onLanguage, onLook, onCheckUpdates, onSupport)
                     // Room for the floating bar.
                     Spacer(Modifier.height(112.dp))
@@ -255,7 +257,7 @@ private fun StatusCard(state: XGoogleState, t: Texts, onClick: () -> Unit) {
 
 @Composable
 private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) -> Unit, onAssistant: () -> Unit,
-    onStatus: () -> Unit, onRestartApps: () -> Unit) {
+    onStatus: () -> Unit, onRestartApps: () -> Unit, onRestore: () -> Unit) {
     StatusCard(state, t, onStatus)
     // While connecting, show the cached switches as usable; taps wait for the connection.
     val available = state.connected || state.loading
@@ -343,7 +345,7 @@ private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) 
         // The Google features that need Play services fold under the GMS switch.
         var gmsOpen by rememberSaveable { mutableStateOf(false) }
         val gmsExtra = if (gmsOpen) 3 else 0
-        val systemCount = 2 + gmsExtra
+        val systemCount = 3 + gmsExtra
         val gmsOn = state.features[FeaturePolicy.GMS] == true
         SettingRow(0, systemCount, Icons.Rounded.LockOpen, t.gms, t.gmsSummary, { gmsOpen = !gmsOpen },
             modifier = Modifier.semantics { stateDescription = if (gmsOn) t.switchOn else t.switchOff }) {
@@ -363,7 +365,9 @@ private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) 
                     state.features[FeaturePolicy.PASSKEY] == true, available, { onSetting(FeaturePolicy.PASSKEY, it) })
             }
         }
-        SettingRow(1 + gmsExtra, systemCount, Icons.Rounded.RestartAlt, t.restartApps, t.restartAppsSummary,
+        SettingRow(1 + gmsExtra, systemCount, Icons.Rounded.SettingsBackupRestore, t.restoreBackup, t.restoreBackupSummary,
+            onClick = onRestore)
+        SettingRow(2 + gmsExtra, systemCount, Icons.Rounded.RestartAlt, t.restartApps, t.restartAppsSummary,
             onClick = onRestartApps, enabled = state.connected && !state.restarting)
     }
 }
@@ -487,6 +491,7 @@ private fun XGoogleDialog(state: XGoogleState, t: Texts, onConfirm: () -> Unit, 
         DialogKind.COMPANION_UPDATE -> t.companionUpdateTitle
         DialogKind.COMPANION_OFFER -> t.companionOfferTitle
         DialogKind.COMPANION_DONE -> t.installedTitle
+        DialogKind.RESTORE_INSTALL -> t.restoreInstallTitle
         else -> t.errorTitle
     }
     val message = when (state.dialog) {
@@ -500,6 +505,7 @@ private fun XGoogleDialog(state: XGoogleState, t: Texts, onConfirm: () -> Unit, 
         DialogKind.COMPANION_UPDATE -> t.companionUpdateMessage
         DialogKind.COMPANION_OFFER -> t.companionOfferMessage
         DialogKind.COMPANION_DONE -> t.companionDoneMessage
+        DialogKind.RESTORE_INSTALL -> t.restoreInstallMessage
         else -> state.dialogText
     }
     val confirm = when (state.dialog) {
@@ -508,7 +514,7 @@ private fun XGoogleDialog(state: XGoogleState, t: Texts, onConfirm: () -> Unit, 
         DialogKind.RESTART -> t.restart
         DialogKind.UPDATE -> t.download
         DialogKind.COMPANION_UPDATE -> t.update
-        DialogKind.COMPANION_OFFER -> t.install
+        DialogKind.COMPANION_OFFER, DialogKind.RESTORE_INSTALL -> t.install
         else -> t.ok
     }
     AlertDialog(
@@ -517,7 +523,8 @@ private fun XGoogleDialog(state: XGoogleState, t: Texts, onConfirm: () -> Unit, 
         icon = { Icon(if (state.dialog in setOf(DialogKind.INSTALL, DialogKind.INSTALLED, DialogKind.DISABLED,
             DialogKind.COMPANION_UPDATE, DialogKind.COMPANION_OFFER, DialogKind.COMPANION_DONE))
             Icons.Rounded.Extension else if (state.dialog == DialogKind.HIDE_ICON) Icons.Rounded.VisibilityOff
-            else if (state.dialog == DialogKind.RESTART) Icons.Rounded.RestartAlt else Icons.Rounded.Info, null) },
+            else if (state.dialog == DialogKind.RESTART) Icons.Rounded.RestartAlt
+            else if (state.dialog == DialogKind.RESTORE_INSTALL) Icons.Rounded.SettingsBackupRestore else Icons.Rounded.Info, null) },
         title = { Text(title) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState())) {
@@ -526,7 +533,7 @@ private fun XGoogleDialog(state: XGoogleState, t: Texts, onConfirm: () -> Unit, 
         },
         confirmButton = { TextButton(onClick = onConfirm) { Text(confirm) } },
         dismissButton = if (state.dialog in setOf(DialogKind.INSTALL, DialogKind.HIDE_ICON, DialogKind.RESTART, DialogKind.UPDATE,
-        DialogKind.COMPANION_UPDATE, DialogKind.COMPANION_OFFER)) {
+        DialogKind.COMPANION_UPDATE, DialogKind.COMPANION_OFFER, DialogKind.RESTORE_INSTALL)) {
             { TextButton(onClick = onDismiss) { Text(t.cancel) } }
         } else null
     )

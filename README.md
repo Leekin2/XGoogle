@@ -26,6 +26,7 @@
 - 🌐 UI languages: Türkçe, English, Русский, Español, 简体中文
 - 🎨 Two looks: Material, or HyperOS style (light/dark/system theme, wallpaper colors, frosted bar)
 - 🚦 Status card: green when everything works, yellow with the list of apps still unticked in LSPosed, red when inactive
+- ☁️ **Restore from Google backup:** China ROMs have no Google setup wizard, so after a reset XGoogle opens Google's own restore screen (Android Switch) to bring back your apps, call history, SMS and settings
 - 🔄 Restart apps without rebooting, and check for updates from the app
 
 Every feature can be turned on or off on its own; turning one off brings back the stock behavior.
@@ -59,6 +60,7 @@ Every feature can be turned on or off on its own; turning one off brings back th
 - **Google Lens in Camera:** turn on *Google Lens in Camera*, approve the Camera scope in LSPosed and reboot. The Lens button is in the camera menu (the arrow at the top).
 - **Home controls:** a home with devices must be set up in the Google Home app; otherwise the panel shows "Set up home".
 - **Lens and Circle to Search tiles:** edit the control center and add them. The Circle to Search tile closes the control center and searches the app below.
+- **After a reset:** add your Google account, install XGoogle, then tap *Restore from Google backup* (Home → System). Install Android Switch from the Play Store if asked, then pick this phone's newest backup.
 - **After changing a setting:** use *Restart apps* (Home → System) instead of rebooting; the system framework still needs a reboot.
 - **Gestures:** open the Circle to Search options (the arrow next to its switch). Each gesture's switch on opens Circle to Search; off leaves it to XiaoAi, so screen recognition or XiaoAi's ball work as set in Navigation → Quick functions. By default the hold and the side swipe-and-hold open Circle to Search and the double tap stays with XiaoAi.
 - **Settings tab:** language, look and theme, update check, support group.
@@ -138,6 +140,7 @@ This project is not affiliated with Google or Xiaomi; trademarks belong to their
 - 🌐 Arayüz dilleri: Türkçe, English, Русский, Español, 简体中文
 - 🎨 İki görünüm: Material ya da HyperOS tarzı (açık/koyu/sistem tema, duvar kağıdı renkleri, buzlu çubuk)
 - 🚦 Durum kartı: her şey çalışıyorsa yeşil, LSPosed'de işaretlenmemiş uygulama varsa listesiyle sarı, etkin değilse kırmızı
+- ☁️ **Google yedeğinden geri yükleme:** Çin ROM'larında Google kurulum sihirbazı olmadığı için XGoogle, sıfırlamadan sonra Google'ın kendi geri yükleme ekranını (Android Switch) açar; uygulamalar, arama geçmişi, SMS'ler ve ayarlar geri gelir
 - 🔄 Telefonu yeniden başlatmadan uygulamaları yeniden başlatma ve uygulamadan güncelleme kontrolü
 
 Her özellik uygulamadan ayrı ayrı açılıp kapatılabilir; kapatınca sistem eski haline döner.
@@ -171,6 +174,7 @@ Her özellik uygulamadan ayrı ayrı açılıp kapatılabilir; kapatınca sistem
 - **Kamerada Google Lens:** XGoogle'da *Kamerada Google Lens*'i açın, LSPosed'da Kamera kapsamını onaylayıp yeniden başlatın. Lens butonu kamera menüsünde (üstteki ok) çıkar.
 - **Ev kontrolleri:** Google Home uygulamasında bir ev ve cihaz kurulu olmalıdır; yoksa panelde "Ev kurulumu yap" görünür.
 - **Lens ve Circle to Search kutucukları:** Kontrol merkezini düzenleyip ekleyin. Circle to Search kutucuğu kontrol merkezini kapatıp alttaki uygulamada arama yapar.
+- **Sıfırladıktan sonra:** Google hesabınızı ekleyin, XGoogle'ı kurun, ardından *Google yedeğinden geri yükle*'ye (Ana sayfa → Sistem) dokunun. İstenirse Play Store'dan Android Switch'i kurun, sonra bu telefonun en yeni yedeğini seçin.
 - **Ayar değiştirdikten sonra:** telefonu yeniden başlatmak yerine *Uygulamaları yeniden başlat*'ı (Ana sayfa → Sistem) kullanın; sistem çerçevesi için yine yeniden başlatma gerekir.
 - **Hareketler:** Circle to Search seçeneklerini açın (anahtarının yanındaki ok). Bir hareketin anahtarı açıksa Circle to Search açılır; kapalıysa hareket XiaoAi'ye kalır, ekran tanıma ya da XiaoAi topu Gezinme → Hızlı işlevler'deki gibi çalışır. Varsayılan: basılı tutma ve kenardan kaydırıp tutma Circle to Search, çift dokunma XiaoAi.
 - **Ayarlar sekmesi:** dil, görünüm ve tema, güncelleme kontrolü, destek grubu.

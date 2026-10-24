@@ -1,5 +1,12 @@
 # Değişiklikler / Changelog
 
+## XGoogle 1.3.6
+
+- Google yedeğinden geri yükle (Ana sayfa → Sistem): Çin ROM'unda sıfırlamadan sonra Google'ın geri yükleme ekranını (Android Switch) açar; uygulamalar, arama geçmişi, SMS'ler ve ayarlar geri gelir.
+  Restore from Google backup (Home → System): on China ROMs, opens Google's restore screen (Android Switch) after a reset; apps, call history, SMS and settings come back.
+- Ek modül 1.3.6 (değişiklik yok, güncellemek isteğe bağlı).
+  Companion 1.3.6 (no changes, updating is optional).
+
 ## XGoogle 1.3.5
 
 - Güç tuşu: Google varsayılan asistan değilken uzun basınca HyperOS'un kapatma menüsü yine hemen açılır; kenarda Google ışığı yanmaz.

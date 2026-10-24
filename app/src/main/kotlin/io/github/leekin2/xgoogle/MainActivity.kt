@@ -60,11 +60,11 @@ class MainActivity : ComponentActivity() {
                 if (state.look.hyper) MiuixScreen(state, ::changeSetting, ::openAssistant, ::changeIconVisibility,
                     ::openModuleManager, ::openRepository, ::openTelegram, ::changeLanguage,
                     ::changeLook, ::confirmDialog, ::dismissDialog, { showDialog(DialogKind.RESTART) }, ::checkUpdates, ::openSupport,
-                    tab) { tab = it }
+                    ::openGoogleRestore, tab) { tab = it }
                 else MaterialScreen(state, ::changeSetting, ::openAssistant, ::changeIconVisibility,
                     ::openModuleManager, ::openRepository, ::openTelegram, ::changeLanguage,
                     ::changeLook, ::confirmDialog, ::dismissDialog, { showDialog(DialogKind.RESTART) }, ::checkUpdates, ::openSupport,
-                    tab) { tab = it }
+                    ::openGoogleRestore, tab) { tab = it }
             }
         }
         SettingsConnection.connect(this)
@@ -326,6 +326,8 @@ class MainActivity : ComponentActivity() {
             DialogKind.HIDE_ICON -> setIconHidden(true)
             DialogKind.RESTART -> restartApps()
             DialogKind.UPDATE -> openUrl(UpdateChecker.RELEASES, texts.errRepository)
+            DialogKind.RESTORE_INSTALL -> runCatching { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$RESTORE_PACKAGE"))) }
+                .onFailure { openUrl("https://play.google.com/store/apps/details?id=$RESTORE_PACKAGE", texts.errRestore) }
             else -> Unit
         }
     }
@@ -388,6 +390,33 @@ class MainActivity : ComponentActivity() {
 
     private fun openSupport() = openUrl("https://t.me/Xgooogle", texts.errSupport)
 
+    /**
+     * China ROMs have no Google setup wizard, so the Google backup is never offered after a reset.
+     * Android Switch's cloud restore is the same flow the wizard runs; it is exported, and root is
+     * only the fallback for builds that stop exporting it. Its main screen is the last resort.
+     */
+    private fun openGoogleRestore() {
+        if (runCatching { packageManager.getPackageInfo(RESTORE_PACKAGE, 0) }.isFailure) {
+            showDialog(DialogKind.RESTORE_INSTALL)
+            return
+        }
+        val restore = Intent().setClassName(RESTORE_PACKAGE, RESTORE_ACTIVITY).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        if (runCatching { startActivity(restore) }.isSuccess) return
+        val t = texts
+        worker.execute {
+            val result = runCatching {
+                val output = RootShell.run("am start --user ${android.os.Process.myUid() / 100000} -n $RESTORE_PACKAGE/$RESTORE_ACTIVITY", 15)
+                // am can report a missing activity and still exit 0.
+                if ("Error" in output) throw IOException(output)
+            }
+            runOnUiThread {
+                if (isDestroyed || result.isSuccess) return@runOnUiThread
+                runCatching { startActivity(packageManager.getLaunchIntentForPackage(RESTORE_PACKAGE)!!) }
+                    .onFailure { error(t.errRestore) }
+            }
+        }
+    }
+
     private fun openUrl(url: String, failure: String) {
         runCatching { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))) }.onFailure { error(failure) }
     }
@@ -444,3 +473,6 @@ class MainActivity : ComponentActivity() {
 
 /** HyperOS features that reach Google through the companion module, besides Hey Google. */
 private val COMPANION_FEATURES = setOf(FeaturePolicy.NAVIGATION, FeaturePolicy.LIVE_TRANSLATE)
+
+private const val RESTORE_PACKAGE = "com.google.android.apps.restore"
+private const val RESTORE_ACTIVITY = "com.google.android.apps.pixelmigrate.cloudrestore.component.CloudRestoreFlowActivity"

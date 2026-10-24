@@ -70,6 +70,7 @@ import androidx.compose.material.icons.rounded.Palette
 import androidx.compose.material.icons.rounded.PhotoCamera
 import androidx.compose.material.icons.rounded.RecordVoiceOver
 import androidx.compose.material.icons.rounded.RestartAlt
+import androidx.compose.material.icons.rounded.SettingsBackupRestore
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.TouchApp
 import androidx.compose.material.icons.rounded.Translate
@@ -138,6 +139,7 @@ fun MiuixScreen(
     onRestartApps: () -> Unit,
     onCheckUpdates: () -> Unit,
     onSupport: () -> Unit,
+    onRestore: () -> Unit,
     /** Kept by the caller, so switching between the two looks stays on the same tab. */
     tab: Int,
     onTab: (Int) -> Unit
@@ -307,6 +309,8 @@ fun MiuixScreen(
                                     state.features[FeaturePolicy.PASSKEY] == true, available) { onSetting(FeaturePolicy.PASSKEY, it) }
                             }
                         }
+                        ArrowPreference(title = t.restoreBackup, summary = t.restoreBackupSummary,
+                            startAction = { RowIcon(Icons.Rounded.SettingsBackupRestore) }, onClick = onRestore)
                         ArrowPreference(title = t.restartApps, summary = t.restartAppsSummary,
                             startAction = { RowIcon(Icons.Rounded.RestartAlt) }, onClick = onRestartApps,
                             enabled = state.connected && !state.restarting)
@@ -495,6 +499,7 @@ private fun XGoogleDialog(state: XGoogleState, t: Texts, onConfirm: () -> Unit, 
         DialogKind.COMPANION_UPDATE -> t.companionUpdateTitle
         DialogKind.COMPANION_OFFER -> t.companionOfferTitle
         DialogKind.COMPANION_DONE -> t.installedTitle
+        DialogKind.RESTORE_INSTALL -> t.restoreInstallTitle
         else -> t.errorTitle
     }
     val message = when (last) {
@@ -508,6 +513,7 @@ private fun XGoogleDialog(state: XGoogleState, t: Texts, onConfirm: () -> Unit, 
         DialogKind.COMPANION_UPDATE -> t.companionUpdateMessage
         DialogKind.COMPANION_OFFER -> t.companionOfferMessage
         DialogKind.COMPANION_DONE -> t.companionDoneMessage
+        DialogKind.RESTORE_INSTALL -> t.restoreInstallMessage
         else -> lastText
     }
     val confirm = when (last) {
@@ -516,11 +522,11 @@ private fun XGoogleDialog(state: XGoogleState, t: Texts, onConfirm: () -> Unit, 
         DialogKind.RESTART -> t.restart
         DialogKind.UPDATE -> t.download
         DialogKind.COMPANION_UPDATE -> t.update
-        DialogKind.COMPANION_OFFER -> t.install
+        DialogKind.COMPANION_OFFER, DialogKind.RESTORE_INSTALL -> t.install
         else -> t.ok
     }
     val cancellable = last in setOf(DialogKind.INSTALL, DialogKind.HIDE_ICON, DialogKind.RESTART, DialogKind.UPDATE,
-        DialogKind.COMPANION_UPDATE, DialogKind.COMPANION_OFFER)
+        DialogKind.COMPANION_UPDATE, DialogKind.COMPANION_OFFER, DialogKind.RESTORE_INSTALL)
     WindowDialog(show = show, title = title, onDismissRequest = onDismiss) {
         Column {
             Text(message, Modifier.fillMaxWidth().heightIn(max = 420.dp)

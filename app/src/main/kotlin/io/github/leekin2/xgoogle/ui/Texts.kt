@@ -150,6 +150,11 @@ class Texts(
     val supportSummary: String,
     val errSupport: String,
     val errLsposed: String,
+    val restoreBackup: String,
+    val restoreBackupSummary: String,
+    val restoreInstallTitle: String,
+    val restoreInstallMessage: String,
+    val errRestore: String,
     val updateMessage: (String) -> String,
 )
 
@@ -298,6 +303,11 @@ private val TR = Texts(
     supportSummary = "Xgoogle for HyperOS topluluk grubu (Telegram)",
     errSupport = "t.me/Xgooogle adresini Telegram'da ya da tarayıcıda açın.",
     errLsposed = "LSPosed yöneticisi açılamadı.",
+    restoreBackup = "Google yedeğinden geri yükle",
+    restoreBackupSummary = "Sıfırladıktan sonra Google yedeğindeki uygulamaları, arama geçmişini, SMS'leri ve ayarları geri getirir",
+    restoreInstallTitle = "Android Switch gerekli",
+    restoreInstallMessage = "Geri yükleme, Google'ın Android Switch uygulamasıyla yapılır. Play Store'da açılsın mı?\n\nKurduktan sonra bu satıra yeniden dokunun.",
+    errRestore = "Geri yükleme ekranı açılamadı. Android Switch'i güncelleyip tekrar deneyin.",
     updateMessage = { "XGoogle $it yayınlandı. İndirme sayfası açılsın mı?" },
 )
 
@@ -446,6 +456,11 @@ private val EN = Texts(
     supportSummary = "Xgoogle for HyperOS community group (Telegram)",
     errSupport = "Open t.me/Xgooogle in Telegram or a browser.",
     errLsposed = "Could not open the LSPosed manager.",
+    restoreBackup = "Restore from Google backup",
+    restoreBackupSummary = "After a reset, brings back the apps, call history, SMS and settings in your Google backup",
+    restoreInstallTitle = "Android Switch needed",
+    restoreInstallMessage = "Restoring is done by Google's Android Switch app. Open it in the Play Store?\n\nAfter installing it, tap this row again.",
+    errRestore = "The restore screen could not be opened. Update Android Switch and try again.",
     updateMessage = { "XGoogle $it is available. Open the download page?" },
 )
 
@@ -594,6 +609,11 @@ private val RU = Texts(
     supportSummary = "Сообщество Xgoogle for HyperOS (Telegram)",
     errSupport = "Откройте t.me/Xgooogle в Telegram или браузере.",
     errLsposed = "Не удалось открыть менеджер LSPosed.",
+    restoreBackup = "Восстановить из резервной копии Google",
+    restoreBackupSummary = "После сброса возвращает приложения, журнал звонков, SMS и настройки из резервной копии Google",
+    restoreInstallTitle = "Нужен Android Switch",
+    restoreInstallMessage = "Восстановление выполняет приложение Google Android Switch. Открыть его в Play Маркете?\n\nПосле установки снова нажмите на эту строку.",
+    errRestore = "Не удалось открыть экран восстановления. Обновите Android Switch и попробуйте снова.",
     updateMessage = { "Доступна версия XGoogle $it. Открыть страницу загрузки?" },
 )
 
@@ -742,6 +762,11 @@ private val ES = Texts(
     supportSummary = "Grupo de la comunidad Xgoogle for HyperOS (Telegram)",
     errSupport = "Abre t.me/Xgooogle en Telegram o en un navegador.",
     errLsposed = "No se pudo abrir el gestor de LSPosed.",
+    restoreBackup = "Restaurar copia de Google",
+    restoreBackupSummary = "Tras un restablecimiento, recupera las apps, el historial de llamadas, los SMS y los ajustes de tu copia de Google",
+    restoreInstallTitle = "Se necesita Android Switch",
+    restoreInstallMessage = "La restauración la hace la app Android Switch de Google. ¿Abrirla en Play Store?\n\nDespués de instalarla, vuelve a tocar esta fila.",
+    errRestore = "No se pudo abrir la pantalla de restauración. Actualiza Android Switch e inténtalo de nuevo.",
     updateMessage = { "XGoogle $it ya está disponible. ¿Abrir la página de descarga?" },
 )
 
@@ -890,6 +915,11 @@ private val ZH = Texts(
     supportSummary = "Xgoogle for HyperOS 社区群组（Telegram）",
     errSupport = "请在 Telegram 或浏览器中打开 t.me/Xgooogle。",
     errLsposed = "无法打开 LSPosed 管理器。",
+    restoreBackup = "从 Google 备份恢复",
+    restoreBackupSummary = "重置后，从 Google 备份恢复应用、通话记录、短信和设置",
+    restoreInstallTitle = "需要 Android Switch",
+    restoreInstallMessage = "恢复由 Google 的 Android Switch 应用完成。要在 Play 商店中打开吗？\n\n安装后请再次点按此项。",
+    errRestore = "无法打开恢复界面。请更新 Android Switch 后重试。",
     updateMessage = { "XGoogle $it 已发布，是否打开下载页面？" },
 )
 
