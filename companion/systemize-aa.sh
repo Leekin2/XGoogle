@@ -1,33 +1,23 @@
 #!/system/bin/sh
-# Make the installed Android Auto a privileged system app so it can start car projection.
-# Usage: systemize-aa.sh <module dir> [permissions-only]
-# Prints "missing" when Android Auto is not installed (nothing is changed then).
+# Android Auto runs as a privileged system app through the stub in
+# system/product/priv-app/AndroidAutoStubPrebuilt: the Play Store version installs as its update,
+# whenever it is installed. This keeps the privileged-permission allow-list in step with it.
+# Usage: systemize-aa.sh <module dir>
+# Prints "missing" when Android Auto is not installed yet (the shipped list is kept then).
 M=$1
 AA=com.google.android.projection.gearhead
-DIR=$M/system/product/priv-app/AndroidAuto
 XML=$M/system/product/etc/permissions/privapp-permissions-xgoogle-androidauto.xml
 
 pm path "$AA" > /dev/null 2>&1 || { echo missing; exit 0; }
 
-if [ "$2" != permissions-only ]; then
-    mkdir -p "$DIR"
-    find "$DIR" -maxdepth 1 -type f -name '*.apk' -delete 2>/dev/null
-    paths=$(pm path "$AA" | sed -n 's/^package://p')
-    IFS='
-'
-    for apk in $paths; do
-        cp -f "$apk" "$DIR/${apk##*/}" || exit 1
-    done
-    unset IFS
-    [ -f "$DIR/base.apk" ] || exit 1
-fi
-
 # HyperOS stops boot when a privileged app holds a privileged permission that is not
 # allow-listed, so list everything the installed version requests (extra entries are harmless).
-perms=$(dumpsys package "$AA" | awk '
+# The shipped list stays in as well, so a newer version that asks for more still boots.
+perms=$( { dumpsys package "$AA" | awk '
     /requested permissions:/ { f = 1; next }
     f && /^ *[A-Za-z ]+:$/   { f = 0 }
-    f { p = $1; sub(/:.*/, "", p); if (p ~ /\./) print p }' | sort -u)
+    f { p = $1; sub(/:.*/, "", p); if (p ~ /\./) print p }'
+    cat "$M/androidauto-permissions.txt" 2>/dev/null; } | grep '\.' | sort -u)
 [ -n "$perms" ] || exit 1
 
 mkdir -p "${XML%/*}"

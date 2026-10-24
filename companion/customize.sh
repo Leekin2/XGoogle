@@ -41,11 +41,11 @@ unset IFS
 prepare_google_mount "$MODPATH" || abort "! Could not prepare the Google folder"
 if [ -f "$APP_DIR/.replace" ]; then ui_print "- Google folder in replace mode"; else ui_print "- NoMount detected, using merge mode"; fi
 
-# Android Auto is optional: systemize it only when it is installed.
+# Android Auto: a system stub; the Play Store version installs over it at any time.
 case "$(/system/bin/sh "$MODPATH/systemize-aa.sh" "$MODPATH")" in
-    missing) ui_print "- Android Auto not installed, skipped (reinstall the module after installing it)" ;;
-    ok*) ui_print "- Android Auto made a system app" ;;
-    *) abort "! Could not copy Android Auto" ;;
+    missing) ui_print "- Android Auto stub added (install Android Auto from the Play Store any time)" ;;
+    ok*) ui_print "- Android Auto runs as a system app" ;;
+    *) ui_print "- Android Auto stub added; its permission list is refreshed at boot" ;;
 esac
 
 set_perm_recursive $MODPATH 0 0 0755 0644
