@@ -187,9 +187,13 @@ class Texts internal constructor(private val resources: Resources) {
     val updateMessage: (String) -> String = { resources.getString(R.string.update_message, it) }
 }
 
-fun textsFor(context: Context, language: AppLanguage): Texts {
-    val configuration = Configuration(context.resources.configuration).apply {
+private val loaded = java.util.concurrent.ConcurrentHashMap<AppLanguage, Texts>()
+
+/** Every screen asks on each recomposition; the strings of a language are read once. */
+fun textsFor(context: Context, language: AppLanguage): Texts = loaded.getOrPut(language) {
+    val app = context.applicationContext ?: context
+    val configuration = Configuration(app.resources.configuration).apply {
         setLocale(Locale.forLanguageTag(language.code))
     }
-    return Texts(context.createConfigurationContext(configuration).resources)
+    Texts(app.createConfigurationContext(configuration).resources)
 }

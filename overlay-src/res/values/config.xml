@@ -3,7 +3,6 @@
      CircleToSearchOverlay and GmsConfigOverlayCommon. -->
 <resources>
     <string name="config_defaultAssistant" translatable="false">com.google.android.googlequicksearchbox</string>
-    <bool name="config_allowDisablingAssistDisclosure">true</bool>
     <string name="config_defaultContextualSearchPackageName" translatable="false">com.google.android.googlequicksearchbox</string>
     <string name="config_systemAutomotiveProjection" translatable="false">com.google.android.projection.gearhead</string>
     <string name="config_defaultNearbySharingComponent" translatable="false">com.google.android.gms/com.google.android.gms.nearby.sharing.ShareSheetActivity</string>

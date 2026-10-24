@@ -2,7 +2,9 @@
 <!-- These are configurations that must exist on all GMS devices. -->
 <!-- Xiaomi HyperOS 4 international (nezha OS4.0.0.10.XPAMIXM) product/etc/sysconfig/google.xml: Play services
      power-save exemptions, Google backup transports (incl. Android Switch), app links.
-     update-ownership entries are left out: on the China ROM other stores update Play services. -->
+     Only the entries that allow something are kept: update-ownership (other stores update Play services on the
+     China ROM), allow-association (restricts who may bind to Android System Intelligence), install-in-user-type
+     and the rollback lists are left out. -->
 <config>
     <!-- These are the standard packages that are white-listed to always have internet
          access while in power save mode, even if they aren't in the foreground. -->
@@ -75,34 +77,17 @@
     <!-- Specify the explicit set of other applications that AI services are allowed to
          interact with, including the providers that back the implementation of the APIs
          provided by the package. -->
-    <allow-association target="com.google.android.as" allowed="com.android.bluetooth" />
-    <allow-association target="com.google.android.as" allowed="com.android.bluetooth.services" />
-    <allow-association target="com.google.android.as" allowed="com.android.providers.contacts" />
-    <allow-association target="com.google.android.as" allowed="com.android.providers.media" />
-    <allow-association target="com.google.android.as" allowed="com.android.providers.telephony" />
-    <allow-association target="com.google.android.as" allowed="com.android.systemui" />
-    <allow-association target="com.google.android.as" allowed="com.google.android.bluetooth" />
-    <allow-association target="com.google.android.as" allowed="com.google.android.bluetooth.services" />
-    <allow-association target="com.google.android.as" allowed="com.google.android.providers.media.module" />
     <!-- AI services can bind to its open-source network component. -->
-    <allow-association target="com.google.android.as" allowed="com.google.android.as.oss" />
 
     <!-- Specify the explicit set of other applications whose app data directories are
         accessible by other applications. -->
     <app-data-isolation-whitelisted-app package="com.google.android.gms" />
 
     <!-- Whitelist of packages that eligible for rollback -->
-    <rollback-whitelisted-app package="com.android.vending" />
 
     <!-- Specify the installer eligiable for updating the given GMS package. -->
 
     <!-- Denylist of packages that are not eligible for automatic rollback -->
-    <automatic-rollback-denylisted-app package="com.android.vending" />
 
     <!-- Preinstalled allowlist -->
-    <install-in-user-type package="com.google.android.verifier">
-        <install-in user-type="FULL" />
-        <install-in user-type="android.os.usertype.profile.MANAGED" />
-        <install-in user-type="android.os.usertype.profile.PRIVATE" />
-    </install-in-user-type>
 </config>
