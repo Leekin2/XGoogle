@@ -72,6 +72,7 @@ import androidx.compose.material.icons.rounded.RecordVoiceOver
 import androidx.compose.material.icons.rounded.RestartAlt
 import androidx.compose.material.icons.rounded.SettingsBackupRestore
 import androidx.compose.material.icons.rounded.PhotoLibrary
+import androidx.compose.material.icons.rounded.PowerSettingsNew
 import androidx.compose.material.icons.rounded.FolderSpecial
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.TouchApp
@@ -195,6 +196,9 @@ fun MiuixScreen(
                         Toggle(Icons.Rounded.Mic, t.heyGoogle, t.companion(state.companion),
                             state.features[FeaturePolicy.HEY_GOOGLE] == true, available && !state.busy,
                         ) { onSetting(FeaturePolicy.HEY_GOOGLE, it) }
+                        Toggle(Icons.Rounded.PowerSettingsNew, t.powerKey, t.powerKeySummary,
+                            state.features[FeaturePolicy.POWER_KEY] == true, available && !state.busy
+                        ) { onSetting(FeaturePolicy.POWER_KEY, it) }
                     }
                     Group(t.groupSearch) {
                         // Circle to Search's own options fold under it, so the list stays short.

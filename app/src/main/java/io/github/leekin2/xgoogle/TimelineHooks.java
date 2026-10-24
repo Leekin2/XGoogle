@@ -16,6 +16,8 @@ final class TimelineHooks {
     static final String GMS = "com.google.android.gms";
     static final String GSF = "com.google.android.gsf";
     static final String MAPS = "com.google.android.apps.maps";
+    /** Play services' DroidGuard process, which answers Play Integrity. */
+    static final String INTEGRITY_PROCESS = "com.google.android.gms.unstable";
     private static final String ISO = "us", SUBSCRIPTION_ISO = "US", MCC_MNC = "310030", MCC = "310", MNC = "030";
     private static final ThreadLocal<boolean[]> READING = ThreadLocal.withInitial(() -> new boolean[1]);
     /** GMS and GSF can share a process; the carrier hooks go in once per process. */

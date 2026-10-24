@@ -17,7 +17,7 @@ if [ -f "$backup" ]; then
                 settings put system "${entry#*:}" "$value"
             fi
         done
-        rm -f "$backup" /data/adb/xgoogle_nav_off
+        rm -f "$backup" /data/adb/xgoogle_nav_off /data/adb/xgoogle_power_off
     ) > /dev/null 2>&1 &
 fi
 # User enrollment/model databases are intentionally not erased during uninstall.

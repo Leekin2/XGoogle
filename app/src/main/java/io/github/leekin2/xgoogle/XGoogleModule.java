@@ -30,6 +30,8 @@ public final class XGoogleModule extends XposedModule {
     @Override public void onPackageReady(XposedModuleInterface.PackageReadyParam param) {
         String packageName = param.getPackageName();
         if (!SystemCompatibility.isSupported()) return;
+        // Play Integrity (DroidGuard) runs here; any hook in it can cost the integrity verdicts.
+        if (TimelineHooks.INTEGRITY_PROCESS.equals(processName)) return;
         if ("com.android.launcher".equals(packageName)) SearchBarHooks.install(hooks, param.getClassLoader());
         // Wallet renames its code with every update; the preview unlock is found by its shape.
         if ("com.google.android.apps.walletnfcrel".equals(packageName))

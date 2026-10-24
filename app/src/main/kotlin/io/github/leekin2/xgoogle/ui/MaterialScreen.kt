@@ -59,6 +59,7 @@ import androidx.compose.ui.semantics.selected
 import androidx.compose.material.icons.rounded.RestartAlt
 import androidx.compose.material.icons.rounded.SettingsBackupRestore
 import androidx.compose.material.icons.rounded.PhotoLibrary
+import androidx.compose.material.icons.rounded.PowerSettingsNew
 import androidx.compose.material.icons.rounded.FolderSpecial
 import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.HighlightOff
@@ -270,10 +271,13 @@ private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) 
         is AssistantInfo.App -> t.assistantCurrent(info.label)
     }
     Group(t.groupAssistant) {
-        SettingRow(0, 2, Icons.Rounded.RecordVoiceOver, t.defaultAssistant, assistant, onClick = onAssistant)
-        ToggleRow(t, 1, 2, Icons.Rounded.Mic, t.heyGoogle, t.companion(state.companion),
+        SettingRow(0, 3, Icons.Rounded.RecordVoiceOver, t.defaultAssistant, assistant, onClick = onAssistant)
+        ToggleRow(t, 1, 3, Icons.Rounded.Mic, t.heyGoogle, t.companion(state.companion),
             checked = state.features[FeaturePolicy.HEY_GOOGLE] == true, enabled = available && !state.busy,
             onChange = { onSetting(FeaturePolicy.HEY_GOOGLE, it) })
+        ToggleRow(t, 2, 3, Icons.Rounded.PowerSettingsNew, t.powerKey, t.powerKeySummary,
+            checked = state.features[FeaturePolicy.POWER_KEY] == true, enabled = available && !state.busy,
+            onChange = { onSetting(FeaturePolicy.POWER_KEY, it) })
     }
     Group(t.groupSearch) {
         // Circle to Search's own options fold under it, so the list stays short.

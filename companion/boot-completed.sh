@@ -17,7 +17,8 @@ if [ -n "$(getprop ro.mi.os.version.name)" ]; then
         [ "$home" = launch_google_search ] && home=launch_xiaoai_screen_identification
         printf 'power=%s\nhome=%s\n' "$power" "$home" > "$backup"
     fi
-    settings put system long_press_power_key launch_google_search
+    # The power key belongs to XGoogle's power switch; the app leaves this marker while it is off.
+    [ -f /data/adb/xgoogle_power_off ] || settings put system long_press_power_key launch_google_search
     # The nav handle belongs to XGoogle's Circle to Search switch; the app leaves this
     # marker while it is off (and has put the user's choice back).
     [ -f /data/adb/xgoogle_nav_off ] || settings put system long_press_home_key launch_google_search

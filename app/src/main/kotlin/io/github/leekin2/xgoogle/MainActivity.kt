@@ -34,7 +34,7 @@ import java.util.concurrent.Executors
 class MainActivity : ComponentActivity() {
     private val worker = Executors.newSingleThreadExecutor()
     private val liveKeys = setOf(FeaturePolicy.CIRCLE_VIBRATE, FeaturePolicy.HEY_GOOGLE,
-        FeaturePolicy.CIRCLE_LONG_PRESS, FeaturePolicy.CIRCLE_SIDE_HOLD, FeaturePolicy.CIRCLE_DOUBLE_TAP)
+        FeaturePolicy.CIRCLE_LONG_PRESS, FeaturePolicy.CIRCLE_SIDE_HOLD, FeaturePolicy.CIRCLE_DOUBLE_TAP, FeaturePolicy.POWER_KEY)
     private val savingKeys = mutableSetOf<String>()
     private var preferences: SharedPreferences? = null
     private var companionCheckedThisResume = false
@@ -185,6 +185,7 @@ class MainActivity : ComponentActivity() {
             !hyperOs -> null
             key == FeaturePolicy.WALLET -> { on -> CompanionInstaller.applyHyperOsWalletPower(on) }
             key == FeaturePolicy.NAVIGATION && state.companion.installed -> { on -> CompanionInstaller.applyHyperOsNavigationKey(on) }
+            key == FeaturePolicy.POWER_KEY && state.companion.installed -> { on -> CompanionInstaller.applyHyperOsPowerKey(on) }
             else -> null
         }
         worker.execute {
@@ -211,6 +212,7 @@ class MainActivity : ComponentActivity() {
                 result.onSuccess {
                     state = state.copy(features = state.features + (key to enabled))
                     cacheFeatures(state.features)
+                    if (key == FeaturePolicy.TIMELINE && !enabled) SettingsConnection.dropIntegrityScopes(null, false)
                     refreshScopes()
                     // Most hooks are put in place as their app starts (Wallet's too); the vibration
                     // switch is read live, and Hey Google has its own install dialog.
@@ -269,11 +271,13 @@ class MainActivity : ComponentActivity() {
         state = state.copy(busy = true, companion = CompanionState.INSTALLING, dialog = DialogKind.NONE)
         val t = texts
         val navigationOff = state.features[FeaturePolicy.NAVIGATION] == false
+        val powerOff = state.features[FeaturePolicy.POWER_KEY] == false
         worker.execute {
             val result = runCatching {
                 CompanionInstaller.install(this)
                 // Without this marker the companion's first boot would take the nav handle.
                 if (navigationOff && SystemCompatibility.isHyperOs()) CompanionInstaller.applyHyperOsNavigationKey(false)
+                if (powerOff && SystemCompatibility.isHyperOs()) CompanionInstaller.applyHyperOsPowerKey(false)
                 val editor = settings.edit().putBoolean("companion_ready", true)
                 if (enableHeyGoogle) editor.putBoolean(FeaturePolicy.HEY_GOOGLE, true)
                 if (!editor.commit())

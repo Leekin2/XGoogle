@@ -159,6 +159,8 @@ class Texts(
     val photosUnlimitedSummary: String,
     val photosDcim: String,
     val photosDcimSummary: String,
+    val powerKey: String,
+    val powerKeySummary: String,
     val updateMessage: (String) -> String,
 )
 
@@ -316,6 +318,8 @@ private val TR = Texts(
     photosUnlimitedSummary = "Google Fotoğraflar'a telefon 2016 Pixel gibi görünür; yeni yedeklenen fotoğraf ve videolar depolama alanınızdan düşmez",
     photosDcim = "Kamera klasörü yedeğini seçebilme",
     photosDcimSummary = "Google Fotoğraflar Kamera ve diğer DCIM klasörlerini zorla yedeklemez; her klasörün yedeğini kendiniz açıp kapatırsınız. Yeni kurulumda hiçbir klasör yedeklenmez",
+    powerKey = "Güç tuşu → Google asistanı",
+    powerKeySummary = "Uzun basınca Google asistanı açılır. Kapalıyken HyperOS'un kendi ayarı (XiaoAi) geçerli olur",
     updateMessage = { "XGoogle $it yayınlandı. İndirme sayfası açılsın mı?" },
 )
 
@@ -473,6 +477,8 @@ private val EN = Texts(
     photosUnlimitedSummary = "Google Photos sees the 2016 Pixel; newly backed-up photos and videos do not count against your storage",
     photosDcim = "Choose camera folder backup",
     photosDcimSummary = "Google Photos no longer forces backup of Camera and other DCIM folders; you turn each folder's backup on or off. On a new install no folder is backed up",
+    powerKey = "Power button → Google assistant",
+    powerKeySummary = "A long press opens the Google assistant. When off, HyperOS's own choice (XiaoAi) applies",
     updateMessage = { "XGoogle $it is available. Open the download page?" },
 )
 
@@ -630,6 +636,8 @@ private val RU = Texts(
     photosUnlimitedSummary = "Google Фото видит Pixel 2016 года: новые фото и видео в резервной копии не занимают место в хранилище",
     photosDcim = "Выбор резервного копирования папки камеры",
     photosDcimSummary = "Google Фото больше не копирует принудительно папки Камера и другие папки DCIM; копирование каждой папки включается отдельно. После новой установки ни одна папка не копируется",
+    powerKey = "Кнопка питания → Google Ассистент",
+    powerKeySummary = "Долгое нажатие открывает Google Ассистента. Если выключено, действует настройка HyperOS (XiaoAi)",
     updateMessage = { "Доступна версия XGoogle $it. Открыть страницу загрузки?" },
 )
 
@@ -787,6 +795,8 @@ private val ES = Texts(
     photosUnlimitedSummary = "Google Fotos ve un Pixel de 2016: las fotos y vídeos nuevos de la copia no ocupan tu almacenamiento",
     photosDcim = "Elegir copia de la carpeta de cámara",
     photosDcimSummary = "Google Fotos ya no fuerza la copia de Cámara y otras carpetas DCIM; activas o desactivas la copia de cada carpeta. En una instalación nueva no se copia ninguna carpeta",
+    powerKey = "Botón de encendido → Asistente de Google",
+    powerKeySummary = "Una pulsación larga abre el Asistente de Google. Si está desactivado, se aplica la opción de HyperOS (XiaoAi)",
     updateMessage = { "XGoogle $it ya está disponible. ¿Abrir la página de descarga?" },
 )
 
@@ -944,6 +954,8 @@ private val ZH = Texts(
     photosUnlimitedSummary = "Google 相册会将手机识别为 2016 款 Pixel，新备份的照片和视频不占用存储空间",
     photosDcim = "自选相机文件夹备份",
     photosDcimSummary = "Google 相册不再强制备份相机及其他 DCIM 文件夹，可逐个开关文件夹的备份。新安装时不会备份任何文件夹",
+    powerKey = "电源键 → Google 助理",
+    powerKeySummary = "长按打开 Google 助理。关闭后恢复 HyperOS 自身设置（小爱同学）",
     updateMessage = { "XGoogle $it 已发布，是否打开下载页面？" },
 )
 

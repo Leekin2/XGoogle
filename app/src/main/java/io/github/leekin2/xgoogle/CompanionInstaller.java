@@ -81,5 +81,18 @@ public final class CompanionInstaller {
                 +"if [ -z \"$home\" ] || [ \"$home\" = null ]; then settings delete system long_press_home_key; "
                 +"else settings put system long_press_home_key \"$home\"; fi; fi",20);
     }
+    /**
+     * HyperOS: the companion routes the power-key long press to Google on every boot. While the
+     * power switch is off, leave a marker so it stops, and put the user's own choice (XiaoAi) back.
+     */
+    public static void applyHyperOsPowerKey(boolean enabled) throws Exception {
+        String backup="/data/adb/xgoogle_keys_backup", off="/data/adb/xgoogle_power_off";
+        if (enabled) run(MIGRATE+"rm -f "+off+" && if [ -f "+backup+" ]; then "
+                +"settings put system long_press_power_key launch_google_search; fi",20);
+        else run(MIGRATE+"touch "+off+" && if [ \"$(settings get system long_press_power_key)\" = launch_google_search ]; then "
+                +"power=$(sed -n 's/^power=//p' "+backup+" 2>/dev/null); "
+                +"if [ -z \"$power\" ] || [ \"$power\" = null ]; then power=launch_voice_assistant; fi; "
+                +"settings put system long_press_power_key \"$power\"; fi",20);
+    }
     private CompanionInstaller() {}
 }

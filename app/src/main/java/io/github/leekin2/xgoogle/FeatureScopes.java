@@ -22,6 +22,8 @@ final class FeatureScopes {
             case FeaturePolicy.TIMELINE -> List.of(TimelineHooks.GMS, TimelineHooks.GSF, TimelineHooks.MAPS);
             case FeaturePolicy.PASSKEY -> List.of(SYSTEM, PasskeyHooks.SETTINGS, PasskeyHooks.SECURITY, PasskeyHooks.SCANNER);
             case FeaturePolicy.PHOTOS_UNLIMITED, FeaturePolicy.PHOTOS_DCIM -> List.of(PhotosUnlimitedHooks.PHOTOS);
+            // The companion changes the key setting; system_server is already in every install's scope.
+            case FeaturePolicy.POWER_KEY -> List.of(SYSTEM);
             case FeaturePolicy.GOOGLE_ENTRY -> List.of("com.android.settings");
             case FeaturePolicy.GMS -> List.of(SYSTEM, SYSTEM_UI);
             case FeaturePolicy.LENS, FeaturePolicy.LIVE_TRANSLATE -> List.of(GOOGLE);

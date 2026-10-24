@@ -43,7 +43,10 @@ final class SettingsConnection {
 
     private static synchronized void update(XposedService value) {
         service = value;
-        if (value != null) requestLaterScopes(value);
+        if (value != null) {
+            requestLaterScopes(value);
+            dropIntegrityScopes(value, null);
+        }
         MainActivity target = activity.get();
         if (target != null) target.runOnUiThread(() -> target.onFrameworkChanged(value));
     }
@@ -66,6 +69,29 @@ final class SettingsConnection {
             value.requestScope(missing, new XposedService.OnScopeEventListener() { });
         } catch (Throwable t) {
             Log.w("XGoogle", "Scope request failed", t);
+        }
+    }
+
+    /**
+     * Only Timeline needs Play services and GSF; an older XGoogle recommended them, and LSPosed
+     * keeps them ticked. Being hooked inside Play services can cost the Play Integrity verdicts,
+     * so without Timeline they are taken out of the scope. [timeline] null reads the saved switch.
+     */
+    static synchronized void dropIntegrityScopes(XposedService value, Boolean timeline) {
+        XposedService current = value != null ? value : service;
+        if (current == null) return;
+        try {
+            boolean on = timeline != null ? timeline : current.getRemotePreferences(FeatureConfig.GROUP)
+                    .getBoolean(FeaturePolicy.TIMELINE, FeaturePolicy.defaultValue(FeaturePolicy.TIMELINE));
+            if (on) return;
+            List<String> scope = current.getScope();
+            List<String> drop = new ArrayList<>();
+            for (String name : new String[]{TimelineHooks.GMS, TimelineHooks.GSF}) if (scope.contains(name)) drop.add(name);
+            if (drop.isEmpty()) return;
+            current.removeScope(drop);
+            Log.i("XGoogle", "Removed unused scopes " + drop);
+        } catch (Throwable t) {
+            Log.w("XGoogle", "Scope removal failed", t);
         }
     }
 

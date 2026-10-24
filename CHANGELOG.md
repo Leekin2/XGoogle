@@ -1,5 +1,14 @@
 # Değişiklikler / Changelog
 
+## XGoogle 1.3.7
+
+- Play Integrity: XGoogle, Google Play Hizmetleri'nin bütünlük işleminde hiçbir şey yapmaz; Zaman Çizelgesi kapalıyken Google Play Hizmetleri ve GSF LSPosed kapsamından çıkarılır (#4).
+  Play Integrity: XGoogle does nothing in Play services' integrity process; while Timeline is off, Google Play services and GSF leave the LSPosed scope (#4).
+- Güç tuşu → Google asistanı anahtarı; kapalıyken uzun basma HyperOS'un kendi ayarında (XiaoAi) kalır (#3).
+  Power button → Google assistant switch; when off, the long press keeps HyperOS's own choice (XiaoAi) (#3).
+- Ek modül 1.3.7: güç tuşu anahtarı kapalıyken güç tuşunu Google'a yönlendirmez.
+  Companion 1.3.7: does not route the power key to Google while the power switch is off.
+
 ## XGoogle 1.3.6
 
 - Sınırsız Google Fotoğraflar yedeği (isteğe bağlı, GMS kısıtlamasını kaldır'ın altında): Google Fotoğraflar telefonu 2016 Pixel olarak görür, yeni yedekler depolama alanından düşmez. Rev4N1/GPhotosUnlimited'dan uyarlandı.

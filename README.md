@@ -13,11 +13,12 @@
 - ✅ **Swipe in from the side and hold → Circle to Search** (needs XiaoAi, see below)
 - ✅ **Gestures are optional:** for the nav-handle hold, the side swipe-and-hold and the double tap you choose Circle to Search or XiaoAi (the function set in the system)
 - ✅ **"Hey Google"** voice activation, also with the screen off
+- ✅ **Power button → Google assistant** (switchable): turn it off to keep HyperOS's own long press (XiaoAi)
 - ✅ **Live translate:** in Circle to Search, tap Translate and keep translating as you scroll
 - ✅ **Google Lens:** Talk and Create included; keeps working after Google app updates
 - ✅ **Android Auto:** system app and car projection role
 - ✅ **Removes the GMS China restriction** (Quick Share included, with its control center tile; its "View downloads" link opens File Manager)
-- 🧪 **Google Maps Timeline** (optional): Google Play services and Maps see a US carrier so location history can be turned on; on the mainland the map stays aligned. Spoofing the carrier may break Google's terms; use at your own risk
+- 🧪 **Google Maps Timeline** (optional): Google Play services and Maps see a US carrier so location history can be turned on; on the mainland the map stays aligned. Spoofing the carrier may break Google's terms; use at your own risk. Timeline needs Google Play services in the LSPosed scope, which can affect Play Integrity on relocked phones; while it is off XGoogle removes that scope
 - 🧪 **Passkeys and password manager** (optional): Google passkeys, phone-as-key sign-in and autofill through Google Play services; Security no longer resets the chosen password manager. Needs Google Play services on; do not use together with HyperPasskey
 - 🧪 **Unlimited Google Photos backup** (optional): Google Photos sees the 2016 Pixel, so newly backed-up photos and videos do not count against your storage. Do not use together with the GPhotosUnlimited or Pixelify modules
 - 🧪 **Choose camera folder backup** (optional): Google Photos no longer forces backup of Camera and other DCIM folders; turn each folder's backup on or off in Photos. On a new install no folder is backed up
@@ -131,11 +132,12 @@ This project is not affiliated with Google or Xiaomi; trademarks belong to their
 - ✅ **Kenardan içeri kaydırıp tut → Circle to Search** (XiaoAi gerekir, aşağıya bakın)
 - ✅ **Hareketler tercihe bağlı:** alt çubuğa basılı tutma, kenardan kaydırıp tutma ve çift dokunma için Circle to Search ya da XiaoAi (sistemde seçili işlev) seçilir
 - ✅ **"Hey Google"** sesli uyandırma, ekran kapalıyken de
+- ✅ **Güç tuşu → Google asistanı** (açılıp kapatılabilir): kapatırsanız uzun basma HyperOS'un kendi ayarında (XiaoAi) kalır
 - ✅ **Canlı çeviri:** Circle to Search'te Çevir'e basıp kaydırınca çeviri devam eder
 - ✅ **Google Lens:** Konuş ve Oluştur dahil; Google güncellense de çalışmaya devam eder
 - ✅ **Android Auto:** sistem uygulaması ve araç projeksiyonu rolü
 - ✅ **GMS Çin kısıtlamasının kaldırılması** (Quick Share ve kontrol merkezi kutucuğu dahil; "İndirilenleri görüntüle" Dosya Yöneticisi'ni açar)
-- 🧪 **Google Haritalar Zaman Çizelgesi** (isteğe bağlı): Google Play Hizmetleri ve Haritalar ABD operatörü görür, konum geçmişi açılabilir; Çin anakarasında harita kaymaz. Operatörü taklit etmek Google koşullarına aykırı olabilir, risk size aittir
+- 🧪 **Google Haritalar Zaman Çizelgesi** (isteğe bağlı): Google Play Hizmetleri ve Haritalar ABD operatörü görür, konum geçmişi açılabilir; Çin anakarasında harita kaymaz. Operatörü taklit etmek Google koşullarına aykırı olabilir, risk size aittir. Zaman Çizelgesi LSPosed kapsamında Google Play Hizmetleri ister; bu, kilidi yeniden kapatılmış telefonlarda Play Integrity'yi etkileyebilir. Kapalıyken XGoogle bu kapsamı kaldırır
 - 🧪 **Geçiş anahtarları ve şifre yöneticisi** (isteğe bağlı): Google geçiş anahtarları, telefonla giriş ve otomatik doldurma Google Play Hizmetleri üzerinden çalışır; Güvenlik uygulaması seçilen şifre yöneticisini artık sıfırlamaz. Google Play Hizmetleri açık olmalı; HyperPasskey ile birlikte kullanmayın
 - 🧪 **Sınırsız Google Fotoğraflar yedeği** (isteğe bağlı): Google Fotoğraflar telefonu 2016 Pixel olarak görür, yeni yedeklenen fotoğraf ve videolar depolama alanınızdan düşmez. GPhotosUnlimited ya da Pixelify modülleriyle birlikte kullanmayın
 - 🧪 **Kamera klasörü yedeğini seçebilme** (isteğe bağlı): Google Fotoğraflar Kamera ve diğer DCIM klasörlerini zorla yedeklemez; her klasörün yedeğini Fotoğraflar'da açıp kapatırsınız. Yeni kurulumda hiçbir klasör yedeklenmez
