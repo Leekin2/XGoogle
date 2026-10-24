@@ -7,8 +7,10 @@ import io.github.libxposed.api.XposedModuleInterface;
 public final class XGoogleModule extends XposedModule {
     private final HookInstaller hooks = new HookInstaller(this);
     private final NavigationHooks navigation = new NavigationHooks(hooks);
+    private String processName;
 
     @Override public void onModuleLoaded(XposedModuleInterface.ModuleLoadedParam param) {
+        processName = param.getProcessName();
         MigrationEntry.attach(this);
         try { FeatureConfig.attach(getRemotePreferences(FeatureConfig.GROUP)); }
         catch (Throwable failure) { hooks.error("Configuration unavailable; verified defaults retained",failure); }
@@ -37,6 +39,11 @@ public final class XGoogleModule extends XposedModule {
             TimelineHooks.install(hooks, param.getClassLoader(), packageName);
         if (PasskeyHooks.handles(packageName) && FeatureConfig.enabled(FeaturePolicy.PASSKEY))
             PasskeyHooks.install(hooks, param.getClassLoader(), packageName, param.getApplicationInfo().sourceDir);
+        if (PhotosUnlimitedHooks.PHOTOS.equals(packageName) && FeatureConfig.enabled(FeaturePolicy.PHOTOS_UNLIMITED))
+            PhotosUnlimitedHooks.install(hooks, processName);
+        if (PhotosUnlimitedHooks.PHOTOS.equals(packageName) && FeatureConfig.enabled(FeaturePolicy.PHOTOS_DCIM))
+            PhotosFolderHooks.install(hooks, param.getClassLoader(), processName, param.getApplicationInfo().sourceDir,
+                    param.getApplicationInfo().dataDir);
         if ("com.android.camera".equals(packageName) && FeatureConfig.enabled(FeaturePolicy.CAMERA_LENS)) CameraLensHooks.install(hooks, param.getClassLoader());
         // The Settings entry hooks target ColorOS classes; HyperOS has none of them.
         boolean colorOs = SystemCompatibility.isColorOs17();

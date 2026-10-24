@@ -2,6 +2,10 @@
 
 ## XGoogle 1.3.6
 
+- Sınırsız Google Fotoğraflar yedeği (isteğe bağlı, GMS kısıtlamasını kaldır'ın altında): Google Fotoğraflar telefonu 2016 Pixel olarak görür, yeni yedekler depolama alanından düşmez. Rev4N1/GPhotosUnlimited'dan uyarlandı.
+  Unlimited Google Photos backup (optional, under Remove GMS restrictions): Google Photos sees the 2016 Pixel, so new backups do not count against storage. Adapted from Rev4N1/GPhotosUnlimited.
+- Kamera klasörü yedeğini seçebilme (isteğe bağlı): Google Fotoğraflar Kamera ve DCIM klasörlerini zorla yedeklemez, her klasör ayrı açılıp kapatılır. Fikir NexAlloy'dan.
+  Choose camera folder backup (optional): Google Photos stops forcing backup of Camera and DCIM folders; each folder is switched on or off. Idea from NexAlloy.
 - Google yedeğinden geri yükle (Ana sayfa → Sistem): Çin ROM'unda sıfırlamadan sonra Google'ın geri yükleme ekranını (Android Switch) açar; uygulamalar, arama geçmişi, SMS'ler ve ayarlar geri gelir.
   Restore from Google backup (Home → System): on China ROMs, opens Google's restore screen (Android Switch) after a reset; apps, call history, SMS and settings come back.
 - Ek modül 1.3.6 (değişiklik yok, güncellemek isteğe bağlı).

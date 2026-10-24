@@ -12,6 +12,10 @@ WgsRegions holds Hong Kong, Macao and Taiwan boundaries from that project's gene
 https://www.openstreetmap.org/copyright), relations 20044132, 1867188 and 449220 via Nominatim.
 PasskeyHooks and FinalFields are ported from Howard20181/HyperPasskey (GPL-3.0,
 https://github.com/Howard20181/HyperPasskey).
+PhotosUnlimitedHooks ports the spoofed values and approach of Rev4N1/GPhotosUnlimited (GPL-3.0,
+https://github.com/Rev4N1/GPhotosUnlimited) to LSPosed hooks.
+PhotosFolderHooks follows NexAlloy's "Enable DCIM folders backup control" (GPL-3.0,
+https://github.com/NexAlloy/NexAlloy), written anew with DexKit.
 The Quick Share "View downloads" fix follows HyperCeiler's BypassForceDownloadui idea
 (https://github.com/ReChronoRain/HyperCeiler, AGPL-3.0); no HyperCeiler code is included.
 The app icon uses the Xiaomi "mi" logo, a trademark of Xiaomi; XGoogle is not affiliated with Xiaomi or Google.

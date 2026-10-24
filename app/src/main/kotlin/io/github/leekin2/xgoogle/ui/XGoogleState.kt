@@ -57,6 +57,6 @@ data class XGoogleState(
             FeaturePolicy.NAVIGATION, FeaturePolicy.LENS,
             FeaturePolicy.WALLET, FeaturePolicy.QUICK_ENTRIES, FeaturePolicy.LIVE_TRANSLATE,
             FeaturePolicy.CIRCLE_VIBRATE, FeaturePolicy.CAMERA_LENS,
-            FeaturePolicy.CIRCLE_LONG_PRESS, FeaturePolicy.CIRCLE_SIDE_HOLD, FeaturePolicy.CIRCLE_DOUBLE_TAP, FeaturePolicy.TIMELINE, FeaturePolicy.PASSKEY)
+            FeaturePolicy.CIRCLE_LONG_PRESS, FeaturePolicy.CIRCLE_SIDE_HOLD, FeaturePolicy.CIRCLE_DOUBLE_TAP, FeaturePolicy.TIMELINE, FeaturePolicy.PASSKEY, FeaturePolicy.PHOTOS_UNLIMITED, FeaturePolicy.PHOTOS_DCIM)
     }
 }

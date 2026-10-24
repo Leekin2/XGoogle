@@ -155,6 +155,10 @@ class Texts(
     val restoreInstallTitle: String,
     val restoreInstallMessage: String,
     val errRestore: String,
+    val photosUnlimited: String,
+    val photosUnlimitedSummary: String,
+    val photosDcim: String,
+    val photosDcimSummary: String,
     val updateMessage: (String) -> String,
 )
 
@@ -308,6 +312,10 @@ private val TR = Texts(
     restoreInstallTitle = "Android Switch gerekli",
     restoreInstallMessage = "Geri yükleme, Google'ın Android Switch uygulamasıyla yapılır. Play Store'da açılsın mı?\n\nKurduktan sonra bu satıra yeniden dokunun.",
     errRestore = "Geri yükleme ekranı açılamadı. Android Switch'i güncelleyip tekrar deneyin.",
+    photosUnlimited = "Sınırsız Google Fotoğraflar yedeği",
+    photosUnlimitedSummary = "Google Fotoğraflar'a telefon 2016 Pixel gibi görünür; yeni yedeklenen fotoğraf ve videolar depolama alanınızdan düşmez",
+    photosDcim = "Kamera klasörü yedeğini seçebilme",
+    photosDcimSummary = "Google Fotoğraflar Kamera ve diğer DCIM klasörlerini zorla yedeklemez; her klasörün yedeğini kendiniz açıp kapatırsınız. Yeni kurulumda hiçbir klasör yedeklenmez",
     updateMessage = { "XGoogle $it yayınlandı. İndirme sayfası açılsın mı?" },
 )
 
@@ -461,6 +469,10 @@ private val EN = Texts(
     restoreInstallTitle = "Android Switch needed",
     restoreInstallMessage = "Restoring is done by Google's Android Switch app. Open it in the Play Store?\n\nAfter installing it, tap this row again.",
     errRestore = "The restore screen could not be opened. Update Android Switch and try again.",
+    photosUnlimited = "Unlimited Google Photos backup",
+    photosUnlimitedSummary = "Google Photos sees the 2016 Pixel; newly backed-up photos and videos do not count against your storage",
+    photosDcim = "Choose camera folder backup",
+    photosDcimSummary = "Google Photos no longer forces backup of Camera and other DCIM folders; you turn each folder's backup on or off. On a new install no folder is backed up",
     updateMessage = { "XGoogle $it is available. Open the download page?" },
 )
 
@@ -614,6 +626,10 @@ private val RU = Texts(
     restoreInstallTitle = "Нужен Android Switch",
     restoreInstallMessage = "Восстановление выполняет приложение Google Android Switch. Открыть его в Play Маркете?\n\nПосле установки снова нажмите на эту строку.",
     errRestore = "Не удалось открыть экран восстановления. Обновите Android Switch и попробуйте снова.",
+    photosUnlimited = "Безлимитная резервная копия Google Фото",
+    photosUnlimitedSummary = "Google Фото видит Pixel 2016 года: новые фото и видео в резервной копии не занимают место в хранилище",
+    photosDcim = "Выбор резервного копирования папки камеры",
+    photosDcimSummary = "Google Фото больше не копирует принудительно папки Камера и другие папки DCIM; копирование каждой папки включается отдельно. После новой установки ни одна папка не копируется",
     updateMessage = { "Доступна версия XGoogle $it. Открыть страницу загрузки?" },
 )
 
@@ -767,6 +783,10 @@ private val ES = Texts(
     restoreInstallTitle = "Se necesita Android Switch",
     restoreInstallMessage = "La restauración la hace la app Android Switch de Google. ¿Abrirla en Play Store?\n\nDespués de instalarla, vuelve a tocar esta fila.",
     errRestore = "No se pudo abrir la pantalla de restauración. Actualiza Android Switch e inténtalo de nuevo.",
+    photosUnlimited = "Copia ilimitada de Google Fotos",
+    photosUnlimitedSummary = "Google Fotos ve un Pixel de 2016: las fotos y vídeos nuevos de la copia no ocupan tu almacenamiento",
+    photosDcim = "Elegir copia de la carpeta de cámara",
+    photosDcimSummary = "Google Fotos ya no fuerza la copia de Cámara y otras carpetas DCIM; activas o desactivas la copia de cada carpeta. En una instalación nueva no se copia ninguna carpeta",
     updateMessage = { "XGoogle $it ya está disponible. ¿Abrir la página de descarga?" },
 )
 
@@ -920,6 +940,10 @@ private val ZH = Texts(
     restoreInstallTitle = "需要 Android Switch",
     restoreInstallMessage = "恢复由 Google 的 Android Switch 应用完成。要在 Play 商店中打开吗？\n\n安装后请再次点按此项。",
     errRestore = "无法打开恢复界面。请更新 Android Switch 后重试。",
+    photosUnlimited = "Google 相册无限备份",
+    photosUnlimitedSummary = "Google 相册会将手机识别为 2016 款 Pixel，新备份的照片和视频不占用存储空间",
+    photosDcim = "自选相机文件夹备份",
+    photosDcimSummary = "Google 相册不再强制备份相机及其他 DCIM 文件夹，可逐个开关文件夹的备份。新安装时不会备份任何文件夹",
     updateMessage = { "XGoogle $it 已发布，是否打开下载页面？" },
 )
 

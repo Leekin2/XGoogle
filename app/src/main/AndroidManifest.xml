@@ -25,6 +25,7 @@
         <!-- Optional features' scopes: requested when their switch is turned on. -->
         <package android:name="com.google.android.gsf" />
         <package android:name="com.google.android.apps.maps" />
+        <package android:name="com.google.android.apps.photos" />
         <package android:name="com.miui.securitycenter" />
         <package android:name="com.xiaomi.scanner" />
         <!-- Android Switch: restores the Google backup that China ROMs never offer at setup. -->

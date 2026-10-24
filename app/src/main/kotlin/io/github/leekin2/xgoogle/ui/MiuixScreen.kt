@@ -71,6 +71,8 @@ import androidx.compose.material.icons.rounded.PhotoCamera
 import androidx.compose.material.icons.rounded.RecordVoiceOver
 import androidx.compose.material.icons.rounded.RestartAlt
 import androidx.compose.material.icons.rounded.SettingsBackupRestore
+import androidx.compose.material.icons.rounded.PhotoLibrary
+import androidx.compose.material.icons.rounded.FolderSpecial
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.TouchApp
 import androidx.compose.material.icons.rounded.Translate
@@ -307,6 +309,10 @@ fun MiuixScreen(
                                     state.features[FeaturePolicy.TIMELINE] == true, available) { onSetting(FeaturePolicy.TIMELINE, it) }
                                 Toggle(Icons.Rounded.Key, t.passkey, t.passkeySummary,
                                     state.features[FeaturePolicy.PASSKEY] == true, available) { onSetting(FeaturePolicy.PASSKEY, it) }
+                                Toggle(Icons.Rounded.PhotoLibrary, t.photosUnlimited, t.photosUnlimitedSummary,
+                                    state.features[FeaturePolicy.PHOTOS_UNLIMITED] == true, available) { onSetting(FeaturePolicy.PHOTOS_UNLIMITED, it) }
+                                Toggle(Icons.Rounded.FolderSpecial, t.photosDcim, t.photosDcimSummary,
+                                    state.features[FeaturePolicy.PHOTOS_DCIM] == true, available) { onSetting(FeaturePolicy.PHOTOS_DCIM, it) }
                             }
                         }
                         ArrowPreference(title = t.restoreBackup, summary = t.restoreBackupSummary,

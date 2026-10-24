@@ -29,6 +29,7 @@ final class FinalFields {
         long at = offsetOfOffset();
         long offset = ((Number) getInt.invoke(u, field, at)).longValue();
         if (field.getType() == boolean.class) putBoolean.invoke(u, field.getDeclaringClass(), offset, value);
+        else if (field.getType() == int.class) putInt.invoke(u, field.getDeclaringClass(), offset, value);
         else putObject.invoke(u, field.getDeclaringClass(), offset, value);
     }
 

@@ -58,6 +58,8 @@ import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.semantics.selected
 import androidx.compose.material.icons.rounded.RestartAlt
 import androidx.compose.material.icons.rounded.SettingsBackupRestore
+import androidx.compose.material.icons.rounded.PhotoLibrary
+import androidx.compose.material.icons.rounded.FolderSpecial
 import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.HighlightOff
 import androidx.compose.material.icons.rounded.HourglassTop
@@ -344,7 +346,7 @@ private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) 
     Group(t.groupSystem) {
         // The Google features that need Play services fold under the GMS switch.
         var gmsOpen by rememberSaveable { mutableStateOf(false) }
-        val gmsExtra = if (gmsOpen) 3 else 0
+        val gmsExtra = if (gmsOpen) 5 else 0
         val systemCount = 3 + gmsExtra
         val gmsOn = state.features[FeaturePolicy.GMS] == true
         SettingRow(0, systemCount, Icons.Rounded.LockOpen, t.gms, t.gmsSummary, { gmsOpen = !gmsOpen },
@@ -363,6 +365,10 @@ private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) 
                     state.features[FeaturePolicy.TIMELINE] == true, available, { onSetting(FeaturePolicy.TIMELINE, it) })
                 ToggleRow(t, 3, systemCount, Icons.Rounded.Key, t.passkey, t.passkeySummary,
                     state.features[FeaturePolicy.PASSKEY] == true, available, { onSetting(FeaturePolicy.PASSKEY, it) })
+                ToggleRow(t, 4, systemCount, Icons.Rounded.PhotoLibrary, t.photosUnlimited, t.photosUnlimitedSummary,
+                    state.features[FeaturePolicy.PHOTOS_UNLIMITED] == true, available, { onSetting(FeaturePolicy.PHOTOS_UNLIMITED, it) })
+                ToggleRow(t, 5, systemCount, Icons.Rounded.FolderSpecial, t.photosDcim, t.photosDcimSummary,
+                    state.features[FeaturePolicy.PHOTOS_DCIM] == true, available, { onSetting(FeaturePolicy.PHOTOS_DCIM, it) })
             }
         }
         SettingRow(1 + gmsExtra, systemCount, Icons.Rounded.SettingsBackupRestore, t.restoreBackup, t.restoreBackupSummary,

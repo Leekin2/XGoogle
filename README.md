@@ -19,6 +19,8 @@
 - ✅ **Removes the GMS China restriction** (Quick Share included, with its control center tile; its "View downloads" link opens File Manager)
 - 🧪 **Google Maps Timeline** (optional): Google Play services and Maps see a US carrier so location history can be turned on; on the mainland the map stays aligned. Spoofing the carrier may break Google's terms; use at your own risk
 - 🧪 **Passkeys and password manager** (optional): Google passkeys, phone-as-key sign-in and autofill through Google Play services; Security no longer resets the chosen password manager. Needs Google Play services on; do not use together with HyperPasskey
+- 🧪 **Unlimited Google Photos backup** (optional): Google Photos sees the 2016 Pixel, so newly backed-up photos and videos do not count against your storage. Do not use together with the GPhotosUnlimited or Pixelify modules
+- 🧪 **Choose camera folder backup** (optional): Google Photos no longer forces backup of Camera and other DCIM folders; turn each folder's backup on or off in Photos. On a new install no folder is backed up
 - 🧪 **Lock screen shortcuts:** Gemini, Lens/QR, Wallet, Home controls. They open over the lock screen; Wallet asks you to verify when it needs to
 - 🧪 **Double-press power → Google Wallet**, also on the lock screen; Google becomes the default NFC payment app
 - 🧪 **Google Lens button in the camera** (optional), also over the lock screen
@@ -109,6 +111,8 @@ Thanks — this project is built on their work:
 - [@tiann](https://github.com/tiann) — [KernelSU](https://github.com/tiann/KernelSU), UI design
 - [@LuckyPray](https://github.com/LuckyPray) — [DexKit](https://github.com/LuckyPray/DexKit)
 - [compose-miuix-ui](https://github.com/compose-miuix-ui/miuix) — [Miuix](https://github.com/compose-miuix-ui/miuix), the HyperOS look
+- [@Rev4N1](https://github.com/Rev4N1) — [GPhotosUnlimited](https://github.com/Rev4N1/GPhotosUnlimited), unlimited Google Photos backup
+- [NexAlloy](https://github.com/NexAlloy/NexAlloy) — camera folder backup control idea
 
 This project is not affiliated with Google or Xiaomi; trademarks belong to their owners.
 
@@ -133,6 +137,8 @@ This project is not affiliated with Google or Xiaomi; trademarks belong to their
 - ✅ **GMS Çin kısıtlamasının kaldırılması** (Quick Share ve kontrol merkezi kutucuğu dahil; "İndirilenleri görüntüle" Dosya Yöneticisi'ni açar)
 - 🧪 **Google Haritalar Zaman Çizelgesi** (isteğe bağlı): Google Play Hizmetleri ve Haritalar ABD operatörü görür, konum geçmişi açılabilir; Çin anakarasında harita kaymaz. Operatörü taklit etmek Google koşullarına aykırı olabilir, risk size aittir
 - 🧪 **Geçiş anahtarları ve şifre yöneticisi** (isteğe bağlı): Google geçiş anahtarları, telefonla giriş ve otomatik doldurma Google Play Hizmetleri üzerinden çalışır; Güvenlik uygulaması seçilen şifre yöneticisini artık sıfırlamaz. Google Play Hizmetleri açık olmalı; HyperPasskey ile birlikte kullanmayın
+- 🧪 **Sınırsız Google Fotoğraflar yedeği** (isteğe bağlı): Google Fotoğraflar telefonu 2016 Pixel olarak görür, yeni yedeklenen fotoğraf ve videolar depolama alanınızdan düşmez. GPhotosUnlimited ya da Pixelify modülleriyle birlikte kullanmayın
+- 🧪 **Kamera klasörü yedeğini seçebilme** (isteğe bağlı): Google Fotoğraflar Kamera ve diğer DCIM klasörlerini zorla yedeklemez; her klasörün yedeğini Fotoğraflar'da açıp kapatırsınız. Yeni kurulumda hiçbir klasör yedeklenmez
 - 🧪 **Kilit ekranı kısayolları:** Gemini, Lens/QR, Cüzdan, Ev kontrolleri. Kilit ekranının üstünde açılır; Cüzdan gerektiğinde doğrulama ister
 - 🧪 **Güç tuşuna çift bas → Google Cüzdan**, kilit ekranında da açılır; Google varsayılan NFC ödeme uygulaması olur
 - 🧪 **Kamerada Google Lens butonu** (isteğe bağlı), kilit ekranında da çalışır
@@ -223,5 +229,7 @@ Teşekkürler — bu proje onların emeği üzerine kurulu:
 - [@tiann](https://github.com/tiann) — [KernelSU](https://github.com/tiann/KernelSU), arayüz tasarımı
 - [@LuckyPray](https://github.com/LuckyPray) — [DexKit](https://github.com/LuckyPray/DexKit)
 - [compose-miuix-ui](https://github.com/compose-miuix-ui/miuix) — [Miuix](https://github.com/compose-miuix-ui/miuix), HyperOS görünümü
+- [@Rev4N1](https://github.com/Rev4N1) — [GPhotosUnlimited](https://github.com/Rev4N1/GPhotosUnlimited), sınırsız Google Fotoğraflar yedeği
+- [NexAlloy](https://github.com/NexAlloy/NexAlloy) — kamera klasörü yedeği seçimi fikri
 
 Bu proje Google veya Xiaomi ile bağlantılı değildir; markalar sahiplerine aittir.

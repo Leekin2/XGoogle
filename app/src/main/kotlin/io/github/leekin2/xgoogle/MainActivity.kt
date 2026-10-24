@@ -392,8 +392,9 @@ class MainActivity : ComponentActivity() {
 
     /**
      * China ROMs have no Google setup wizard, so the Google backup is never offered after a reset.
-     * Android Switch's cloud restore is the same flow the wizard runs; it is exported, and root is
-     * only the fallback for builds that stop exporting it. Its main screen is the last resort.
+     * Android Switch's cloud restore is the same flow the wizard runs; it is exported, and root
+     * grants its missing permission and is the fallback for builds that stop exporting it.
+     * Its main screen is the last resort.
      */
     private fun openGoogleRestore() {
         if (runCatching { packageManager.getPackageInfo(RESTORE_PACKAGE, 0) }.isFailure) {
@@ -401,18 +402,26 @@ class MainActivity : ComponentActivity() {
             return
         }
         val restore = Intent().setClassName(RESTORE_PACKAGE, RESTORE_ACTIVITY).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        if (runCatching { startActivity(restore) }.isSuccess) return
         val t = texts
+        val user = android.os.Process.myUid() / 100000
         worker.execute {
-            val result = runCatching {
-                val output = RootShell.run("am start --user ${android.os.Process.myUid() / 100000} -n $RESTORE_PACKAGE/$RESTORE_ACTIVITY", 15)
-                // am can report a missing activity and still exit 0.
-                if ("Error" in output) throw IOException(output)
-            }
+            // On Pixels Android Switch is a system app; installed from Play it lacks the secure
+            // settings permission and crashes when it records the restore (skipped or finished).
+            runCatching { RootShell.run("pm grant --user $user $RESTORE_PACKAGE android.permission.WRITE_SECURE_SETTINGS", 15) }
             runOnUiThread {
-                if (isDestroyed || result.isSuccess) return@runOnUiThread
-                runCatching { startActivity(packageManager.getLaunchIntentForPackage(RESTORE_PACKAGE)!!) }
-                    .onFailure { error(t.errRestore) }
+                if (isDestroyed || runCatching { startActivity(restore) }.isSuccess) return@runOnUiThread
+                worker.execute {
+                    val result = runCatching {
+                        val output = RootShell.run("am start --user $user -n $RESTORE_PACKAGE/$RESTORE_ACTIVITY", 15)
+                        // am can report a missing activity and still exit 0.
+                        if ("Error" in output) throw IOException(output)
+                    }
+                    runOnUiThread {
+                        if (isDestroyed || result.isSuccess) return@runOnUiThread
+                        runCatching { startActivity(packageManager.getLaunchIntentForPackage(RESTORE_PACKAGE)!!) }
+                            .onFailure { error(t.errRestore) }
+                    }
+                }
             }
         }
     }
