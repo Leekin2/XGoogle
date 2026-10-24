@@ -1,6 +1,6 @@
 #!/system/bin/sh
 # Android Auto runs as a privileged system app through the stub in
-# system/product/priv-app/AndroidAutoStubPrebuilt: the Play Store version installs as its update,
+# system/product/priv-app/AndroidAutoStub: the Play Store version installs as its update,
 # whenever it is installed. This keeps the privileged-permission allow-list in step with it.
 # Usage: systemize-aa.sh <module dir>
 # Prints "missing" when Android Auto is not installed yet (the shipped list is kept then).
