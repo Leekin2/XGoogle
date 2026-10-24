@@ -1,7 +1,7 @@
 <resources>
-    <string name="shortcut_assistant">Google Asistan</string>
+    <string name="shortcut_assistant">Google Assistant</string>
     <string name="shortcut_lens">Google Lens</string>
-    <string name="shortcut_circle">Circle to Search</string>
-    <string name="shortcut_wallet">Google Cüzdan</string>
-    <string name="shortcut_home">Ev kontrolleri</string>
+    <string name="shortcut_circle" translatable="false">Circle to Search</string>
+    <string name="shortcut_wallet">Google Wallet</string>
+    <string name="shortcut_home">Home controls</string>
 </resources>

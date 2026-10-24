@@ -1,5 +1,11 @@
 package io.github.leekin2.xgoogle.ui
 
+import android.content.Context
+import android.content.res.Configuration
+import android.content.res.Resources
+import io.github.leekin2.xgoogle.R
+import java.util.Locale
+
 enum class AppLanguage(val code: String, val label: String) {
     TR("tr", "Türkçe"),
     EN("en", "English"),
@@ -15,954 +21,175 @@ enum class AppLanguage(val code: String, val label: String) {
     }
 }
 
-/** Every user-visible string of the app, per language. */
-class Texts(
-    val subtitle: String,
-    val language: String,
-    val version: (String) -> String,
-    val active: String,
-    val inactive: String,
-    val connecting: String,
-    val groupAssistant: String,
-    val defaultAssistant: String,
-    val assistantReading: String,
-    val assistantNone: String,
-    val assistantTap: String,
-    val assistantCurrent: (String) -> String,
-    val heyGoogle: String,
-    val lens: String,
-    val lensSummary: String,
-    val liveTranslate: String,
-    val liveTranslateSummary: String,
-    val groupSearch: String,
-    val groupLock: String,
-    val groupSystem: String,
-    val circle: String,
-    val circleSummary: String,
-    val circleVibrate: String,
-    val circleVibrateSummary: String,
-    val circleLongPress: String,
-    val circleSideHold: String,
-    val circleDoubleTap: String,
-    val circleGestureOn: String,
-    val circleGestureOff: String,
-    val circleOptions: String,
-    val lensOptions: String,
-    val lockOptions: String,
-    val gmsOptions: String,
-    val cameraLens: String,
-    val cameraLensSummary: String,
-    val wallet: String,
-    val walletSummary: String,
-    val lockShortcuts: String,
-    val lockShortcutsSummary: String,
-    val gms: String,
-    val gmsSummary: String,
-    val googleEntry: String,
-    val googleEntrySummary: String,
-    val timeline: String,
-    val timelineSummary: String,
-    val passkey: String,
-    val passkeySummary: String,
-    val groupOther: String,
-    val hideIcon: String,
-    val hideIconSummary: String,
-    val hyperStyle: String,
-    val hyperStyleSummary: String,
-    val groupLook: String,
-    val theme: String,
-    val themeSystem: String,
-    val themeLight: String,
-    val themeDark: String,
-    val monet: String,
-    val monetSummary: String,
-    val blur: String,
-    val blurSummary: String,
-    val about: String,
-    val aboutSummary: (String) -> String,
-    val restartHint: String,
-    val switchOn: String,
-    val switchOff: String,
-    val companion: (CompanionState) -> String,
-    val statusTitle: String,
-    val statusMessage: String,
-    val installTitle: String,
-    val installMessage: String,
-    val disabledTitle: String,
-    val disabledMessage: String,
-    val installedTitle: String,
-    val installedMessage: String,
-    val companionUpdateTitle: String,
-    val companionUpdateMessage: String,
-    val companionOfferTitle: String,
-    val companionOfferMessage: String,
-    val companionDoneMessage: String,
-    val update: String,
-    val hideIconTitle: String,
-    val hideIconMessage: String,
-    val errorTitle: String,
-    val install: String,
-    val hide: String,
-    val ok: String,
-    val cancel: String,
-    val errSave: String,
-    val errSaveGeneric: String,
-    val errWalletPower: String,
-    val errCheckCompanion: String,
-    val errCompanionSaved: String,
-    val errCompanionInstall: String,
-    val errOpenAssistant: String,
-    val errIcon: String,
-    val errRepository: String,
-    val errTelegram: String,
-    val restartApps: String,
-    val restartAppsSummary: String,
-    val restartTitle: String,
-    val restartMessage: String,
-    val restart: String,
-    val restartDone: String,
-    val errRestart: String,
-    val scopeDenied: String,
-    val scopeSystemMissing: String,
-    val walletDefaultSet: String,
-    val errNoWallet: String,
-    val errNoNfc: String,
-    val errWalletPayment: String,
-    val rootDenied: String,
-    val rootMissing: String,
-    val rootTimeout: String,
-    val rootFailed: String,
-    val tabHome: String,
-    val tabSettings: String,
-    val statusWorking: String,
-    val statusIncomplete: String,
-    val statusMissingIntro: String,
-    val systemFramework: String,
-    val statusTap: String,
-    val groupApp: String,
-    val checkUpdates: String,
-    val updateChecking: String,
-    val updateLatest: String,
-    val updateFailed: String,
-    val updateTitle: String,
-    val download: String,
-    val support: String,
-    val supportSummary: String,
-    val errSupport: String,
-    val errLsposed: String,
-    val restoreBackup: String,
-    val restoreBackupSummary: String,
-    val restoreInstallTitle: String,
-    val restoreInstallMessage: String,
-    val errRestore: String,
-    val photosUnlimited: String,
-    val photosUnlimitedSummary: String,
-    val photosDcim: String,
-    val photosDcimSummary: String,
-    val powerKey: String,
-    val powerKeySummary: String,
-    val updateMessage: (String) -> String,
-)
+/** Every user-visible string of the app, loaded from Android XML resources. */
+class Texts internal constructor(private val resources: Resources) {
+    val subtitle = resources.getString(R.string.subtitle)
+    val language = resources.getString(R.string.language)
+    val version: (String) -> String = { resources.getString(R.string.version, it) }
+    val active = resources.getString(R.string.active)
+    val inactive = resources.getString(R.string.inactive)
+    val connecting = resources.getString(R.string.connecting)
+    val groupAssistant = resources.getString(R.string.group_assistant)
+    val defaultAssistant = resources.getString(R.string.default_assistant)
+    val assistantReading = resources.getString(R.string.assistant_reading)
+    val assistantNone = resources.getString(R.string.assistant_none)
+    val assistantTap = resources.getString(R.string.assistant_tap)
+    val assistantCurrent: (String) -> String = { resources.getString(R.string.assistant_current, it) }
+    val heyGoogle = resources.getString(R.string.hey_google)
+    val lens = resources.getString(R.string.lens)
+    val lensSummary = resources.getString(R.string.lens_summary)
+    val liveTranslate = resources.getString(R.string.live_translate)
+    val liveTranslateSummary = resources.getString(R.string.live_translate_summary)
+    val groupSearch = resources.getString(R.string.group_search)
+    val groupLock = resources.getString(R.string.group_lock)
+    val groupSystem = resources.getString(R.string.group_system)
+    val circle = resources.getString(R.string.circle)
+    val circleSummary = resources.getString(R.string.circle_summary)
+    val circleVibrate = resources.getString(R.string.circle_vibrate)
+    val circleVibrateSummary = resources.getString(R.string.circle_vibrate_summary)
+    val circleLongPress = resources.getString(R.string.circle_long_press)
+    val circleSideHold = resources.getString(R.string.circle_side_hold)
+    val circleDoubleTap = resources.getString(R.string.circle_double_tap)
+    val circleLongPressOn = resources.getString(R.string.circle_long_press_on)
+    val circleLongPressOff = resources.getString(R.string.circle_long_press_off)
+    val circleSideHoldOn = resources.getString(R.string.circle_side_hold_on)
+    val circleSideHoldOff = resources.getString(R.string.circle_side_hold_off)
+    val circleDoubleTapOn = resources.getString(R.string.circle_double_tap_on)
+    val circleDoubleTapOff = resources.getString(R.string.circle_double_tap_off)
+    val circleOptions = resources.getString(R.string.circle_options)
+    val lensOptions = resources.getString(R.string.lens_options)
+    val lockOptions = resources.getString(R.string.lock_options)
+    val gmsOptions = resources.getString(R.string.gms_options)
+    val cameraLens = resources.getString(R.string.camera_lens)
+    val cameraLensSummary = resources.getString(R.string.camera_lens_summary)
+    val wallet = resources.getString(R.string.wallet)
+    val walletSummary = resources.getString(R.string.wallet_summary)
+    val lockShortcuts = resources.getString(R.string.lock_shortcuts)
+    val lockShortcutsSummary = resources.getString(R.string.lock_shortcuts_summary)
+    val gms = resources.getString(R.string.gms)
+    val gmsSummary = resources.getString(R.string.gms_summary)
+    val googleEntry = resources.getString(R.string.google_entry)
+    val googleEntrySummary = resources.getString(R.string.google_entry_summary)
+    val timeline = resources.getString(R.string.timeline)
+    val timelineSummary = resources.getString(R.string.timeline_summary)
+    val passkey = resources.getString(R.string.passkey)
+    val passkeySummary = resources.getString(R.string.passkey_summary)
+    val groupOther = resources.getString(R.string.group_other)
+    val hideIcon = resources.getString(R.string.hide_icon)
+    val hideIconSummary = resources.getString(R.string.hide_icon_summary)
+    val hyperStyle = resources.getString(R.string.hyper_style)
+    val hyperStyleSummary = resources.getString(R.string.hyper_style_summary)
+    val groupLook = resources.getString(R.string.group_look)
+    val theme = resources.getString(R.string.theme)
+    val themeSystem = resources.getString(R.string.theme_system)
+    val themeLight = resources.getString(R.string.theme_light)
+    val themeDark = resources.getString(R.string.theme_dark)
+    val monet = resources.getString(R.string.monet)
+    val monetSummary = resources.getString(R.string.monet_summary)
+    val blur = resources.getString(R.string.blur)
+    val blurSummary = resources.getString(R.string.blur_summary)
+    val about = resources.getString(R.string.about)
+    val aboutSummary: (String) -> String = { resources.getString(R.string.about_summary, it) }
+    val restartHint = resources.getString(R.string.restart_hint)
+    val switchOn = resources.getString(R.string.switch_on)
+    val switchOff = resources.getString(R.string.switch_off)
+    val companion: (CompanionState) -> String = {
+        resources.getString(
+            when (it) {
+                CompanionState.UNKNOWN -> R.string.companion_unknown
+                CompanionState.CHECKING -> R.string.companion_checking
+                CompanionState.MISSING -> R.string.companion_missing
+                CompanionState.DISABLED -> R.string.companion_disabled
+                CompanionState.READY -> R.string.companion_ready
+                CompanionState.PENDING -> R.string.companion_pending
+                CompanionState.OUTDATED -> R.string.companion_outdated
+                CompanionState.INSTALLING -> R.string.companion_installing
+            }
+        )
+    }
+    val statusTitle = resources.getString(R.string.status_title)
+    val statusMessage = resources.getString(R.string.status_message)
+    val installTitle = resources.getString(R.string.install_title)
+    val installMessage = resources.getString(R.string.install_message)
+    val disabledTitle = resources.getString(R.string.disabled_title)
+    val disabledMessage = resources.getString(R.string.disabled_message)
+    val installedTitle = resources.getString(R.string.installed_title)
+    val installedMessage = resources.getString(R.string.installed_message)
+    val companionUpdateTitle = resources.getString(R.string.companion_update_title)
+    val companionUpdateMessage = resources.getString(R.string.companion_update_message)
+    val companionOfferTitle = resources.getString(R.string.companion_offer_title)
+    val companionOfferMessage = resources.getString(R.string.companion_offer_message)
+    val companionDoneMessage = resources.getString(R.string.companion_done_message)
+    val update = resources.getString(R.string.update)
+    val hideIconTitle = resources.getString(R.string.hide_icon_title)
+    val hideIconMessage = resources.getString(R.string.hide_icon_message)
+    val errorTitle = resources.getString(R.string.error_title)
+    val install = resources.getString(R.string.install)
+    val hide = resources.getString(R.string.hide)
+    val ok = resources.getString(R.string.ok)
+    val cancel = resources.getString(R.string.cancel)
+    val errSave = resources.getString(R.string.err_save)
+    val errSaveGeneric = resources.getString(R.string.err_save_generic)
+    val errWalletPower = resources.getString(R.string.err_wallet_power)
+    val errCheckCompanion = resources.getString(R.string.err_check_companion)
+    val errCompanionSaved = resources.getString(R.string.err_companion_saved)
+    val errCompanionInstall = resources.getString(R.string.err_companion_install)
+    val errOpenAssistant = resources.getString(R.string.err_open_assistant)
+    val errIcon = resources.getString(R.string.err_icon)
+    val errRepository = resources.getString(R.string.err_repository)
+    val errTelegram = resources.getString(R.string.err_telegram)
+    val restartApps = resources.getString(R.string.restart_apps)
+    val restartAppsSummary = resources.getString(R.string.restart_apps_summary)
+    val restartTitle = resources.getString(R.string.restart_title)
+    val restartMessage = resources.getString(R.string.restart_message)
+    val restart = resources.getString(R.string.restart)
+    val restartDone = resources.getString(R.string.restart_done)
+    val errRestart = resources.getString(R.string.err_restart)
+    val scopeDenied = resources.getString(R.string.scope_denied)
+    val scopeSystemMissing = resources.getString(R.string.scope_system_missing)
+    val walletDefaultSet = resources.getString(R.string.wallet_default_set)
+    val errNoWallet = resources.getString(R.string.err_no_wallet)
+    val errNoNfc = resources.getString(R.string.err_no_nfc)
+    val errWalletPayment = resources.getString(R.string.err_wallet_payment)
+    val rootDenied = resources.getString(R.string.root_denied)
+    val rootMissing = resources.getString(R.string.root_missing)
+    val rootTimeout = resources.getString(R.string.root_timeout)
+    val rootFailed = resources.getString(R.string.root_failed)
+    val tabHome = resources.getString(R.string.tab_home)
+    val tabSettings = resources.getString(R.string.tab_settings)
+    val statusWorking = resources.getString(R.string.status_working)
+    val statusIncomplete = resources.getString(R.string.status_incomplete)
+    val statusMissingIntro = resources.getString(R.string.status_missing_intro)
+    val systemFramework = resources.getString(R.string.system_framework)
+    val statusTap = resources.getString(R.string.status_tap)
+    val groupApp = resources.getString(R.string.group_app)
+    val checkUpdates = resources.getString(R.string.check_updates)
+    val updateChecking = resources.getString(R.string.update_checking)
+    val updateLatest = resources.getString(R.string.update_latest)
+    val updateFailed = resources.getString(R.string.update_failed)
+    val updateTitle = resources.getString(R.string.update_title)
+    val download = resources.getString(R.string.download)
+    val support = resources.getString(R.string.support)
+    val supportSummary = resources.getString(R.string.support_summary)
+    val errSupport = resources.getString(R.string.err_support)
+    val errLsposed = resources.getString(R.string.err_lsposed)
+    val restoreBackup = resources.getString(R.string.restore_backup)
+    val restoreBackupSummary = resources.getString(R.string.restore_backup_summary)
+    val restoreInstallTitle = resources.getString(R.string.restore_install_title)
+    val restoreInstallMessage = resources.getString(R.string.restore_install_message)
+    val errRestore = resources.getString(R.string.err_restore)
+    val photosUnlimited = resources.getString(R.string.photos_unlimited)
+    val photosUnlimitedSummary = resources.getString(R.string.photos_unlimited_summary)
+    val photosDcim = resources.getString(R.string.photos_dcim)
+    val photosDcimSummary = resources.getString(R.string.photos_dcim_summary)
+    val powerKey = resources.getString(R.string.power_key)
+    val powerKeySummary = resources.getString(R.string.power_key_summary)
+    val updateMessage: (String) -> String = { resources.getString(R.string.update_message, it) }
+}
 
-private val TR = Texts(
-    subtitle = "Xiaomi HyperOS Çin ROM'u için Google özellikleri",
-    language = "Dil",
-    version = { "Sürüm $it" },
-    active = "Etkin",
-    inactive = "Etkin değil",
-    connecting = "Bağlanıyor…",
-    groupAssistant = "Dijital asistan",
-    defaultAssistant = "Varsayılan dijital asistan",
-    assistantReading = "Geçerli dijital asistan: okunuyor…",
-    assistantNone = "Geçerli dijital asistan: seçilmedi",
-    assistantTap = "Sistemdeki seçimi görmek için dokunun",
-    assistantCurrent = { "Geçerli dijital asistan: $it" },
-    heyGoogle = "Hey Google'ı aç",
-    lens = "Google Lens",
-    lensSummary = "Lens'in Çin ROM'unda eksik kalan özelliklerini açar",
-    liveTranslate = "Canlı çeviri",
-    liveTranslateSummary = "Circle to Search'te Çevir'e bastıktan sonra kaydırdıkça çeviri sürer",
-    groupSearch = "Arama ve Lens",
-    groupLock = "Kilit ekranı ve kısayollar",
-    groupSystem = "Sistem",
-    circle = "Circle to Search",
-    circleSummary = "Alt çubuktaki hareketle Circle to Search açılır",
-    circleVibrate = "Circle to Search'te her zaman titreşim",
-    circleVibrateSummary = "Dokunmatik geri bildirim kapalı olsa da titreşir",
-    circleLongPress = "Alt çubuğa basılı tut",
-    circleSideHold = "Kenardan kaydırıp basılı tut",
-    circleDoubleTap = "Alt çubuğa çift dokun",
-    circleGestureOn = "Açık: Circle to Search açılır",
-    circleGestureOff = "Kapalı: XiaoAi açılır",
-    circleOptions = "Circle to Search seçenekleri",
-    lensOptions = "Google Lens seçenekleri",
-    lockOptions = "Kilit ekranı kısayolu seçenekleri",
-    gmsOptions = "Google Play Hizmetleri seçenekleri",
-    cameraLens = "Kamerada Google Lens",
-    cameraLensSummary = "Kamera menüsüne Lens ekler; kilit ekranında da çalışır",
-    wallet = "Google Cüzdan",
-    walletSummary = "Güç tuşuna çift basınca Google Cüzdan açılır",
-    lockShortcuts = "Kilit ekranı kısayolları",
-    lockShortcutsSummary = "Kilit ekranına Gemini, Lens, Cüzdan ve Google Home kısayollarını ekler",
-    gms = "GMS kısıtlamasını kaldır",
-    gmsSummary = "Çin ROM'unun kapattığı Google özelliklerini açar",
-    googleEntry = "Ayarlar'da Google",
-    googleEntrySummary = "Ayarlar'ın en altına Google hizmetleri girişini ekler",
-    timeline = "Google Haritalar Zaman Çizelgesi",
-    timelineSummary = "Konum geçmişini açar. Google Play Hizmetleri ve Haritalar'a ABD operatörü gösterilir; hesap için risk taşıyabilir",
-    passkey = "Geçiş anahtarları ve şifre yöneticisi",
-    passkeySummary = "Google geçiş anahtarlarını ve otomatik doldurmayı Çin ROM'unda çalıştırır. Google Play Hizmetleri etkin olmalı; HyperPasskey ile birlikte kullanmayın",
-    groupOther = "Diğer",
-    hideIcon = "Ana ekran simgesini gizle",
-    hideIconSummary = "Gizledikten sonra uygulamayı LSPosed'den açabilirsiniz",
-    hyperStyle = "HyperOS görünümü",
-    hyperStyleSummary = "Bu ekranı HyperOS tarzında gösterir",
-    groupLook = "Görünüm",
-    theme = "Tema",
-    themeSystem = "Sistem",
-    themeLight = "Açık",
-    themeDark = "Koyu",
-    monet = "Duvar kağıdı renkleri",
-    monetSummary = "Renkler duvar kağıdından alınır",
-    blur = "Buzlu çubuklar",
-    blurSummary = "Üst ve alt çubuk, arkasındaki listeyi buzlu cam gibi gösterir",
-    about = "XGoogle hakkında",
-    aboutSummary = { "Leekinn · $it\nTelegram: @emcleek" },
-    restartHint = "Değişikliğin geçerli olması için Sistem > Uygulamaları yeniden başlat'a dokunun veya telefonu yeniden başlatın",
-    switchOn = "Açık",
-    switchOff = "Kapalı",
-    companion = {
-        when (it) {
-            CompanionState.UNKNOWN -> "Ek modül: açılınca otomatik kontrol edilir"
-            CompanionState.CHECKING -> "Ek modül: kurulum durumu kontrol ediliyor…"
-            CompanionState.MISSING -> "Ek modül: kurulu değil"
-            CompanionState.DISABLED -> "Ek modül: devre dışı"
-            CompanionState.READY -> "Ek modül: kurulu ve etkin"
-            CompanionState.PENDING -> "Ek modül: kuruldu, yeniden başlatma bekleniyor"
-            CompanionState.OUTDATED -> "Ek modül: güncelleme var"
-            CompanionState.INSTALLING -> "Ek modül: kuruluyor…"
-        }
-    },
-    statusTitle = "Modül durumu",
-    statusMessage = "LSPosed'de XGoogle'ı etkinleştirip önerilen kapsamları işaretleyin. Bir ayarı değiştirdikten sonra Uygulamaları yeniden başlat'a dokunun veya telefonu yeniden başlatın.\n\nDesteklenen sistem: Xiaomi HyperOS (Çin ROM'u).",
-    installTitle = "Ek modülü kur",
-    installMessage = "Hey Google için XGoogle ek modülü gerekir. Kurulum root izni ister.\n\nEk modülü ilk kez kurduktan sonra telefonu yeniden başlatın, ardından Google ayarlarından Voice Match kurulumunu tamamlayın.",
-    disabledTitle = "Ek modül devre dışı",
-    disabledMessage = "SukiSU/KernelSU'da XGoogle ek modülünü etkinleştirin, ardından Hey Google'ı yeniden açın.",
-    installedTitle = "Kurulum tamamlandı",
-    installedMessage = "XGoogle ek modülü kuruldu ve Hey Google açıldı.\n\nTelefonu yeniden başlatın, ardından Google ayarlarından Voice Match kurulumunu tamamlayın.",
-    companionUpdateTitle = "Ek modülü güncelle",
-    companionUpdateMessage = "Kurulu ek modülün sürümü eski. XGoogle'ın içindeki yeni sürümü kurmak root izni ister; ardından telefonu yeniden başlatın.",
-    companionOfferTitle = "Ek modül önerilir",
-    companionOfferMessage = "HyperOS'ta alt çubuktan Circle to Search ve canlı çeviri, XGoogle ek modülüyle çalışır. Ek modül kurulsun mu? Kurulum root izni ister; ardından telefonu yeniden başlatın.",
-    companionDoneMessage = "XGoogle ek modülü kuruldu. Telefonu yeniden başlatın.",
-    update = "Güncelle",
-    hideIconTitle = "Ana ekran simgesi gizlensin mi?",
-    hideIconMessage = "Gizlendikten sonra uygulamayı LSPosed'deki XGoogle modül ayarlarından açabilirsiniz.",
-    errorTitle = "İşlem tamamlanamadı",
-    install = "Kur",
-    hide = "Gizle",
-    ok = "Tamam",
-    cancel = "İptal",
-    errSave = "Ayar kaydedilemedi. LSPosed bağlantısını kontrol edin.",
-    errSaveGeneric = "Ayar kaydedilemedi",
-    errWalletPower = "Ayar kaydedildi ama güç tuşu ayarlanamadı. XGoogle'a root izni verin.",
-    errCheckCompanion = "Kurulum durumu kontrol edilemedi. SukiSU/KernelSU'da XGoogle'a root izni verin, ardından Hey Google'ı yeniden açın.",
-    errCompanionSaved = "Ek modül kuruldu ama ayar kaydedilemedi. Hey Google'ı yeniden açın.",
-    errCompanionInstall = "Ek modül kurulamadı",
-    errOpenAssistant = "Asistan seçim sayfası açılamadı.",
-    errIcon = "Ana ekran simgesinin durumu değiştirilemedi.",
-    errRepository = "github.com/Leekin2/XGoogle adresini tarayıcıda açın.",
-    errTelegram = "t.me/emcleek adresini Telegram'da ya da tarayıcıda açın.",
-    restartApps = "Uygulamaları yeniden başlat",
-    restartAppsSummary = "Ayar değişikliklerini telefonu yeniden başlatmadan uygular; XGoogle'ın çalıştığı uygulamaları kapatıp açar",
-    restartTitle = "Uygulamaları yeniden başlat",
-    restartMessage = "XGoogle'ın kapsamındaki uygulamalar (Google, SystemUI, Ayarlar, başlatıcı…) kapatılıp yeniden açılır. Ekran bir an kararabilir.\n\nSistem çerçevesi (GMS kısıtlaması, Hey Google, Android Auto) için yine telefonu yeniden başlatmak gerekir.",
-    restart = "Yeniden başlat",
-    restartDone = "Uygulamalar yeniden başlatıldı",
-    errRestart = "Uygulamalar yeniden başlatılamadı.",
-    scopeDenied = "Bu özellik için gereken uygulamalar LSPosed kapsamına eklenmedi. LSPosed'de XGoogle'ın kapsamından bu uygulamaları işaretleyin.",
-    scopeSystemMissing = "Bu özellik için LSPosed'de XGoogle kapsamında \"Sistem çerçevesi\"ni işaretleyip telefonu yeniden başlatın.",
-    walletDefaultSet = "Google varsayılan NFC ödeme uygulaması olarak ayarlandı",
-    errNoWallet = "Önce Google Cüzdan'ı kurup açın.",
-    errNoNfc = "Bu telefon NFC ile ödemeyi desteklemiyor.",
-    errWalletPayment = "Google varsayılan ödeme uygulaması olarak ayarlanamadı. Ayarlar > NFC > Temassız ödemeler'den Google Pay'i seçin.",
-    rootDenied = "Root izni verilmedi. SukiSU/KernelSU'da XGoogle'a root izni verip tekrar deneyin.",
-    rootMissing = "Root bulunamadı. SukiSU/KernelSU'nun çalıştığını kontrol edin.",
-    rootTimeout = "İşlem zaman aşımına uğradı. Tekrar deneyin.",
-    rootFailed = "Root komutu başarısız oldu.",
-    tabHome = "Ana sayfa",
-    tabSettings = "Ayarlar",
-    statusWorking = "Çalışıyor",
-    statusIncomplete = "Kapsam eksik",
-    statusMissingIntro = "LSPosed'de işaretlenmemiş:",
-    systemFramework = "Sistem çerçevesi",
-    statusTap = "LSPosed'i açmak için dokunun",
-    groupApp = "Uygulama",
-    checkUpdates = "Güncellemeleri kontrol et",
-    updateChecking = "Kontrol ediliyor…",
-    updateLatest = "En güncel sürümü kullanıyorsunuz",
-    updateFailed = "Kontrol edilemedi. İnternet bağlantınızı kontrol edin",
-    updateTitle = "Yeni sürüm mevcut",
-    download = "İndir",
-    support = "Destek",
-    supportSummary = "Xgoogle for HyperOS topluluk grubu (Telegram)",
-    errSupport = "t.me/Xgooogle adresini Telegram'da ya da tarayıcıda açın.",
-    errLsposed = "LSPosed yöneticisi açılamadı.",
-    restoreBackup = "Google yedeğinden geri yükle",
-    restoreBackupSummary = "Sıfırladıktan sonra Google yedeğindeki uygulamaları, arama geçmişini, SMS'leri ve ayarları geri getirir",
-    restoreInstallTitle = "Android Switch gerekli",
-    restoreInstallMessage = "Geri yükleme, Google'ın Android Switch uygulamasıyla yapılır. Play Store'da açılsın mı?\n\nKurduktan sonra bu satıra yeniden dokunun.",
-    errRestore = "Geri yükleme ekranı açılamadı. Android Switch'i güncelleyip tekrar deneyin.",
-    photosUnlimited = "Sınırsız Google Fotoğraflar yedeği",
-    photosUnlimitedSummary = "Google Fotoğraflar'a telefon 2016 Pixel gibi görünür; yeni yedeklenen fotoğraf ve videolar depolama alanınızdan düşmez",
-    photosDcim = "Kamera klasörü yedeğini seçebilme",
-    photosDcimSummary = "Google Fotoğraflar Kamera ve diğer DCIM klasörlerini zorla yedeklemez; her klasörün yedeğini kendiniz açıp kapatırsınız. Yeni kurulumda hiçbir klasör yedeklenmez",
-    powerKey = "Güç tuşu → Google asistanı",
-    powerKeySummary = "Uzun basınca Google asistanı açılır. Kapalıyken HyperOS'un kendi ayarı (XiaoAi) geçerli olur",
-    updateMessage = { "XGoogle $it yayınlandı. İndirme sayfası açılsın mı?" },
-)
-
-private val EN = Texts(
-    subtitle = "Google features for the Xiaomi HyperOS China ROM",
-    language = "Language",
-    version = { "Version $it" },
-    active = "Active",
-    inactive = "Inactive",
-    connecting = "Connecting…",
-    groupAssistant = "Digital assistant",
-    defaultAssistant = "Default digital assistant",
-    assistantReading = "Current digital assistant: reading…",
-    assistantNone = "Current digital assistant: none selected",
-    assistantTap = "Tap to see the system's choice",
-    assistantCurrent = { "Current digital assistant: $it" },
-    heyGoogle = "Turn on Hey Google",
-    lens = "Google Lens",
-    lensSummary = "Turns on the Lens features missing on the China ROM",
-    liveTranslate = "Live translate",
-    liveTranslateSummary = "In Circle to Search, tap Translate and it keeps translating as you scroll",
-    groupSearch = "Search and Lens",
-    groupLock = "Lock screen and shortcuts",
-    groupSystem = "System",
-    circle = "Circle to Search",
-    circleSummary = "Opens Circle to Search from the navigation handle",
-    circleVibrate = "Always vibrate for Circle to Search",
-    circleVibrateSummary = "Vibrates even when touch feedback is off",
-    circleLongPress = "Hold the navigation handle",
-    circleSideHold = "Swipe in from the side and hold",
-    circleDoubleTap = "Double tap the navigation handle",
-    circleGestureOn = "On: opens Circle to Search",
-    circleGestureOff = "Off: opens XiaoAi",
-    circleOptions = "Circle to Search options",
-    lensOptions = "Google Lens options",
-    lockOptions = "Lock screen shortcut options",
-    gmsOptions = "Google Play services options",
-    cameraLens = "Google Lens in Camera",
-    cameraLensSummary = "Adds Lens to the camera menu; also works on the lock screen",
-    wallet = "Google Wallet",
-    walletSummary = "Double-press power to open Google Wallet",
-    lockShortcuts = "Lock screen shortcuts",
-    lockShortcutsSummary = "Adds Gemini, Lens, Wallet and Google Home shortcuts to the lock screen",
-    gms = "Remove GMS restrictions",
-    gmsSummary = "Unlocks the Google features the China ROM blocks",
-    googleEntry = "Google in Settings",
-    googleEntrySummary = "Adds the Google services entry at the bottom of Settings",
-    timeline = "Google Maps Timeline",
-    timelineSummary = "Turns on location history. Google Play services and Maps see a US carrier; this may put your account at risk",
-    passkey = "Passkeys and password manager",
-    passkeySummary = "Makes Google passkeys and autofill work on the China ROM. Google Play services must be enabled. Don't use together with HyperPasskey",
-    groupOther = "Other",
-    hideIcon = "Hide home screen icon",
-    hideIconSummary = "Once hidden, open the app from LSPosed",
-    hyperStyle = "HyperOS style",
-    hyperStyleSummary = "Shows this screen in the HyperOS style",
-    groupLook = "Appearance",
-    theme = "Theme",
-    themeSystem = "System",
-    themeLight = "Light",
-    themeDark = "Dark",
-    monet = "Wallpaper colors",
-    monetSummary = "Colors come from your wallpaper",
-    blur = "Frosted bars",
-    blurSummary = "The top and bottom bars show the list behind them like frosted glass",
-    about = "About XGoogle",
-    aboutSummary = { "Leekinn · $it\nTelegram: @emcleek" },
-    restartHint = "To apply, tap System > Restart apps or restart your phone",
-    switchOn = "On",
-    switchOff = "Off",
-    companion = {
-        when (it) {
-            CompanionState.UNKNOWN -> "Companion module: checked automatically when enabled"
-            CompanionState.CHECKING -> "Companion module: checking installation…"
-            CompanionState.MISSING -> "Companion module: not installed"
-            CompanionState.DISABLED -> "Companion module: disabled"
-            CompanionState.READY -> "Companion module: installed and enabled"
-            CompanionState.PENDING -> "Companion module: installed, reboot pending"
-            CompanionState.OUTDATED -> "Companion module: update available"
-            CompanionState.INSTALLING -> "Companion module: installing…"
-        }
-    },
-    statusTitle = "Module status",
-    statusMessage = "Enable XGoogle in LSPosed and select the recommended scopes. After changing a setting, tap Restart apps or restart your phone.\n\nSupported system: Xiaomi HyperOS (China ROM).",
-    installTitle = "Install companion module",
-    installMessage = "Hey Google needs the XGoogle companion module. Installation requires root access.\n\nAfter the first install, restart your phone, then finish setting up Voice Match in Google settings.",
-    disabledTitle = "Companion module disabled",
-    disabledMessage = "Enable the XGoogle companion module in SukiSU/KernelSU, then turn Hey Google on again.",
-    installedTitle = "Installation complete",
-    installedMessage = "The XGoogle companion module is installed and Hey Google is on.\n\nRestart your phone, then finish setting up Voice Match in Google settings.",
-    companionUpdateTitle = "Update companion module",
-    companionUpdateMessage = "The installed companion module is out of date. Installing the version bundled with XGoogle requires root access; restart your phone afterwards.",
-    companionOfferTitle = "Companion module recommended",
-    companionOfferMessage = "On HyperOS, Circle to Search from the navigation handle and live translate work through the XGoogle companion module. Install it now? Installation requires root access; restart your phone afterwards.",
-    companionDoneMessage = "The XGoogle companion module is installed. Restart your phone.",
-    update = "Update",
-    hideIconTitle = "Hide the home screen icon?",
-    hideIconMessage = "Once hidden, you can still open the app from XGoogle's module settings in LSPosed.",
-    errorTitle = "Something went wrong",
-    install = "Install",
-    hide = "Hide",
-    ok = "OK",
-    cancel = "Cancel",
-    errSave = "Setting not saved. Check the LSPosed connection.",
-    errSaveGeneric = "Setting not saved",
-    errWalletPower = "Setting saved, but the power button could not be set up. Grant XGoogle root access.",
-    errCheckCompanion = "Could not check the installation. Grant XGoogle root access in SukiSU/KernelSU, then turn Hey Google on again.",
-    errCompanionSaved = "The companion module was installed, but the setting was not saved. Turn Hey Google on again.",
-    errCompanionInstall = "Companion module installation failed",
-    errOpenAssistant = "Could not open the system's assistant picker.",
-    errIcon = "Could not change the home screen icon state.",
-    errRepository = "Open github.com/Leekin2/XGoogle in a browser.",
-    errTelegram = "Open t.me/emcleek in Telegram or a browser.",
-    restartApps = "Restart apps",
-    restartAppsSummary = "Applies setting changes without restarting your phone by restarting the apps XGoogle works in",
-    restartTitle = "Restart apps",
-    restartMessage = "The apps in XGoogle's scope (Google, SystemUI, Settings, launcher…) are closed and reopened. The screen may go dark for a moment.\n\nChanges to the system framework (GMS restrictions, Hey Google, Android Auto) still need a phone restart.",
-    restart = "Restart",
-    restartDone = "Apps restarted",
-    errRestart = "Could not restart the apps.",
-    scopeDenied = "The apps this feature needs were not added to the LSPosed scope. Tick them in XGoogle's scope in LSPosed.",
-    scopeSystemMissing = "For this feature, tick \"System framework\" in XGoogle's scope in LSPosed and restart your phone.",
-    walletDefaultSet = "Google is now the default NFC payment app",
-    errNoWallet = "Install and open Google Wallet first.",
-    errNoNfc = "This phone does not support NFC payments.",
-    errWalletPayment = "Could not make Google the default payment app. Choose Google Pay in Settings > NFC > Contactless payments.",
-    rootDenied = "Root access was denied. Grant XGoogle root access in SukiSU/KernelSU and try again.",
-    rootMissing = "Root was not found. Check that SukiSU/KernelSU is working.",
-    rootTimeout = "The operation timed out. Try again.",
-    rootFailed = "The root command failed.",
-    tabHome = "Home",
-    tabSettings = "Settings",
-    statusWorking = "Working",
-    statusIncomplete = "Scopes missing",
-    statusMissingIntro = "Not ticked in LSPosed:",
-    systemFramework = "System framework",
-    statusTap = "Tap to open LSPosed",
-    groupApp = "App",
-    checkUpdates = "Check for updates",
-    updateChecking = "Checking…",
-    updateLatest = "You are on the latest version",
-    updateFailed = "Couldn't check. Check your internet connection",
-    updateTitle = "New version available",
-    download = "Download",
-    support = "Support",
-    supportSummary = "Xgoogle for HyperOS community group (Telegram)",
-    errSupport = "Open t.me/Xgooogle in Telegram or a browser.",
-    errLsposed = "Could not open the LSPosed manager.",
-    restoreBackup = "Restore from Google backup",
-    restoreBackupSummary = "After a reset, brings back the apps, call history, SMS and settings in your Google backup",
-    restoreInstallTitle = "Android Switch needed",
-    restoreInstallMessage = "Restoring is done by Google's Android Switch app. Open it in the Play Store?\n\nAfter installing it, tap this row again.",
-    errRestore = "The restore screen could not be opened. Update Android Switch and try again.",
-    photosUnlimited = "Unlimited Google Photos backup",
-    photosUnlimitedSummary = "Google Photos sees the 2016 Pixel; newly backed-up photos and videos do not count against your storage",
-    photosDcim = "Choose camera folder backup",
-    photosDcimSummary = "Google Photos no longer forces backup of Camera and other DCIM folders; you turn each folder's backup on or off. On a new install no folder is backed up",
-    powerKey = "Power button → Google assistant",
-    powerKeySummary = "A long press opens the Google assistant. When off, HyperOS's own choice (XiaoAi) applies",
-    updateMessage = { "XGoogle $it is available. Open the download page?" },
-)
-
-private val RU = Texts(
-    subtitle = "Функции Google для китайской прошивки Xiaomi HyperOS",
-    language = "Язык",
-    version = { "Версия $it" },
-    active = "Активен",
-    inactive = "Не активен",
-    connecting = "Подключение…",
-    groupAssistant = "Цифровой помощник",
-    defaultAssistant = "Цифровой помощник по умолчанию",
-    assistantReading = "Текущий помощник: загрузка…",
-    assistantNone = "Текущий помощник: не выбран",
-    assistantTap = "Нажмите, чтобы посмотреть выбор системы",
-    assistantCurrent = { "Текущий помощник: $it" },
-    heyGoogle = "Включить «Окей, Google»",
-    lens = "Google Объектив",
-    lensSummary = "Включает функции Объектива, которых нет в китайской прошивке",
-    liveTranslate = "Перевод в реальном времени",
-    liveTranslateSummary = "В «Обвести и найти» нажмите «Перевести» — перевод продолжится при прокрутке",
-    groupSearch = "Поиск и Объектив",
-    groupLock = "Экран блокировки и ярлыки",
-    groupSystem = "Система",
-    circle = "Обвести и найти",
-    circleSummary = "Открывает «Обвести и найти» жестом на полоске навигации",
-    circleVibrate = "Всегда вибрировать при запуске «Обвести и найти»",
-    circleVibrateSummary = "Вибрация работает, даже если тактильный отклик выключен",
-    circleLongPress = "Удержание полоски навигации",
-    circleSideHold = "Свайп от края с удержанием",
-    circleDoubleTap = "Двойное касание полоски навигации",
-    circleGestureOn = "Вкл.: открывает «Обвести и найти»",
-    circleGestureOff = "Выкл.: открывает XiaoAi",
-    circleOptions = "Параметры «Обвести и найти»",
-    lensOptions = "Параметры Google Объектива",
-    lockOptions = "Параметры ярлыков экрана блокировки",
-    gmsOptions = "Параметры сервисов Google Play",
-    cameraLens = "Google Объектив в камере",
-    cameraLensSummary = "Добавляет Объектив в меню камеры, в том числе на экране блокировки",
-    wallet = "Google Кошелёк",
-    walletSummary = "Двойное нажатие кнопки питания открывает Google Кошелёк",
-    lockShortcuts = "Ярлыки экрана блокировки",
-    lockShortcutsSummary = "Добавляет на экран блокировки ярлыки Gemini, Объектива, Кошелька и Google Home",
-    gms = "Снять ограничения GMS",
-    gmsSummary = "Включает функции Google, заблокированные в китайской прошивке",
-    googleEntry = "Google в настройках",
-    googleEntrySummary = "Добавляет пункт сервисов Google внизу настроек",
-    timeline = "Хронология Google Карт",
-    timelineSummary = "Включает историю местоположений. Сервисы Google Play и Карты будут видеть оператора из США; это может быть рискованно для аккаунта",
-    passkey = "Ключи доступа и менеджер паролей",
-    passkeySummary = "Позволяет использовать ключи доступа Google и автозаполнение на китайской прошивке. Сервисы Google Play должны быть включены; не используйте вместе с HyperPasskey",
-    groupOther = "Другое",
-    hideIcon = "Скрыть значок приложения",
-    hideIconSummary = "После скрытия приложение можно открыть из LSPosed",
-    hyperStyle = "Стиль HyperOS",
-    hyperStyleSummary = "Показывает этот экран в стиле HyperOS",
-    groupLook = "Оформление",
-    theme = "Тема",
-    themeSystem = "Системная",
-    themeLight = "Светлая",
-    themeDark = "Тёмная",
-    monet = "Цвета обоев",
-    monetSummary = "Цвета берутся из обоев",
-    blur = "Матовые панели",
-    blurSummary = "Верхняя и нижняя панели размывают список под собой, как матовое стекло",
-    about = "О приложении XGoogle",
-    aboutSummary = { "Leekinn · $it\nTelegram: @emcleek" },
-    restartHint = "Чтобы применить, нажмите «Система > Перезапустить приложения» или перезагрузите телефон",
-    switchOn = "Вкл.",
-    switchOff = "Выкл.",
-    companion = {
-        when (it) {
-            CompanionState.UNKNOWN -> "Доп. модуль: проверяется автоматически при включении"
-            CompanionState.CHECKING -> "Доп. модуль: проверка установки…"
-            CompanionState.MISSING -> "Доп. модуль: не установлен"
-            CompanionState.DISABLED -> "Доп. модуль: отключён"
-            CompanionState.READY -> "Доп. модуль: установлен и включён"
-            CompanionState.PENDING -> "Доп. модуль: установлен, требуется перезагрузка"
-            CompanionState.OUTDATED -> "Доп. модуль: доступно обновление"
-            CompanionState.INSTALLING -> "Доп. модуль: установка…"
-        }
-    },
-    statusTitle = "Состояние модуля",
-    statusMessage = "Включите XGoogle в LSPosed и отметьте рекомендуемые приложения в области применения. После изменения настройки нажмите «Перезапустить приложения» или перезагрузите телефон.\n\nПоддерживаемая система: Xiaomi HyperOS (китайская прошивка).",
-    installTitle = "Установить доп. модуль",
-    installMessage = "Для «Окей, Google» нужен дополнительный модуль XGoogle. Установка запросит root-доступ.\n\nПосле первой установки перезагрузите телефон, затем настройте Voice Match в настройках Google.",
-    disabledTitle = "Доп. модуль отключён",
-    disabledMessage = "Включите дополнительный модуль XGoogle в SukiSU/KernelSU, затем снова включите «Окей, Google».",
-    installedTitle = "Установка завершена",
-    installedMessage = "Дополнительный модуль XGoogle установлен, «Окей, Google» включён.\n\nПерезагрузите телефон, затем настройте Voice Match в настройках Google.",
-    companionUpdateTitle = "Обновить доп. модуль",
-    companionUpdateMessage = "Установленный дополнительный модуль устарел. Установка версии из XGoogle запросит root-доступ; затем перезагрузите телефон.",
-    companionOfferTitle = "Рекомендуется доп. модуль",
-    companionOfferMessage = "В HyperOS «Обвести и найти» с панели навигации и живой перевод работают через дополнительный модуль XGoogle. Установить его? Установка запросит root-доступ; затем перезагрузите телефон.",
-    companionDoneMessage = "Дополнительный модуль XGoogle установлен. Перезагрузите телефон.",
-    update = "Обновить",
-    hideIconTitle = "Скрыть значок приложения?",
-    hideIconMessage = "После скрытия приложение можно открыть из настроек модуля XGoogle в LSPosed.",
-    errorTitle = "Не удалось выполнить действие",
-    install = "Установить",
-    hide = "Скрыть",
-    ok = "ОК",
-    cancel = "Отмена",
-    errSave = "Настройка не сохранена; проверьте подключение к LSPosed.",
-    errSaveGeneric = "Настройка не сохранена",
-    errWalletPower = "Настройка сохранена, но назначить кнопку питания не удалось. Предоставьте XGoogle root-доступ.",
-    errCheckCompanion = "Не удалось проверить установку. Предоставьте XGoogle root-доступ в SukiSU/KernelSU и снова включите «Окей, Google».",
-    errCompanionSaved = "Доп. модуль установлен, но настройка не сохранена; снова включите «Окей, Google».",
-    errCompanionInstall = "Не удалось установить доп. модуль",
-    errOpenAssistant = "Не удалось открыть выбор цифрового помощника.",
-    errIcon = "Не удалось изменить видимость значка.",
-    errRepository = "Откройте github.com/Leekin2/XGoogle в браузере.",
-    errTelegram = "Откройте t.me/emcleek в Telegram или браузере.",
-    restartApps = "Перезапустить приложения",
-    restartAppsSummary = "Применяет изменения без перезагрузки телефона: перезапускает приложения, в которых работает XGoogle",
-    restartTitle = "Перезапустить приложения",
-    restartMessage = "Приложения из области XGoogle (Google, SystemUI, Настройки, лаунчер…) будут закрыты и открыты снова. Экран может ненадолго погаснуть.\n\nДля системного фреймворка (ограничение GMS, «Окей, Google», Android Auto) всё равно нужна перезагрузка телефона.",
-    restart = "Перезапустить",
-    restartDone = "Приложения перезапущены",
-    errRestart = "Не удалось перезапустить приложения.",
-    scopeDenied = "Приложения, нужные для этой функции, не добавлены в область применения LSPosed. Отметьте их в области применения XGoogle в LSPosed.",
-    scopeSystemMissing = "Для этой функции отметьте «Системный фреймворк» в области применения XGoogle в LSPosed и перезагрузите телефон.",
-    walletDefaultSet = "Google назначен платёжным приложением NFC по умолчанию",
-    errNoWallet = "Сначала установите и откройте Google Кошелёк.",
-    errNoNfc = "Телефон не поддерживает оплату через NFC.",
-    errWalletPayment = "Не удалось назначить Google платёжным приложением по умолчанию. Выберите Google Pay в разделе «Настройки > NFC > Бесконтактная оплата».",
-    rootDenied = "Root-доступ не предоставлен. Предоставьте XGoogle root-доступ в SukiSU/KernelSU и повторите попытку.",
-    rootMissing = "Root не найден. Проверьте, работает ли SukiSU/KernelSU.",
-    rootTimeout = "Превышено время ожидания. Повторите попытку.",
-    rootFailed = "Не удалось выполнить root-команду.",
-    tabHome = "Главная",
-    tabSettings = "Настройки",
-    statusWorking = "Работает",
-    statusIncomplete = "Отмечены не все области",
-    statusMissingIntro = "Не отмечено в LSPosed:",
-    systemFramework = "Системный фреймворк",
-    statusTap = "Нажмите, чтобы открыть LSPosed",
-    groupApp = "Приложение",
-    checkUpdates = "Проверить обновления",
-    updateChecking = "Проверка…",
-    updateLatest = "У вас последняя версия",
-    updateFailed = "Не удалось проверить. Проверьте подключение к интернету",
-    updateTitle = "Доступна новая версия",
-    download = "Скачать",
-    support = "Поддержка",
-    supportSummary = "Сообщество Xgoogle for HyperOS (Telegram)",
-    errSupport = "Откройте t.me/Xgooogle в Telegram или браузере.",
-    errLsposed = "Не удалось открыть менеджер LSPosed.",
-    restoreBackup = "Восстановить из резервной копии Google",
-    restoreBackupSummary = "После сброса возвращает приложения, журнал звонков, SMS и настройки из резервной копии Google",
-    restoreInstallTitle = "Нужен Android Switch",
-    restoreInstallMessage = "Восстановление выполняет приложение Google Android Switch. Открыть его в Play Маркете?\n\nПосле установки снова нажмите на эту строку.",
-    errRestore = "Не удалось открыть экран восстановления. Обновите Android Switch и попробуйте снова.",
-    photosUnlimited = "Безлимитная резервная копия Google Фото",
-    photosUnlimitedSummary = "Google Фото видит Pixel 2016 года: новые фото и видео в резервной копии не занимают место в хранилище",
-    photosDcim = "Выбор резервного копирования папки камеры",
-    photosDcimSummary = "Google Фото больше не копирует принудительно папки Камера и другие папки DCIM; копирование каждой папки включается отдельно. После новой установки ни одна папка не копируется",
-    powerKey = "Кнопка питания → Google Ассистент",
-    powerKeySummary = "Долгое нажатие открывает Google Ассистента. Если выключено, действует настройка HyperOS (XiaoAi)",
-    updateMessage = { "Доступна версия XGoogle $it. Открыть страницу загрузки?" },
-)
-
-private val ES = Texts(
-    subtitle = "Funciones de Google para la ROM china de Xiaomi HyperOS",
-    language = "Idioma",
-    version = { "Versión $it" },
-    active = "Activo",
-    inactive = "Inactivo",
-    connecting = "Conectando…",
-    groupAssistant = "Asistente digital",
-    defaultAssistant = "Asistente digital predeterminado",
-    assistantReading = "Asistente actual: cargando…",
-    assistantNone = "Asistente actual: ninguno",
-    assistantTap = "Toca para ver el asistente elegido en el sistema",
-    assistantCurrent = { "Asistente actual: $it" },
-    heyGoogle = "Activar Hey Google",
-    lens = "Google Lens",
-    lensSummary = "Activa las funciones de Lens que faltan en la ROM china",
-    liveTranslate = "Traducción en vivo",
-    liveTranslateSummary = "En Rodea para buscar, toca Traducir y la traducción continúa mientras te desplazas",
-    groupSearch = "Búsqueda y Lens",
-    groupLock = "Pantalla de bloqueo y accesos directos",
-    groupSystem = "Sistema",
-    circle = "Rodea para buscar",
-    circleSummary = "Abre Rodea para buscar desde la barra de navegación",
-    circleVibrate = "Vibrar siempre con Rodea para buscar",
-    circleVibrateSummary = "Vibra aunque la respuesta táctil esté desactivada",
-    circleLongPress = "Mantener pulsada la barra de navegación",
-    circleSideHold = "Deslizar desde el borde y mantener",
-    circleDoubleTap = "Doble toque en la barra de navegación",
-    circleGestureOn = "Activado: abre Rodea para buscar",
-    circleGestureOff = "Desactivado: abre XiaoAi",
-    circleOptions = "Opciones de Rodea para buscar",
-    lensOptions = "Opciones de Google Lens",
-    lockOptions = "Opciones de accesos directos",
-    gmsOptions = "Opciones de Servicios de Google Play",
-    cameraLens = "Google Lens en Cámara",
-    cameraLensSummary = "Añade Lens al menú de la cámara; también funciona en la pantalla de bloqueo",
-    wallet = "Google Wallet",
-    walletSummary = "Pulsa dos veces el botón de encendido para abrir Google Wallet",
-    lockShortcuts = "Accesos directos en la pantalla de bloqueo",
-    lockShortcutsSummary = "Añade accesos directos a Gemini, Lens, Wallet y Google Home en la pantalla de bloqueo",
-    gms = "Quitar las restricciones de GMS",
-    gmsSummary = "Activa las funciones de Google que bloquea la ROM china",
-    googleEntry = "Google en Ajustes",
-    googleEntrySummary = "Añade la entrada de servicios de Google al final de Ajustes",
-    timeline = "Cronología de Google Maps",
-    timelineSummary = "Activa el historial de ubicaciones. Los servicios de Google Play y Maps ven un operador de EE. UU.; puede suponer un riesgo para la cuenta",
-    passkey = "Llaves de acceso y gestor de contraseñas",
-    passkeySummary = "Permite usar las llaves de acceso de Google y el autocompletado en la ROM china. Los servicios de Google Play deben estar activados; no lo uses junto con HyperPasskey",
-    groupOther = "Otros",
-    hideIcon = "Ocultar icono de la pantalla de inicio",
-    hideIconSummary = "Una vez oculto, ábrelo desde LSPosed",
-    hyperStyle = "Estilo HyperOS",
-    hyperStyleSummary = "Muestra esta pantalla con el estilo de HyperOS",
-    groupLook = "Apariencia",
-    theme = "Tema",
-    themeSystem = "Sistema",
-    themeLight = "Claro",
-    themeDark = "Oscuro",
-    monet = "Colores del fondo de pantalla",
-    monetSummary = "Los colores se toman de tu fondo de pantalla",
-    blur = "Barras esmeriladas",
-    blurSummary = "Las barras superior e inferior difuminan la lista que pasa por detrás, como vidrio esmerilado",
-    about = "Acerca de XGoogle",
-    aboutSummary = { "Leekinn · $it\nTelegram: @emcleek" },
-    restartHint = "Para aplicarlo, toca Sistema > Reiniciar apps o reinicia el teléfono",
-    switchOn = "Activado",
-    switchOff = "Desactivado",
-    companion = {
-        when (it) {
-            CompanionState.UNKNOWN -> "Módulo complementario: se comprueba al activarlo"
-            CompanionState.CHECKING -> "Módulo complementario: comprobando instalación…"
-            CompanionState.MISSING -> "Módulo complementario: no instalado"
-            CompanionState.DISABLED -> "Módulo complementario: desactivado"
-            CompanionState.READY -> "Módulo complementario: instalado y activo"
-            CompanionState.PENDING -> "Módulo complementario: instalado, reinicio pendiente"
-            CompanionState.OUTDATED -> "Módulo complementario: actualización disponible"
-            CompanionState.INSTALLING -> "Módulo complementario: instalando…"
-        }
-    },
-    statusTitle = "Estado del módulo",
-    statusMessage = "Activa XGoogle en LSPosed y marca los ámbitos recomendados. Después de cambiar un ajuste, toca Reiniciar apps o reinicia el teléfono.\n\nSistema compatible: Xiaomi HyperOS (ROM china).",
-    installTitle = "Instalar módulo complementario",
-    installMessage = "Hey Google necesita el módulo complementario de XGoogle. La instalación pide acceso root.\n\nTras la primera instalación, reinicia el teléfono y completa Voice Match en los ajustes de Google.",
-    disabledTitle = "Módulo complementario desactivado",
-    disabledMessage = "Activa el módulo complementario de XGoogle en SukiSU/KernelSU y vuelve a activar Hey Google.",
-    installedTitle = "Instalación completada",
-    installedMessage = "El módulo complementario de XGoogle está instalado y Hey Google activado.\n\nReinicia el teléfono y completa Voice Match en los ajustes de Google.",
-    companionUpdateTitle = "Actualizar módulo complementario",
-    companionUpdateMessage = "El módulo complementario instalado está desactualizado. Instalar la versión incluida en XGoogle pide acceso root; después reinicia el teléfono.",
-    companionOfferTitle = "Módulo complementario recomendado",
-    companionOfferMessage = "En HyperOS, Rodea para buscar desde la barra de navegación y la traducción en vivo funcionan con el módulo complementario de XGoogle. ¿Instalarlo ahora? La instalación pide acceso root; después reinicia el teléfono.",
-    companionDoneMessage = "El módulo complementario de XGoogle está instalado. Reinicia el teléfono.",
-    update = "Actualizar",
-    hideIconTitle = "¿Ocultar el icono de la pantalla de inicio?",
-    hideIconMessage = "Una vez oculto, puedes abrir la app desde los ajustes del módulo XGoogle en LSPosed.",
-    errorTitle = "No se pudo completar",
-    install = "Instalar",
-    hide = "Ocultar",
-    ok = "Aceptar",
-    cancel = "Cancelar",
-    errSave = "No se guardó el ajuste; revisa la conexión con LSPosed.",
-    errSaveGeneric = "No se guardó el ajuste",
-    errWalletPower = "Ajuste guardado, pero no se pudo configurar el botón de encendido. Concede acceso root a XGoogle.",
-    errCheckCompanion = "No se pudo comprobar la instalación. Concede acceso root a XGoogle en SukiSU/KernelSU y vuelve a activar Hey Google.",
-    errCompanionSaved = "El módulo complementario se instaló pero no se guardó el ajuste; vuelve a activar Hey Google.",
-    errCompanionInstall = "No se pudo instalar el módulo complementario",
-    errOpenAssistant = "No se pudo abrir el selector de asistente.",
-    errIcon = "No se pudo cambiar el estado del icono.",
-    errRepository = "Abre github.com/Leekin2/XGoogle en un navegador.",
-    errTelegram = "Abre t.me/emcleek en Telegram o en un navegador.",
-    restartApps = "Reiniciar apps",
-    restartAppsSummary = "Aplica los cambios sin reiniciar el teléfono: reinicia las apps en las que funciona XGoogle",
-    restartTitle = "Reiniciar apps",
-    restartMessage = "Las apps del ámbito de XGoogle (Google, SystemUI, Ajustes, launcher…) se cierran y se abren de nuevo. La pantalla puede oscurecerse un momento.\n\nEl framework del sistema (restricción de GMS, Hey Google, Android Auto) sigue necesitando reiniciar el teléfono.",
-    restart = "Reiniciar",
-    restartDone = "Apps reiniciadas",
-    errRestart = "No se pudieron reiniciar las apps.",
-    scopeDenied = "Las apps que necesita esta función no se añadieron al ámbito de LSPosed. Márcalas en el ámbito de XGoogle en LSPosed.",
-    scopeSystemMissing = "Para esta función, marca \"Framework del sistema\" en el ámbito de XGoogle en LSPosed y reinicia el teléfono.",
-    walletDefaultSet = "Google es ahora la app de pago NFC predeterminada",
-    errNoWallet = "Instala y abre Google Wallet primero.",
-    errNoNfc = "Este teléfono no admite pagos NFC.",
-    errWalletPayment = "No se pudo establecer Google como app de pago predeterminada. Elige Google Pay en Ajustes > NFC > Pagos sin contacto.",
-    rootDenied = "Se denegó el acceso root. Concede acceso root a XGoogle en SukiSU/KernelSU y vuelve a intentarlo.",
-    rootMissing = "No se encontró root. Comprueba que SukiSU/KernelSU funciona.",
-    rootTimeout = "Se agotó el tiempo de espera. Vuelve a intentarlo.",
-    rootFailed = "No se pudo ejecutar el comando root.",
-    tabHome = "Inicio",
-    tabSettings = "Ajustes",
-    statusWorking = "Funcionando",
-    statusIncomplete = "Faltan ámbitos",
-    statusMissingIntro = "Sin marcar en LSPosed:",
-    systemFramework = "Framework del sistema",
-    statusTap = "Toca para abrir LSPosed",
-    groupApp = "App",
-    checkUpdates = "Buscar actualizaciones",
-    updateChecking = "Comprobando…",
-    updateLatest = "Tienes la última versión",
-    updateFailed = "No se pudo comprobar. Revisa tu conexión a internet",
-    updateTitle = "Nueva versión disponible",
-    download = "Descargar",
-    support = "Soporte",
-    supportSummary = "Grupo de la comunidad Xgoogle for HyperOS (Telegram)",
-    errSupport = "Abre t.me/Xgooogle en Telegram o en un navegador.",
-    errLsposed = "No se pudo abrir el gestor de LSPosed.",
-    restoreBackup = "Restaurar copia de Google",
-    restoreBackupSummary = "Tras un restablecimiento, recupera las apps, el historial de llamadas, los SMS y los ajustes de tu copia de Google",
-    restoreInstallTitle = "Se necesita Android Switch",
-    restoreInstallMessage = "La restauración la hace la app Android Switch de Google. ¿Abrirla en Play Store?\n\nDespués de instalarla, vuelve a tocar esta fila.",
-    errRestore = "No se pudo abrir la pantalla de restauración. Actualiza Android Switch e inténtalo de nuevo.",
-    photosUnlimited = "Copia ilimitada de Google Fotos",
-    photosUnlimitedSummary = "Google Fotos ve un Pixel de 2016: las fotos y vídeos nuevos de la copia no ocupan tu almacenamiento",
-    photosDcim = "Elegir copia de la carpeta de cámara",
-    photosDcimSummary = "Google Fotos ya no fuerza la copia de Cámara y otras carpetas DCIM; activas o desactivas la copia de cada carpeta. En una instalación nueva no se copia ninguna carpeta",
-    powerKey = "Botón de encendido → Asistente de Google",
-    powerKeySummary = "Una pulsación larga abre el Asistente de Google. Si está desactivado, se aplica la opción de HyperOS (XiaoAi)",
-    updateMessage = { "XGoogle $it ya está disponible. ¿Abrir la página de descarga?" },
-)
-
-private val ZH = Texts(
-    subtitle = "为小米 HyperOS 国行版带来 Google 功能",
-    language = "语言",
-    version = { "版本 $it" },
-    active = "已激活",
-    inactive = "未激活",
-    connecting = "正在连接…",
-    groupAssistant = "数字助理",
-    defaultAssistant = "默认数字助理",
-    assistantReading = "当前数字助理：读取中…",
-    assistantNone = "当前数字助理：未选择",
-    assistantTap = "点按查看系统当前选择",
-    assistantCurrent = { "当前数字助理：$it" },
-    heyGoogle = "开启 Hey Google",
-    lens = "Google 智能镜头",
-    lensSummary = "开启国行版缺少的智能镜头功能",
-    liveTranslate = "实时翻译",
-    liveTranslateSummary = "在圈定即搜中点按“翻译”后，滚动页面时会持续翻译",
-    groupSearch = "搜索与智能镜头",
-    groupLock = "锁屏与快捷方式",
-    groupSystem = "系统",
-    circle = "圈定即搜",
-    circleSummary = "通过导航条打开圈定即搜",
-    circleVibrate = "打开圈定即搜时始终振动",
-    circleVibrateSummary = "即使关闭触感反馈也会振动",
-    circleLongPress = "长按导航条",
-    circleSideHold = "从侧边滑入并按住",
-    circleDoubleTap = "双击导航条",
-    circleGestureOn = "开启：打开圈定即搜",
-    circleGestureOff = "关闭：打开小爱同学",
-    circleOptions = "圈定即搜选项",
-    lensOptions = "Google 智能镜头选项",
-    lockOptions = "锁屏快捷方式选项",
-    gmsOptions = "Google Play 服务选项",
-    cameraLens = "相机中的 Google 智能镜头",
-    cameraLensSummary = "在相机菜单中添加智能镜头，锁屏时也可使用",
-    wallet = "Google 钱包",
-    walletSummary = "双击电源键打开 Google 钱包",
-    lockShortcuts = "锁屏快捷方式",
-    lockShortcutsSummary = "在锁屏添加 Gemini、智能镜头、钱包和 Google Home 快捷方式",
-    gms = "移除 GMS 使用限制",
-    gmsSummary = "开启国行版屏蔽的 Google 功能",
-    googleEntry = "设置中的 Google",
-    googleEntrySummary = "在设置底部添加 Google 服务入口",
-    timeline = "Google 地图时间轴",
-    timelineSummary = "开启位置记录。Google Play 服务和地图会识别为美国运营商，可能给账号带来风险",
-    passkey = "通行密钥与密码管理器",
-    passkeySummary = "让 Google 通行密钥和自动填充在国行版上可用。需启用 Google Play 服务；请勿与 HyperPasskey 同时使用",
-    groupOther = "其他",
-    hideIcon = "隐藏桌面图标",
-    hideIconSummary = "隐藏后可从 LSPosed 打开应用",
-    hyperStyle = "HyperOS 风格",
-    hyperStyleSummary = "以 HyperOS 风格显示此界面",
-    groupLook = "外观",
-    theme = "主题",
-    themeSystem = "跟随系统",
-    themeLight = "浅色",
-    themeDark = "深色",
-    monet = "壁纸取色",
-    monetSummary = "颜色取自壁纸",
-    blur = "毛玻璃栏",
-    blurSummary = "顶栏和底栏以毛玻璃效果显示其后的列表",
-    about = "关于 XGoogle",
-    aboutSummary = { "Leekinn · $it\nTelegram: @emcleek" },
-    restartHint = "点按“系统 > 重启作用域应用”或重启手机后生效",
-    switchOn = "已开启",
-    switchOff = "已关闭",
-    companion = {
-        when (it) {
-            CompanionState.UNKNOWN -> "附加模块：开启时自动检测"
-            CompanionState.CHECKING -> "附加模块：正在检测安装状态…"
-            CompanionState.MISSING -> "附加模块：未安装"
-            CompanionState.DISABLED -> "附加模块：已禁用"
-            CompanionState.READY -> "附加模块：已安装并启用"
-            CompanionState.PENDING -> "附加模块：已安装，待重启"
-            CompanionState.OUTDATED -> "附加模块：有可用更新"
-            CompanionState.INSTALLING -> "附加模块：正在安装…"
-        }
-    },
-    statusTitle = "模块状态",
-    statusMessage = "在 LSPosed 中启用 XGoogle 并勾选推荐作用域。更改设置后，点按“重启作用域应用”或重启手机。\n\n支持的系统：小米 HyperOS（国行版）。",
-    installTitle = "安装附加模块",
-    installMessage = "Hey Google 需要 XGoogle 附加模块。安装会请求 Root 授权。\n\n首次安装后请重启手机，再在 Google 设置中完成 Voice Match。",
-    disabledTitle = "附加模块已禁用",
-    disabledMessage = "请在 SukiSU/KernelSU 中启用 XGoogle 附加模块，然后重新开启 Hey Google。",
-    installedTitle = "安装完成",
-    installedMessage = "XGoogle 附加模块已安装，Hey Google 已开启。\n\n请重启手机，再在 Google 设置中完成 Voice Match。",
-    companionUpdateTitle = "更新附加模块",
-    companionUpdateMessage = "已安装的附加模块版本较旧。安装 XGoogle 内置的新版本会请求 Root 授权，完成后请重启手机。",
-    companionOfferTitle = "建议安装附加模块",
-    companionOfferMessage = "在 HyperOS 上，通过导航条使用圈定即搜和实时翻译需要 XGoogle 附加模块。现在安装吗？安装会请求 Root 授权，完成后请重启手机。",
-    companionDoneMessage = "XGoogle 附加模块已安装，请重启手机。",
-    update = "更新",
-    hideIconTitle = "隐藏桌面图标？",
-    hideIconMessage = "隐藏后，仍可从 LSPosed 的 XGoogle 模块设置入口打开应用。",
-    errorTitle = "操作未完成",
-    install = "安装",
-    hide = "隐藏",
-    ok = "确定",
-    cancel = "取消",
-    errSave = "设置未保存，请检查 LSPosed 连接。",
-    errSaveGeneric = "设置保存失败",
-    errWalletPower = "设置已保存，但电源键设置失败。请授予 XGoogle Root 权限。",
-    errCheckCompanion = "无法检查安装状态。请在 SukiSU/KernelSU 中为 XGoogle 授予 Root 权限，然后重新开启 Hey Google。",
-    errCompanionSaved = "附加模块已安装，但设置保存失败，请重新开启 Hey Google。",
-    errCompanionInstall = "附加模块安装失败",
-    errOpenAssistant = "无法打开系统数字助理选择页面。",
-    errIcon = "无法修改桌面图标状态。",
-    errRepository = "请使用浏览器打开 github.com/Leekin2/XGoogle。",
-    errTelegram = "请在 Telegram 或浏览器中打开 t.me/emcleek。",
-    restartApps = "重启作用域应用",
-    restartAppsSummary = "更改设置后，无需重启手机即可重启 XGoogle 作用的应用使其生效",
-    restartTitle = "重启作用域应用",
-    restartMessage = "XGoogle 作用域内的应用（Google、系统界面、设置、桌面…）将被关闭并重新打开，屏幕可能短暂变黑。\n\n系统框架（GMS 限制、Hey Google、Android Auto）仍需重启手机。",
-    restart = "重启",
-    restartDone = "应用已重启",
-    errRestart = "无法重启应用。",
-    scopeDenied = "此功能所需的应用未加入 LSPosed 作用域，请在 LSPosed 中为 XGoogle 勾选。",
-    scopeSystemMissing = "此功能需要在 LSPosed 中为 XGoogle 勾选“系统框架”并重启手机。",
-    walletDefaultSet = "已将 Google 设为默认 NFC 付款应用",
-    errNoWallet = "请先安装并打开 Google 钱包。",
-    errNoNfc = "此手机不支持 NFC 付款。",
-    errWalletPayment = "无法将 Google 设为默认付款应用，请在“设置 > NFC > 非接触式付款”中选择 Google Pay。",
-    rootDenied = "未获得 Root 授权，请在 SukiSU/KernelSU 中为 XGoogle 授权后重试。",
-    rootMissing = "未检测到 Root，请检查 SukiSU/KernelSU 是否正常运行。",
-    rootTimeout = "操作超时，请重试。",
-    rootFailed = "Root 命令执行失败。",
-    tabHome = "首页",
-    tabSettings = "设置",
-    statusWorking = "运行中",
-    statusIncomplete = "作用域不完整",
-    statusMissingIntro = "LSPosed 中未勾选：",
-    systemFramework = "系统框架",
-    statusTap = "点按打开 LSPosed",
-    groupApp = "应用",
-    checkUpdates = "检查更新",
-    updateChecking = "正在检查…",
-    updateLatest = "已是最新版本",
-    updateFailed = "检查失败，请检查网络连接",
-    updateTitle = "发现新版本",
-    download = "下载",
-    support = "支持",
-    supportSummary = "Xgoogle for HyperOS 社区群组（Telegram）",
-    errSupport = "请在 Telegram 或浏览器中打开 t.me/Xgooogle。",
-    errLsposed = "无法打开 LSPosed 管理器。",
-    restoreBackup = "从 Google 备份恢复",
-    restoreBackupSummary = "重置后，从 Google 备份恢复应用、通话记录、短信和设置",
-    restoreInstallTitle = "需要 Android Switch",
-    restoreInstallMessage = "恢复由 Google 的 Android Switch 应用完成。要在 Play 商店中打开吗？\n\n安装后请再次点按此项。",
-    errRestore = "无法打开恢复界面。请更新 Android Switch 后重试。",
-    photosUnlimited = "Google 相册无限备份",
-    photosUnlimitedSummary = "Google 相册会将手机识别为 2016 款 Pixel，新备份的照片和视频不占用存储空间",
-    photosDcim = "自选相机文件夹备份",
-    photosDcimSummary = "Google 相册不再强制备份相机及其他 DCIM 文件夹，可逐个开关文件夹的备份。新安装时不会备份任何文件夹",
-    powerKey = "电源键 → Google 助理",
-    powerKeySummary = "长按打开 Google 助理。关闭后恢复 HyperOS 自身设置（小爱同学）",
-    updateMessage = { "XGoogle $it 已发布，是否打开下载页面？" },
-)
-
-fun textsFor(language: AppLanguage) = when (language) {
-    AppLanguage.TR -> TR
-    AppLanguage.EN -> EN
-    AppLanguage.RU -> RU
-    AppLanguage.ES -> ES
-    AppLanguage.ZH -> ZH
+fun textsFor(context: Context, language: AppLanguage): Texts {
+    val configuration = Configuration(context.resources.configuration).apply {
+        setLocale(Locale.forLanguageTag(language.code))
+    }
+    return Texts(context.createConfigurationContext(configuration).resources)
 }

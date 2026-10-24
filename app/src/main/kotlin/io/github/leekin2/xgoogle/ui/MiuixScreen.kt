@@ -90,6 +90,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.foundation.background
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -147,7 +148,7 @@ fun MiuixScreen(
     tab: Int,
     onTab: (Int) -> Unit
 ) {
-    val t = textsFor(state.language)
+    val t = textsFor(LocalContext.current, state.language)
     val bar = MiuixScrollBehavior()
     // Frosted bars: the list is recorded as a backdrop and blurred behind the top and bottom bars.
     val blur = state.look.blur
@@ -228,13 +229,13 @@ fun MiuixScreen(
                                     state.features[FeaturePolicy.CIRCLE_VIBRATE] == true, available
                                 ) { onSetting(FeaturePolicy.CIRCLE_VIBRATE, it) }
                                 // Each gesture picks Circle to Search (on) or the XiaoAi function set in the system (off).
-                                Toggle(Icons.Rounded.PanTool, t.circleLongPress, if (state.features[FeaturePolicy.CIRCLE_LONG_PRESS] == true) t.circleGestureOn else t.circleGestureOff,
+                                Toggle(Icons.Rounded.PanTool, t.circleLongPress, if (state.features[FeaturePolicy.CIRCLE_LONG_PRESS] == true) t.circleLongPressOn else t.circleLongPressOff,
                                     state.features[FeaturePolicy.CIRCLE_LONG_PRESS] == true, available && circleOn
                                 ) { onSetting(FeaturePolicy.CIRCLE_LONG_PRESS, it) }
-                                Toggle(Icons.Rounded.Swipe, t.circleSideHold, if (state.features[FeaturePolicy.CIRCLE_SIDE_HOLD] == true) t.circleGestureOn else t.circleGestureOff,
+                                Toggle(Icons.Rounded.Swipe, t.circleSideHold, if (state.features[FeaturePolicy.CIRCLE_SIDE_HOLD] == true) t.circleSideHoldOn else t.circleSideHoldOff,
                                     state.features[FeaturePolicy.CIRCLE_SIDE_HOLD] == true, available && circleOn
                                 ) { onSetting(FeaturePolicy.CIRCLE_SIDE_HOLD, it) }
-                                Toggle(Icons.Rounded.Gesture, t.circleDoubleTap, if (state.features[FeaturePolicy.CIRCLE_DOUBLE_TAP] == true) t.circleGestureOn else t.circleGestureOff,
+                                Toggle(Icons.Rounded.Gesture, t.circleDoubleTap, if (state.features[FeaturePolicy.CIRCLE_DOUBLE_TAP] == true) t.circleDoubleTapOn else t.circleDoubleTapOff,
                                     state.features[FeaturePolicy.CIRCLE_DOUBLE_TAP] == true, available && circleOn
                                 ) { onSetting(FeaturePolicy.CIRCLE_DOUBLE_TAP, it) }
                             }

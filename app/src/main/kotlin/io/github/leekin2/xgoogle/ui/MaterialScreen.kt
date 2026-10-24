@@ -112,6 +112,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.semantics.Role
@@ -143,7 +144,7 @@ fun MaterialScreen(
     tab: Int,
     onTab: (Int) -> Unit
 ) {
-    val t = textsFor(state.language)
+    val t = textsFor(LocalContext.current, state.language)
     val bar = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
     // Frosted bar: the list is recorded as a backdrop and blurred behind the floating bar.
     val backdrop = rememberLayerBackdrop()
@@ -303,13 +304,13 @@ private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) 
                     state.features[FeaturePolicy.CIRCLE_VIBRATE] == true, available,
                     { onSetting(FeaturePolicy.CIRCLE_VIBRATE, it) })
                 // Each gesture picks Circle to Search (on) or the XiaoAi function set in the system (off).
-                ToggleRow(t, 3, count, Icons.Rounded.PanTool, t.circleLongPress, if (state.features[FeaturePolicy.CIRCLE_LONG_PRESS] == true) t.circleGestureOn else t.circleGestureOff,
+                ToggleRow(t, 3, count, Icons.Rounded.PanTool, t.circleLongPress, if (state.features[FeaturePolicy.CIRCLE_LONG_PRESS] == true) t.circleLongPressOn else t.circleLongPressOff,
                     state.features[FeaturePolicy.CIRCLE_LONG_PRESS] == true, available && circleOn,
                     { onSetting(FeaturePolicy.CIRCLE_LONG_PRESS, it) })
-                ToggleRow(t, 4, count, Icons.Rounded.Swipe, t.circleSideHold, if (state.features[FeaturePolicy.CIRCLE_SIDE_HOLD] == true) t.circleGestureOn else t.circleGestureOff,
+                ToggleRow(t, 4, count, Icons.Rounded.Swipe, t.circleSideHold, if (state.features[FeaturePolicy.CIRCLE_SIDE_HOLD] == true) t.circleSideHoldOn else t.circleSideHoldOff,
                     state.features[FeaturePolicy.CIRCLE_SIDE_HOLD] == true, available && circleOn,
                     { onSetting(FeaturePolicy.CIRCLE_SIDE_HOLD, it) })
-                ToggleRow(t, 5, count, Icons.Rounded.Gesture, t.circleDoubleTap, if (state.features[FeaturePolicy.CIRCLE_DOUBLE_TAP] == true) t.circleGestureOn else t.circleGestureOff,
+                ToggleRow(t, 5, count, Icons.Rounded.Gesture, t.circleDoubleTap, if (state.features[FeaturePolicy.CIRCLE_DOUBLE_TAP] == true) t.circleDoubleTapOn else t.circleDoubleTapOff,
                     state.features[FeaturePolicy.CIRCLE_DOUBLE_TAP] == true, available && circleOn,
                     { onSetting(FeaturePolicy.CIRCLE_DOUBLE_TAP, it) })
             }

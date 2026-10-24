@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
     private var companionCheckedAt: Long? = null
     private var companionUpdateOffered = false
     private var state by mutableStateOf(XGoogleState())
-    private val texts get() = textsFor(state.language)
+    private val texts get() = textsFor(this, state.language)
     private val uiPreferences by lazy { getSharedPreferences("xgoogle_ui", MODE_PRIVATE) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
