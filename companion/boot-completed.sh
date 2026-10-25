@@ -31,7 +31,7 @@ fi
 # Keep the Android Auto allow-list in step with Play Store updates for the next boot.
 if pm path com.google.android.projection.gearhead > /dev/null 2>&1; then
     /system/bin/sh "$MODDIR/systemize-aa.sh" "$MODDIR" > /dev/null 2>&1
-    # The CN ROM never assigns the car projection role, even with the overlay's config.
+    # The CN ROM never assigns the car projection role by itself.
     role=android.app.role.SYSTEM_AUTOMOTIVE_PROJECTION
     cmd role get-role-holders --user 0 "$role" | grep -q gearhead ||
         cmd role add-role-holder --user 0 "$role" com.google.android.projection.gearhead 0

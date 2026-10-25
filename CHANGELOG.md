@@ -1,5 +1,14 @@
 # Değişiklikler / Changelog
 
+## XGoogle 1.3.8
+
+- Android Auto ayrıcalıklı sistem uygulaması: ek modül Xiaomi global ROM'undaki Android Auto taslağını getirir, Play Store sürümü onun güncellemesi olur (fikir X Clarke).
+  Android Auto as a privileged system app: the companion ships the Android Auto stub from Xiaomi's international ROM and the Play Store version becomes its update (idea X Clarke).
+- Ek modül 1.3.8: HyperOS 4 global'deki Google ayrıcalıklı izin, sysconfig ve varsayılan izin listeleri.
+  Companion 1.3.8: Google's privileged-permission, sysconfig and default-permission lists from HyperOS 4 international.
+- Uygulama metinleri Android kaynaklarında, her hareket için ayrı açık/kapalı açıklaması (EricFL1998, PR #2).
+  App texts as Android resources, separate on/off descriptions per gesture (EricFL1998, PR #2).
+
 ## XGoogle 1.3.7
 
 - Play Integrity: XGoogle, Google Play Hizmetleri'nin bütünlük işleminde hiçbir şey yapmaz; Zaman Çizelgesi kapalıyken Google Play Hizmetleri ve GSF LSPosed kapsamından çıkarılır (#4).

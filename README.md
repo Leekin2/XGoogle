@@ -16,7 +16,7 @@
 - ✅ **Power button → Google assistant** (switchable): turn it off to keep HyperOS's own long press (XiaoAi)
 - ✅ **Live translate:** in Circle to Search, tap Translate and keep translating as you scroll
 - ✅ **Google Lens:** Talk and Create included; keeps working after Google app updates
-- ✅ **Android Auto:** system app and car projection role; install it from the Play Store before or after the companion
+- ✅ **Android Auto:** privileged system app (Xiaomi's international stub) with the car projection role; install it from the Play Store before or after the companion
 - ✅ **Removes the GMS China restriction** (Quick Share included, with its control center tile; its "View downloads" link opens File Manager)
 - 🧪 **Google Maps Timeline** (optional): Google Play services and Maps see a US carrier so location history can be turned on; on the mainland the map stays aligned. Spoofing the carrier may break Google's terms; use at your own risk. Timeline needs Google Play services in the LSPosed scope, which can affect Play Integrity on relocked phones; while it is off XGoogle removes that scope
 - 🧪 **Passkeys and password manager** (optional): Google passkeys, phone-as-key sign-in and autofill through Google Play services; Security no longer resets the chosen password manager. Needs Google Play services on; do not use together with HyperPasskey
@@ -135,7 +135,7 @@ This project is not affiliated with Google or Xiaomi; trademarks belong to their
 - ✅ **Güç tuşu → Google asistanı** (açılıp kapatılabilir): kapatırsanız uzun basma HyperOS'un kendi ayarında (XiaoAi) kalır
 - ✅ **Canlı çeviri:** Circle to Search'te Çevir'e basıp kaydırınca çeviri devam eder
 - ✅ **Google Lens:** Konuş ve Oluştur dahil; Google güncellense de çalışmaya devam eder
-- ✅ **Android Auto:** sistem uygulaması ve araç projeksiyonu rolü; Play Store'dan ek modülden önce ya da sonra kurulabilir
+- ✅ **Android Auto:** ayrıcalıklı sistem uygulaması (Xiaomi'nin global taslağı) ve araç projeksiyonu rolü; Play Store'dan ek modülden önce ya da sonra kurulabilir
 - ✅ **GMS Çin kısıtlamasının kaldırılması** (Quick Share ve kontrol merkezi kutucuğu dahil; "İndirilenleri görüntüle" Dosya Yöneticisi'ni açar)
 - 🧪 **Google Haritalar Zaman Çizelgesi** (isteğe bağlı): Google Play Hizmetleri ve Haritalar ABD operatörü görür, konum geçmişi açılabilir; Çin anakarasında harita kaymaz. Operatörü taklit etmek Google koşullarına aykırı olabilir, risk size aittir. Zaman Çizelgesi LSPosed kapsamında Google Play Hizmetleri ister; bu, kilidi yeniden kapatılmış telefonlarda Play Integrity'yi etkileyebilir. Kapalıyken XGoogle bu kapsamı kaldırır
 - 🧪 **Geçiş anahtarları ve şifre yöneticisi** (isteğe bağlı): Google geçiş anahtarları, telefonla giriş ve otomatik doldurma Google Play Hizmetleri üzerinden çalışır; Güvenlik uygulaması seçilen şifre yöneticisini artık sıfırlamaz. Google Play Hizmetleri açık olmalı; HyperPasskey ile birlikte kullanmayın
