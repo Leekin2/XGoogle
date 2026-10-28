@@ -30,6 +30,7 @@
 - 🎨 Two looks: Material, or HyperOS style (light/dark/system theme, wallpaper colors, frosted bar)
 - 🚦 Status card: green when everything works, yellow with the list of apps still unticked in LSPosed, red when inactive
 - ☁️ **Restore from Google backup:** China ROMs have no Google setup wizard, so after a reset XGoogle opens Google's own restore screen (Android Switch) to bring back your apps, call history, SMS and settings
+- 🔑 **Google permissions after a reset:** the companion gives the Google apps the permissions they ask for and allows HyperOS's own prompts for them, so Hey Google stops asking again and again
 - 🔄 Restart apps without rebooting, and check for updates from the app
 
 Every feature can be turned on or off on its own; turning one off brings back the stock behavior.
@@ -149,6 +150,7 @@ This project is not affiliated with Google or Xiaomi; trademarks belong to their
 - 🎨 İki görünüm: Material ya da HyperOS tarzı (açık/koyu/sistem tema, duvar kağıdı renkleri, buzlu çubuk)
 - 🚦 Durum kartı: her şey çalışıyorsa yeşil, LSPosed'de işaretlenmemiş uygulama varsa listesiyle sarı, etkin değilse kırmızı
 - ☁️ **Google yedeğinden geri yükleme:** Çin ROM'larında Google kurulum sihirbazı olmadığı için XGoogle, sıfırlamadan sonra Google'ın kendi geri yükleme ekranını (Android Switch) açar; uygulamalar, arama geçmişi, SMS'ler ve ayarlar geri gelir
+- 🔑 **Sıfırlamadan sonra Google izinleri:** ek modül Google uygulamalarına istedikleri izinleri verir ve HyperOS'un bunlar için sorduğu izinlere izin verir; Hey Google artık durmadan izin istemez
 - 🔄 Telefonu yeniden başlatmadan uygulamaları yeniden başlatma ve uygulamadan güncelleme kontrolü
 
 Her özellik uygulamadan ayrı ayrı açılıp kapatılabilir; kapatınca sistem eski haline döner.
