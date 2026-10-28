@@ -53,6 +53,14 @@ public final class CompanionInstaller {
                 +"elif [ -x /data/adb/ksud ]; then /data/adb/ksud module install "+quoted+"; "
                 +"elif [ -x /data/adb/apd ]; then /data/adb/apd module install "+quoted+"; "
                 +"else magisk --install-module "+quoted+"; fi",120);
+        // Grant the Google apps their permissions now rather than at the next boot. The module
+        // waits in modules_update until then; a failure here must not fail the install.
+        try {
+            run("for d in /data/adb/modules_update/xgoogle_companion "+DIR+"; do "
+                    +"[ -f \"$d/grant-google.sh\" ] && { /system/bin/sh \"$d/grant-google.sh\"; break; }; done",180);
+        } catch (Exception failure) {
+            android.util.Log.w("XGoogle", "Google permissions are granted at the next boot instead", failure);
+        }
     }
     /**
      * HyperOS: point the native double-press-power function at the default wallet
