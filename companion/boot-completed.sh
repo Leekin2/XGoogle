@@ -36,6 +36,8 @@ if pm path com.google.android.projection.gearhead > /dev/null 2>&1; then
     cmd role get-role-holders --user 0 "$role" | grep -q gearhead ||
         cmd role add-role-holder --user 0 "$role" com.google.android.projection.gearhead 0
 fi
+# Google's permissions, and HyperOS's own permission prompts for Google apps.
+/system/bin/sh "$MODDIR/grant-google.sh" > /dev/null 2>&1
 sleep 30
 # Binder shell commands require pipe FDs rather than module-directory FDs.
 # setup.sh enrolls a DSP keyphrase model. On HyperOS the Qualcomm DSP path crashes the

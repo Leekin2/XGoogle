@@ -51,7 +51,7 @@ esac
 set_perm_recursive $MODPATH 0 0 0755 0644
 
 set_perm_recursive "$MODPATH/system" 0 0 0755 0644
-for script in boot-completed.sh service.sh setup.sh uninstall.sh prepare-audio.sh status.sh systemize-aa.sh; do
+for script in boot-completed.sh service.sh setup.sh uninstall.sh prepare-audio.sh status.sh systemize-aa.sh grant-google.sh; do
     set_perm "$MODPATH/$script" 0 0 0755
 done
 /system/bin/sh "$MODPATH/prepare-audio.sh"
