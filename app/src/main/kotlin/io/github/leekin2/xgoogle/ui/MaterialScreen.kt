@@ -377,7 +377,7 @@ private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) 
             }
         }
         SettingRow(1 + gmsExtra, systemCount, Icons.Rounded.SettingsBackupRestore, t.restoreBackup, t.restoreBackupSummary,
-            onClick = onRestore)
+            onClick = onRestore, enabled = !state.restoreOpening)
         SettingRow(2 + gmsExtra, systemCount, Icons.Rounded.RestartAlt, t.restartApps, t.restartAppsSummary,
             onClick = onRestartApps, enabled = state.connected && !state.restarting)
     }

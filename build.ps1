@@ -16,7 +16,7 @@ foreach ($test in @('GateBindingTest','FeaturePolicyTest','SystemCompatibilityTe
 }
 Push-Location $PSScriptRoot
 try {
-    & ./gradlew.bat :app:testHotwordUid :app:testWallpaper :app:testCircleGesture :app:testContextualSearch :app:testHookLifecycle :app:assembleRelease --console=plain
+    & ./gradlew.bat :app:testHotwordUid :app:testWallpaper :app:testCircleGesture :app:testContextualSearch :app:testHookLifecycle :app:testGoogleRestoreAccess :app:assembleRelease --console=plain
     if ($LASTEXITCODE -ne 0) { throw 'Gradle build failed' }
 } finally { Pop-Location }
 Write-Output (Join-Path $PSScriptRoot 'app/build/outputs/apk/release/app-release.apk')

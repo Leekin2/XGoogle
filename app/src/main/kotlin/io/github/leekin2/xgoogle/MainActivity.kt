@@ -396,11 +396,12 @@ class MainActivity : ComponentActivity() {
 
     /**
      * China ROMs have no Google setup wizard, so the Google backup is never offered after a reset.
-     * Android Switch's cloud restore is the same flow the wizard runs; it is exported, and root
-     * grants its missing permission and is the fallback for builds that stop exporting it.
+     * Android Switch's cloud restore needs WRITE_SECURE_SETTINGS. Check the actual grant first:
+     * a failed root command must not be ignored, or Switch crashes when Restore is pressed.
      * Its main screen is the last resort.
      */
     private fun openGoogleRestore() {
+        if (state.restoreOpening) return
         if (runCatching { packageManager.getPackageInfo(RESTORE_PACKAGE, 0) }.isFailure) {
             showDialog(DialogKind.RESTORE_INSTALL)
             return
@@ -408,12 +409,29 @@ class MainActivity : ComponentActivity() {
         val restore = Intent().setClassName(RESTORE_PACKAGE, RESTORE_ACTIVITY).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         val t = texts
         val user = android.os.Process.myUid() / 100000
+        state = state.copy(restoreOpening = true)
         worker.execute {
             // On Pixels Android Switch is a system app; installed from Play it lacks the secure
             // settings permission and crashes when it records the restore (skipped or finished).
-            runCatching { RootShell.run("pm grant --user $user $RESTORE_PACKAGE android.permission.WRITE_SECURE_SETTINGS", 15) }
+            val preparation = runCatching {
+                GoogleRestoreAccess.prepare(
+                    { packageManager.checkPermission(GoogleRestoreAccess.SECURE_SETTINGS, RESTORE_PACKAGE) == PackageManager.PERMISSION_GRANTED },
+                    { RootShell.run("pm grant --user $user $RESTORE_PACKAGE ${GoogleRestoreAccess.SECURE_SETTINGS}", 15) }
+                )
+            }
             runOnUiThread {
-                if (isDestroyed || runCatching { startActivity(restore) }.isSuccess) return@runOnUiThread
+                if (isDestroyed) return@runOnUiThread
+                val failure = preparation.exceptionOrNull()
+                if (failure != null) {
+                    state = state.copy(restoreOpening = false)
+                    android.util.Log.w("XGoogle", "RESTORE: permission preparation failed", failure)
+                    error(t.errRestorePermission)
+                    return@runOnUiThread
+                }
+                if (runCatching { startActivity(restore) }.isSuccess) {
+                    state = state.copy(restoreOpening = false)
+                    return@runOnUiThread
+                }
                 worker.execute {
                     val result = runCatching {
                         val output = RootShell.run("am start --user $user -n $RESTORE_PACKAGE/$RESTORE_ACTIVITY", 15)
@@ -421,7 +439,9 @@ class MainActivity : ComponentActivity() {
                         if ("Error" in output) throw IOException(output)
                     }
                     runOnUiThread {
-                        if (isDestroyed || result.isSuccess) return@runOnUiThread
+                        if (isDestroyed) return@runOnUiThread
+                        state = state.copy(restoreOpening = false)
+                        if (result.isSuccess) return@runOnUiThread
                         runCatching { startActivity(packageManager.getLaunchIntentForPackage(RESTORE_PACKAGE)!!) }
                             .onFailure { error(t.errRestore) }
                     }

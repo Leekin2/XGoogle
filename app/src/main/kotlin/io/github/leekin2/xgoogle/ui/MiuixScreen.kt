@@ -321,7 +321,8 @@ fun MiuixScreen(
                             }
                         }
                         ArrowPreference(title = t.restoreBackup, summary = t.restoreBackupSummary,
-                            startAction = { RowIcon(Icons.Rounded.SettingsBackupRestore) }, onClick = onRestore)
+                            startAction = { RowIcon(Icons.Rounded.SettingsBackupRestore) }, onClick = onRestore,
+                            enabled = !state.restoreOpening)
                         ArrowPreference(title = t.restartApps, summary = t.restartAppsSummary,
                             startAction = { RowIcon(Icons.Rounded.RestartAlt) }, onClick = onRestartApps,
                             enabled = state.connected && !state.restarting)

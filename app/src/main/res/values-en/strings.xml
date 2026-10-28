@@ -146,7 +146,7 @@
     <string name="err_support">Open t.me/Xgooogle in Telegram or a browser.</string>
     <string name="err_lsposed">Could not open the LSPosed manager.</string>
     <string name="restore_backup">Restore from Google backup</string>
-    <string name="restore_backup_summary">After a reset, brings back the apps, call history, SMS and settings in your Google backup</string>
+    <string name="restore_backup_summary">Opens Google\'s restore screen for the apps, call history, SMS and settings in your backup</string>
     <string name="restore_install_title">Android Switch needed</string>
     <string name="restore_install_message">Restoring is done by Google\'s Android Switch app. Open it in the Play Store?\n\nAfter installing it, tap this row again.</string>
     <string name="err_restore">The restore screen could not be opened. Update Android Switch and try again.</string>
@@ -158,4 +158,5 @@
     <string name="power_key_summary">A long press opens the Google assistant. When off, HyperOS\'s own choice (XiaoAi) applies</string>
     <string name="update_message">XGoogle %1$s is available. Open the download page?</string>
     <string name="err_check_companion_state">Could not read the companion module status</string>
+    <string name="err_restore_permission">Android Switch needs permission to write system settings. Allow root access for XGoogle and try again, or grant WRITE_SECURE_SETTINGS using ADB.</string>
 </resources>

@@ -38,6 +38,8 @@ data class XGoogleState(
     val busy: Boolean = false,
     /** Root restart of the scope apps is running. */
     val restarting: Boolean = false,
+    /** Checking the permission Android Switch needs before its restore flow can be opened. */
+    val restoreOpening: Boolean = false,
     /** Apps the switched-on features need that are not ticked in LSPosed (labels; "system" for the framework). */
     val missingScopes: List<String> = emptyList(),
     val update: UpdateStatus = UpdateStatus.IDLE,

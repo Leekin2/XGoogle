@@ -146,7 +146,7 @@
     <string name="err_support">t.me/Xgooogle adresini Telegram\'da ya da tarayıcıda açın.</string>
     <string name="err_lsposed">LSPosed yöneticisi açılamadı.</string>
     <string name="restore_backup">Google yedeğinden geri yükle</string>
-    <string name="restore_backup_summary">Sıfırladıktan sonra Google yedeğindeki uygulamaları, arama geçmişini, SMS\'leri ve ayarları geri getirir</string>
+    <string name="restore_backup_summary">Yedeğinizdeki uygulamalar, arama geçmişi, SMS\'ler ve ayarlar için Google\'ın geri yükleme ekranını açar</string>
     <string name="restore_install_title">Android Switch gerekli</string>
     <string name="restore_install_message">Geri yükleme, Google\'ın Android Switch uygulamasıyla yapılır. Play Store\'da açılsın mı?\n\nKurduktan sonra bu satıra yeniden dokunun.</string>
     <string name="err_restore">Geri yükleme ekranı açılamadı. Android Switch\'i güncelleyip tekrar deneyin.</string>
@@ -158,4 +158,5 @@
     <string name="power_key_summary">Uzun basınca Google asistanı açılır. Kapalıyken HyperOS\'un kendi ayarı (XiaoAi) geçerli olur</string>
     <string name="update_message">XGoogle %1$s yayınlandı. İndirme sayfası açılsın mı?</string>
     <string name="err_check_companion_state">Ek modül durumu okunamadı</string>
+    <string name="err_restore_permission">Android Switch için gerekli sistem ayarı izni verilemedi. Root yöneticisinde XGoogle\'a izin verip yeniden deneyin veya ADB ile WRITE_SECURE_SETTINGS iznini verin.</string>
 </resources>

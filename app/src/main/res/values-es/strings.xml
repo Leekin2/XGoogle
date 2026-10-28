@@ -146,7 +146,7 @@
     <string name="err_support">Abre t.me/Xgooogle en Telegram o en un navegador.</string>
     <string name="err_lsposed">No se pudo abrir el gestor de LSPosed.</string>
     <string name="restore_backup">Restaurar copia de Google</string>
-    <string name="restore_backup_summary">Tras un restablecimiento, recupera las apps, el historial de llamadas, los SMS y los ajustes de tu copia de Google</string>
+    <string name="restore_backup_summary">Abre la pantalla de Google para restaurar las apps, el historial de llamadas, los SMS y los ajustes de tu copia</string>
     <string name="restore_install_title">Se necesita Android Switch</string>
     <string name="restore_install_message">La restauración la hace la app Android Switch de Google. ¿Abrirla en Play Store?\n\nDespués de instalarla, vuelve a tocar esta fila.</string>
     <string name="err_restore">No se pudo abrir la pantalla de restauración. Actualiza Android Switch e inténtalo de nuevo.</string>
@@ -158,4 +158,5 @@
     <string name="power_key_summary">Una pulsación larga abre el Asistente de Google. Si está desactivado, se aplica la opción de HyperOS (XiaoAi)</string>
     <string name="update_message">XGoogle %1$s ya está disponible. ¿Abrir la página de descarga?</string>
     <string name="err_check_companion_state">No se pudo leer el estado del módulo complementario</string>
+    <string name="err_restore_permission">Android Switch necesita permiso para escribir ajustes del sistema. Permite acceso root a XGoogle y vuelve a intentarlo, o concede WRITE_SECURE_SETTINGS mediante ADB.</string>
 </resources>

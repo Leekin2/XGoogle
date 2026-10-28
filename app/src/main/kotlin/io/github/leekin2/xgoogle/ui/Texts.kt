@@ -178,6 +178,7 @@ class Texts internal constructor(private val resources: Resources) {
     val restoreInstallTitle = resources.getString(R.string.restore_install_title)
     val restoreInstallMessage = resources.getString(R.string.restore_install_message)
     val errRestore = resources.getString(R.string.err_restore)
+    val errRestorePermission = resources.getString(R.string.err_restore_permission)
     val photosUnlimited = resources.getString(R.string.photos_unlimited)
     val photosUnlimitedSummary = resources.getString(R.string.photos_unlimited_summary)
     val photosDcim = resources.getString(R.string.photos_dcim)

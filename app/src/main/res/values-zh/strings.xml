@@ -146,7 +146,7 @@
     <string name="err_support">请在 Telegram 或浏览器中打开 t.me/Xgooogle。</string>
     <string name="err_lsposed">无法打开 LSPosed 管理器。</string>
     <string name="restore_backup">从 Google 备份恢复</string>
-    <string name="restore_backup_summary">重置后，从 Google 备份恢复应用、通话记录、短信和设置</string>
+    <string name="restore_backup_summary">打开 Google 的恢复界面，恢复备份中的应用、通话记录、短信和设置</string>
     <string name="restore_install_title">需要 Android Switch</string>
     <string name="restore_install_message">恢复由 Google 的 Android Switch 应用完成。要在 Play 商店中打开吗？\n\n安装后请再次点按此项。</string>
     <string name="err_restore">无法打开恢复界面。请更新 Android Switch 后重试。</string>
@@ -158,4 +158,5 @@
     <string name="power_key_summary">长按打开 Google 助理。关闭后恢复 HyperOS 自身设置（小爱同学）</string>
     <string name="update_message">XGoogle %1$s 已发布，是否打开下载页面？</string>
     <string name="err_check_companion_state">无法读取附属模块状态</string>
+    <string name="err_restore_permission">Android Switch 需要写入系统设置的权限。请授予 XGoogle root 权限后重试，或通过 ADB 授予 WRITE_SECURE_SETTINGS。</string>
 </resources>

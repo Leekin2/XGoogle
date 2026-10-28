@@ -1,5 +1,14 @@
 # Değişiklikler / Changelog
 
+## XGoogle 1.3.9
+
+- Sıfırlamadan sonra izinler: ek modül kurulunca Google uygulamaları bütün izinlerini alır; HyperOS'un bu uygulamalar için sorduğu izinler her açılışta verilir (Hey Google artık sürekli izin istemez).
+  Permissions after a reset: once the companion is installed, the Google apps get all their permissions; HyperOS's own prompts for them are allowed on every boot (Hey Google no longer keeps asking).
+- Google yedeğinden geri yükle: Android Switch'in izni önce kontrol edilir, çökmek yerine uyarı gösterilir.
+  Restore from Google backup: Android Switch's permission is checked first; a message is shown instead of a crash.
+- Ek modül 1.3.9: grant-google.sh.
+  Companion 1.3.9: grant-google.sh.
+
 ## XGoogle 1.3.8
 
 - Android Auto ayrıcalıklı sistem uygulaması: ek modül Xiaomi global ROM'undaki Android Auto taslağını getirir, Play Store sürümü onun güncellemesi olur (fikir X Clarke).
