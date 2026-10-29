@@ -27,6 +27,9 @@ for pkg in com.google.android.googlequicksearchbox com.google.android.gms com.go
         appops set "$pkg" "$op" allow > /dev/null 2>&1
     done
 done
+# Some China ROMs ship with the backup service deactivated; Google backup and restore need it.
+# This only makes the service available: whether Google backs up stays the user's choice.
+bmgr activated 2>/dev/null | grep -q 'currently activated' || bmgr activate true > /dev/null 2>&1
 # Android Switch records the restore in a secure setting; installed from Play it crashes without this.
 pm path com.google.android.apps.restore > /dev/null 2>&1 &&
     pm grant --user 0 com.google.android.apps.restore android.permission.WRITE_SECURE_SETTINGS > /dev/null 2>&1
