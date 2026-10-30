@@ -24,6 +24,7 @@ public final class XGoogleModule extends XposedModule {
         MigrationEntry.hookSystem(param.getClassLoader());
         SignalModelHooks.install(hooks, param.getClassLoader());
         if (FeatureConfig.enabled(FeaturePolicy.PASSKEY)) PasskeyHooks.hookSystem(hooks, param.getClassLoader());
+        if (FeatureConfig.enabled(FeaturePolicy.LOCATION)) LocationHooks.hookSystem(hooks, param.getClassLoader());
         hooks.info("SYSTEM native assistant and hotword initialization complete");
     }
 

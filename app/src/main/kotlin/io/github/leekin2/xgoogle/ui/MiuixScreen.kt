@@ -36,6 +36,7 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.semantics.selected
 import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.MyLocation
 import androidx.compose.material.icons.rounded.Gesture
 import androidx.compose.material.icons.rounded.PanTool
 import androidx.compose.material.icons.rounded.Swipe
@@ -318,6 +319,8 @@ fun MiuixScreen(
                                     state.features[FeaturePolicy.PHOTOS_UNLIMITED] == true, available) { onSetting(FeaturePolicy.PHOTOS_UNLIMITED, it) }
                                 Toggle(Icons.Rounded.FolderSpecial, t.photosDcim, t.photosDcimSummary,
                                     state.features[FeaturePolicy.PHOTOS_DCIM] == true, available) { onSetting(FeaturePolicy.PHOTOS_DCIM, it) }
+                                Toggle(Icons.Rounded.MyLocation, t.location, t.locationSummary,
+                                    state.features[FeaturePolicy.LOCATION] == true, available) { onSetting(FeaturePolicy.LOCATION, it) }
                             }
                         }
                         ArrowPreference(title = t.restoreBackup, summary = t.restoreBackupSummary,

@@ -22,6 +22,7 @@
 - 🧪 **Passkeys and password manager** (optional): Google passkeys, phone-as-key sign-in and autofill through Google Play services; Security no longer resets the chosen password manager. Needs Google Play services on; do not use together with HyperPasskey
 - 🧪 **Unlimited Google Photos backup** (optional): Google Photos sees the 2016 Pixel, so newly backed-up photos and videos do not count against your storage. Do not use together with the GPhotosUnlimited or Pixelify modules
 - 🧪 **Choose camera folder backup** (optional): Google Photos no longer forces backup of Camera and other DCIM folders; turn each folder's backup on or off in Photos. On a new install no folder is backed up
+- 🧪 **Google location accuracy** (optional): network location and addresses come from Google Play services instead of Xiaomi's service, as on international ROMs. If Play services is turned off, Xiaomi's service takes over again by itself
 - 🧪 **Lock screen shortcuts:** Gemini, Lens/QR, Wallet, Home controls. They open over the lock screen; Wallet asks you to verify when it needs to
 - 🧪 **Double-press power → Google Wallet**, also on the lock screen; Google becomes the default NFC payment app
 - 🧪 **Google Lens button in the camera** (optional), also over the lock screen
@@ -31,6 +32,7 @@
 - 🚦 Status card: green when everything works, yellow with the list of apps still unticked in LSPosed, red when inactive
 - ☁️ **Restore from Google backup:** China ROMs have no Google setup wizard, so after a reset XGoogle opens Google's own restore screen (Android Switch) to bring back your apps, call history, SMS and settings
 - 🔑 **Google permissions after a reset:** the companion gives the Google apps the permissions they ask for and allows HyperOS's own prompts for them, so Hey Google stops asking again and again
+- 📅 **Google Calendar sync:** the companion installs Google's calendar sync adapter from HyperOS 4 international, so your Google calendars show up in the Calendar app. Calendar sync is turned on for Google accounts that never had it set; a sync you turn off stays off, and if you uninstall the adapter it is not installed again
 - 🔄 Restart apps without rebooting, and check for updates from the app
 
 Every feature can be turned on or off on its own; turning one off brings back the stock behavior.
@@ -88,7 +90,7 @@ Every feature can be turned on or off on its own; turning one off brings back th
 
 ## Specs
 
-- **Size:** app ~4 MB, companion module ~0.45 MB
+- **Size:** app ~8.5 MB, companion module ~4.7 MB
 - **RAM:** no extra cost. The Google assistant process uses ~90 MB, as on any Android phone.
 - **Auto-update:** the companion module shows updates in your root manager.
 - **Safe uninstall:** removing the companion module restores your key settings.
@@ -142,6 +144,7 @@ This project is not affiliated with Google or Xiaomi; trademarks belong to their
 - 🧪 **Geçiş anahtarları ve şifre yöneticisi** (isteğe bağlı): Google geçiş anahtarları, telefonla giriş ve otomatik doldurma Google Play Hizmetleri üzerinden çalışır; Güvenlik uygulaması seçilen şifre yöneticisini artık sıfırlamaz. Google Play Hizmetleri açık olmalı; HyperPasskey ile birlikte kullanmayın
 - 🧪 **Sınırsız Google Fotoğraflar yedeği** (isteğe bağlı): Google Fotoğraflar telefonu 2016 Pixel olarak görür, yeni yedeklenen fotoğraf ve videolar depolama alanınızdan düşmez. GPhotosUnlimited ya da Pixelify modülleriyle birlikte kullanmayın
 - 🧪 **Kamera klasörü yedeğini seçebilme** (isteğe bağlı): Google Fotoğraflar Kamera ve diğer DCIM klasörlerini zorla yedeklemez; her klasörün yedeğini Fotoğraflar'da açıp kapatırsınız. Yeni kurulumda hiçbir klasör yedeklenmez
+- 🧪 **Google Konum Doğruluğu** (isteğe bağlı): ağ konumu ve adres bilgisi, global ROM'lardaki gibi Xiaomi'nin servisi yerine Google Play Hizmetleri'nden gelir. Play Hizmetleri kapatılırsa Xiaomi'nin servisi kendiliğinden devralır
 - 🧪 **Kilit ekranı kısayolları:** Gemini, Lens/QR, Cüzdan, Ev kontrolleri. Kilit ekranının üstünde açılır; Cüzdan gerektiğinde doğrulama ister
 - 🧪 **Güç tuşuna çift bas → Google Cüzdan**, kilit ekranında da açılır; Google varsayılan NFC ödeme uygulaması olur
 - 🧪 **Kamerada Google Lens butonu** (isteğe bağlı), kilit ekranında da çalışır
@@ -151,6 +154,7 @@ This project is not affiliated with Google or Xiaomi; trademarks belong to their
 - 🚦 Durum kartı: her şey çalışıyorsa yeşil, LSPosed'de işaretlenmemiş uygulama varsa listesiyle sarı, etkin değilse kırmızı
 - ☁️ **Google yedeğinden geri yükleme:** Çin ROM'larında Google kurulum sihirbazı olmadığı için XGoogle, sıfırlamadan sonra Google'ın kendi geri yükleme ekranını (Android Switch) açar; uygulamalar, arama geçmişi, SMS'ler ve ayarlar geri gelir
 - 🔑 **Sıfırlamadan sonra Google izinleri:** ek modül Google uygulamalarına istedikleri izinleri verir ve HyperOS'un bunlar için sorduğu izinlere izin verir; Hey Google artık durmadan izin istemez
+- 📅 **Google Takvim senkronu:** ek modül HyperOS 4 global'deki Google takvim senkron bağdaştırıcısını kurar, Google takvimleriniz Takvim uygulamasında görünür. Takvim senkronu hiç ayarlanmamış Google hesaplarında açılır; kapattığınız senkron kapalı kalır, bağdaştırıcıyı kaldırırsanız yeniden kurulmaz
 - 🔄 Telefonu yeniden başlatmadan uygulamaları yeniden başlatma ve uygulamadan güncelleme kontrolü
 
 Her özellik uygulamadan ayrı ayrı açılıp kapatılabilir; kapatınca sistem eski haline döner.
@@ -208,7 +212,7 @@ Her özellik uygulamadan ayrı ayrı açılıp kapatılabilir; kapatınca sistem
 
 ### Nitelikler
 
-- **Boyut:** Uygulama ~4 MB, ek modül ~0,45 MB
+- **Boyut:** Uygulama ~8,5 MB, ek modül ~4,7 MB
 - **RAM:** Ek yük yok. Google asistan işlemi ~90 MB kullanır, bu her Android telefonda zaten böyledir.
 - **Otomatik güncelleme:** Ek modül, root yöneticinizde yeni sürüm çıkınca güncelleme bildirir.
 - **Güvenli kaldırma:** Ek modül kaldırılınca değiştirdiği tuş ayarları eski haline döner.

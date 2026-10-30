@@ -52,6 +52,8 @@
     <string name="timeline_summary">Activa el historial de ubicaciones. Los servicios de Google Play y Maps ven un operador de EE. UU.; puede suponer un riesgo para la cuenta</string>
     <string name="passkey">Llaves de acceso y gestor de contraseñas</string>
     <string name="passkey_summary">Permite usar las llaves de acceso de Google y el autocompletado en la ROM china. Los servicios de Google Play deben estar activados; no lo uses junto con HyperPasskey</string>
+    <string name="location">Precisión de la ubicación de Google</string>
+    <string name="location_summary">La ubicación por red y las direcciones las proporcionan los servicios de Google Play en lugar del servicio de Xiaomi, como en las ROM internacionales: más rápida y precisa en interiores. Si los servicios de Google Play se desactivan, vuelve el servicio de Xiaomi. Reinicia después de cambiarlo</string>
     <string name="group_other">Otros</string>
     <string name="hide_icon">Ocultar icono de la pantalla de inicio</string>
     <string name="hide_icon_summary">Una vez oculto, ábrelo desde LSPosed</string>

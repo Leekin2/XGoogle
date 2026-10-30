@@ -52,6 +52,8 @@
     <string name="timeline_summary">Включает историю местоположений. Сервисы Google Play и Карты будут видеть оператора из США; это может быть рискованно для аккаунта</string>
     <string name="passkey">Ключи доступа и менеджер паролей</string>
     <string name="passkey_summary">Позволяет использовать ключи доступа Google и автозаполнение на китайской прошивке. Сервисы Google Play должны быть включены; не используйте вместе с HyperPasskey</string>
+    <string name="location">Точность геолокации Google</string>
+    <string name="location_summary">Местоположение по сети и адреса предоставляют сервисы Google Play вместо службы Xiaomi, как в глобальных прошивках: быстрее и точнее в помещениях. Если сервисы Google Play отключены, снова работает служба Xiaomi. После изменения перезагрузите телефон</string>
     <string name="group_other">Другое</string>
     <string name="hide_icon">Скрыть значок приложения</string>
     <string name="hide_icon_summary">После скрытия приложение можно открыть из LSPosed</string>

@@ -10,6 +10,7 @@ Install the XGoogle app (LSPosed) as well; the app offers to install and update 
 - Adds the hotword enrollment components and audio settings for "Hey Google".
 - Adds HyperOS 4 international's Google sysconfig, privileged-permission and default-permission lists that XGoogle needs.
 - Adds the Android Auto system stub: the Play Store version installs over it (before or after the module) and runs as a system app with the car projection role.
+- Installs Google's calendar sync adapter (from HyperOS 4 international) once and turns calendar sync on for Google accounts that never had it set.
 - On HyperOS, routes long-press power and the navigation handle to Google; uninstalling restores your previous choices.
 
 ## Requirements

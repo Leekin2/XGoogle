@@ -52,6 +52,8 @@
     <string name="timeline_summary">开启位置记录。Google Play 服务和地图会识别为美国运营商，可能给账号带来风险</string>
     <string name="passkey">通行密钥与密码管理器</string>
     <string name="passkey_summary">让 Google 通行密钥和自动填充在国行版上可用。需启用 Google Play 服务；请勿与 HyperPasskey 同时使用</string>
+    <string name="location">Google 位置信息精确度</string>
+    <string name="location_summary">网络定位和地址解析改由 Google Play 服务提供，而非小米的服务，与国际版相同：室内定位更快更准。若停用 Google Play 服务，将自动恢复小米的服务。更改后请重启</string>
     <string name="group_other">其他</string>
     <string name="hide_icon">隐藏桌面图标</string>
     <string name="hide_icon_summary">隐藏后可从 LSPosed 打开应用</string>

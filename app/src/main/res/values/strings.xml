@@ -52,6 +52,8 @@
     <string name="timeline_summary">Turns on location history. Google Play services and Maps see a US carrier; this may put your account at risk</string>
     <string name="passkey">Passkeys and password manager</string>
     <string name="passkey_summary">Makes Google passkeys and autofill work on the China ROM. Google Play services must be enabled. Don\'t use together with HyperPasskey</string>
+    <string name="location">Google location accuracy</string>
+    <string name="location_summary">Network location and addresses come from Google Play services instead of Xiaomi\'s service, as on international ROMs: faster and more accurate indoors. If Play services is turned off, Xiaomi\'s service takes over again. Reboot after changing</string>
     <string name="group_other">Other</string>
     <string name="hide_icon">Hide home screen icon</string>
     <string name="hide_icon_summary">Once hidden, open the app from LSPosed</string>

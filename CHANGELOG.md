@@ -1,5 +1,14 @@
 # Değişiklikler / Changelog
 
+## Sonraki sürüm / Next release
+
+- Google Konum Doğruluğu (isteğe bağlı): ağ konumu ve adres bilgisi Xiaomi'nin servisi yerine Google Play Hizmetleri'nden gelir; Play Hizmetleri kapatılırsa Xiaomi'nin servisi devralır.
+  Google location accuracy (optional): network location and addresses come from Google Play services instead of Xiaomi's service; if Play services is turned off, Xiaomi's service takes over.
+- Google Takvim senkronu: ek modül Google'ın takvim senkron bağdaştırıcısını bir kez kurar ve hiç ayarlanmamış Google hesaplarında takvim senkronunu açar.
+  Google Calendar sync: the companion installs Google's calendar sync adapter once and turns calendar sync on for Google accounts that never had it set.
+- Ek modül: Çin ROM'unda kapalı gelen yedekleme servisi etkinleştirilir (bmgr).
+  Companion: the backup service is activated when a China ROM ships it off (bmgr).
+
 ## XGoogle 1.3.9
 
 - Sıfırlamadan sonra izinler: ek modül kurulunca Google uygulamaları bütün izinlerini alır; HyperOS'un bu uygulamalar için sorduğu izinler her açılışta verilir (Hey Google artık sürekli izin istemez).

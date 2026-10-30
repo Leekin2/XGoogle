@@ -52,6 +52,8 @@
     <string name="timeline_summary">Konum geçmişini açar. Google Play Hizmetleri ve Haritalar\'a ABD operatörü gösterilir; hesap için risk taşıyabilir</string>
     <string name="passkey">Geçiş anahtarları ve şifre yöneticisi</string>
     <string name="passkey_summary">Google geçiş anahtarlarını ve otomatik doldurmayı Çin ROM\'unda çalıştırır. Google Play Hizmetleri etkin olmalı; HyperPasskey ile birlikte kullanmayın</string>
+    <string name="location">Google Konum Doğruluğu</string>
+    <string name="location_summary">Ağ konumu ve adres bilgisi, global ROM\'lardaki gibi Xiaomi\'nin servisi yerine Google Play Hizmetleri\'nden gelir: kapalı alanda daha hızlı ve doğru. Play Hizmetleri kapatılırsa Xiaomi\'nin servisi yeniden devralır. Değiştirdikten sonra yeniden başlatın</string>
     <string name="group_other">Diğer</string>
     <string name="hide_icon">Ana ekran simgesini gizle</string>
     <string name="hide_icon_summary">Gizledikten sonra uygulamayı LSPosed\'den açabilirsiniz</string>

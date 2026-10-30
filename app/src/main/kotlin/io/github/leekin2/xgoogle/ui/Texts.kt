@@ -74,6 +74,8 @@ class Texts internal constructor(private val resources: Resources) {
     val timelineSummary = resources.getString(R.string.timeline_summary)
     val passkey = resources.getString(R.string.passkey)
     val passkeySummary = resources.getString(R.string.passkey_summary)
+    val location = resources.getString(R.string.location)
+    val locationSummary = resources.getString(R.string.location_summary)
     val groupOther = resources.getString(R.string.group_other)
     val hideIcon = resources.getString(R.string.hide_icon)
     val hideIconSummary = resources.getString(R.string.hide_icon_summary)

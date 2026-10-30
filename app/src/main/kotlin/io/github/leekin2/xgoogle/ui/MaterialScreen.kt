@@ -40,6 +40,7 @@ import top.yukonga.miuix.kmp.blur.textureBlur
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.MyLocation
 import androidx.compose.material.icons.rounded.Gesture
 import androidx.compose.material.icons.rounded.PanTool
 import androidx.compose.material.icons.rounded.Swipe
@@ -351,7 +352,7 @@ private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) 
     Group(t.groupSystem) {
         // The Google features that need Play services fold under the GMS switch.
         var gmsOpen by rememberSaveable { mutableStateOf(false) }
-        val gmsExtra = if (gmsOpen) 5 else 0
+        val gmsExtra = if (gmsOpen) 6 else 0
         val systemCount = 3 + gmsExtra
         val gmsOn = state.features[FeaturePolicy.GMS] == true
         SettingRow(0, systemCount, Icons.Rounded.LockOpen, t.gms, t.gmsSummary, { gmsOpen = !gmsOpen },
@@ -374,6 +375,8 @@ private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) 
                     state.features[FeaturePolicy.PHOTOS_UNLIMITED] == true, available, { onSetting(FeaturePolicy.PHOTOS_UNLIMITED, it) })
                 ToggleRow(t, 5, systemCount, Icons.Rounded.FolderSpecial, t.photosDcim, t.photosDcimSummary,
                     state.features[FeaturePolicy.PHOTOS_DCIM] == true, available, { onSetting(FeaturePolicy.PHOTOS_DCIM, it) })
+                ToggleRow(t, 6, systemCount, Icons.Rounded.MyLocation, t.location, t.locationSummary,
+                    state.features[FeaturePolicy.LOCATION] == true, available, { onSetting(FeaturePolicy.LOCATION, it) })
             }
         }
         SettingRow(1 + gmsExtra, systemCount, Icons.Rounded.SettingsBackupRestore, t.restoreBackup, t.restoreBackupSummary,
