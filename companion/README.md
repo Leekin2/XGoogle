@@ -15,7 +15,7 @@ Install the XGoogle app (LSPosed) as well; the app offers to install and update 
 
 ## Requirements
 - Xiaomi HyperOS China ROM, Android 15 or newer
-- KernelSU, SukiSU, KernelSU Next, APatch or Magisk
+- KernelSU, SukiSU, KernelSU Next, APatch or Magisk (newer KernelSU builds also need a mount metamodule such as Hybrid Mount)
 - Google app installed from the Play Store before installing the module
 
 Uninstalling the module puts the system back as it was. Source: [companion/](https://github.com/Leekin2/XGoogle/tree/main/companion) in the XGoogle repository (GPL-3.0).

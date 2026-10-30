@@ -105,6 +105,7 @@ class Texts internal constructor(private val resources: Resources) {
                 CompanionState.READY -> R.string.companion_ready
                 CompanionState.PENDING -> R.string.companion_pending
                 CompanionState.OUTDATED -> R.string.companion_outdated
+                CompanionState.NOT_MOUNTED -> R.string.companion_not_mounted
                 CompanionState.INSTALLING -> R.string.companion_installing
             }
         )
@@ -118,6 +119,7 @@ class Texts internal constructor(private val resources: Resources) {
     val installedTitle = resources.getString(R.string.installed_title)
     val installedMessage = resources.getString(R.string.installed_message)
     val companionUpdateTitle = resources.getString(R.string.companion_update_title)
+    val companionNotMountedHint = resources.getString(R.string.companion_not_mounted_hint)
     val companionUpdateMessage = resources.getString(R.string.companion_update_message)
     val companionOfferTitle = resources.getString(R.string.companion_offer_title)
     val companionOfferMessage = resources.getString(R.string.companion_offer_message)

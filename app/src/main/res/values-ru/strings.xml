@@ -80,6 +80,8 @@
     <string name="companion_ready">Доп. модуль: установлен и включён</string>
     <string name="companion_pending">Доп. модуль: установлен, требуется перезагрузка</string>
     <string name="companion_outdated">Доп. модуль: доступно обновление</string>
+    <string name="companion_not_mounted">Доп. модуль: файлы не смонтированы</string>
+    <string name="companion_not_mounted_hint">KernelSU нужен модуль монтирования: установите Hybrid Mount и перезагрузите</string>
     <string name="companion_installing">Доп. модуль: установка…</string>
     <string name="status_title">Состояние модуля</string>
     <string name="status_message">Включите XGoogle в LSPosed и отметьте рекомендуемые приложения в области применения. После изменения настройки нажмите «Перезапустить приложения» или перезагрузите телефон.\n\nПоддерживаемая система: Xiaomi HyperOS (китайская прошивка).</string>

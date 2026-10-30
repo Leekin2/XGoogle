@@ -11,6 +11,8 @@ enum class CompanionState(val installed: Boolean = false) {
     PENDING(true),
     /** Installed, older than the one inside XGoogle. */
     OUTDATED(true),
+    /** Installed, but the root manager did not mount its files (no mount metamodule). */
+    NOT_MOUNTED(true),
     INSTALLING
 }
 

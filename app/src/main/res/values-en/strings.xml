@@ -80,6 +80,8 @@
     <string name="companion_ready">Companion module: installed and enabled</string>
     <string name="companion_pending">Companion module: installed, reboot pending</string>
     <string name="companion_outdated">Companion module: update available</string>
+    <string name="companion_not_mounted">Companion module: files not mounted</string>
+    <string name="companion_not_mounted_hint">KernelSU needs a mount module: install Hybrid Mount, then reboot</string>
     <string name="companion_installing">Companion module: installing…</string>
     <string name="status_title">Module status</string>
     <string name="status_message">Enable XGoogle in LSPosed and select the recommended scopes. After changing a setting, tap Restart apps or restart your phone.\n\nSupported system: Xiaomi HyperOS (China ROM).</string>

@@ -80,6 +80,8 @@
     <string name="companion_ready">Módulo complementario: instalado y activo</string>
     <string name="companion_pending">Módulo complementario: instalado, reinicio pendiente</string>
     <string name="companion_outdated">Módulo complementario: actualización disponible</string>
+    <string name="companion_not_mounted">Módulo complementario: archivos no montados</string>
+    <string name="companion_not_mounted_hint">KernelSU necesita un módulo de montaje: instale Hybrid Mount y reinicie</string>
     <string name="companion_installing">Módulo complementario: instalando…</string>
     <string name="status_title">Estado del módulo</string>
     <string name="status_message">Activa XGoogle en LSPosed y marca los ámbitos recomendados. Después de cambiar un ajuste, toca Reiniciar apps o reinicia el teléfono.\n\nSistema compatible: Xiaomi HyperOS (ROM china).</string>

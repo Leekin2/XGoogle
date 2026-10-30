@@ -239,7 +239,7 @@ class MainActivity : ComponentActivity() {
                     companionCheckedAt = SystemClock.elapsedRealtime()
                     state = state.copy(companion = installed)
                     if (enableAfterCheck) when (installed) {
-                        CompanionState.READY, CompanionState.PENDING, CompanionState.OUTDATED -> saveSetting(FeaturePolicy.HEY_GOOGLE, true, true)
+                        CompanionState.READY, CompanionState.PENDING, CompanionState.OUTDATED, CompanionState.NOT_MOUNTED -> saveSetting(FeaturePolicy.HEY_GOOGLE, true, true)
                         CompanionState.DISABLED -> showDialog(DialogKind.DISABLED)
                         else -> showDialog(DialogKind.INSTALL)
                     }

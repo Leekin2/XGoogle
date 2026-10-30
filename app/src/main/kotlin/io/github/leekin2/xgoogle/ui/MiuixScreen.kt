@@ -372,7 +372,8 @@ private fun StatusCard(state: XGoogleState, t: Texts, onStatus: () -> Unit) {
     val dark = colors.surface.luminance() < 0.5f
     val waiting = state.loading && !state.connected
     val outdated = state.companion == CompanionState.OUTDATED
-    val warn = state.missingScopes.isNotEmpty() || outdated
+    val notMounted = state.companion == CompanionState.NOT_MOUNTED
+    val warn = state.missingScopes.isNotEmpty() || outdated || notMounted
     val (container, content) = when {
         waiting -> colors.secondaryContainer to colors.onSecondaryContainer
         !state.connected -> (if (dark) Color(0xFF5C1A1A) else Color(0xFFFFDAD6)) to (if (dark) Color(0xFFFFDAD6) else Color(0xFF6B0F0F))
@@ -395,6 +396,7 @@ private fun StatusCard(state: XGoogleState, t: Texts, onStatus: () -> Unit) {
                     !state.connected -> t.inactive
                     state.missingScopes.isNotEmpty() -> t.statusIncomplete
                     outdated -> t.companion(CompanionState.OUTDATED)
+                    notMounted -> t.companion(CompanionState.NOT_MOUNTED)
                     else -> t.statusWorking
                 }, color = content, fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
                 Text(t.version(BuildConfig.VERSION_NAME) + " · API 102", color = content, fontSize = 14.sp,
@@ -405,7 +407,7 @@ private fun StatusCard(state: XGoogleState, t: Texts, onStatus: () -> Unit) {
                         Text("• " + (if (name == "system") t.systemFramework else name), color = content, fontSize = 14.sp)
                     }
                 }
-                Text(if (outdated && state.missingScopes.isEmpty()) t.companionUpdateTitle else t.statusTap, color = content.copy(alpha = 0.75f), fontSize = 12.sp, modifier = Modifier.padding(top = 10.dp))
+                Text(if (state.missingScopes.isNotEmpty()) t.statusTap else if (outdated) t.companionUpdateTitle else if (notMounted) t.companionNotMountedHint else t.statusTap, color = content.copy(alpha = 0.75f), fontSize = 12.sp, modifier = Modifier.padding(top = 10.dp))
             }
         }
     }

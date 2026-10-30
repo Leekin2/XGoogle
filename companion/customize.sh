@@ -48,6 +48,12 @@ case "$(/system/bin/sh "$MODPATH/systemize-aa.sh" "$MODPATH")" in
     *) ui_print "- Android Auto stub added; its permission list is refreshed at boot" ;;
 esac
 
+# Newer KernelSU builds mount module files only through a mount metamodule.
+if [ "$KSU" = true ] && [ ! -e /data/adb/metamodule ]; then
+    ui_print "! No mount module found: if the module says its files are not mounted"
+    ui_print "  after the reboot, install Hybrid Mount and reboot again"
+fi
+
 set_perm_recursive $MODPATH 0 0 0755 0644
 
 set_perm_recursive "$MODPATH/system" 0 0 0755 0644

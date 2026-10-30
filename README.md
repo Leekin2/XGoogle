@@ -85,6 +85,7 @@ Every feature can be turned on or off on its own; turning one off brings back th
 - **The navigation handle does not open Circle to Search:** Circle to Search must be on in XGoogle, the companion module installed, and the phone rebooted after updating XGoogle.
 - **Navigation handle hidden:** HyperOS ignores the long press when the handle is hidden, so Circle to Search needs the handle shown. With 3-button navigation, long-press Home.
 - **Side swipe-and-hold shows XiaoAi's ball:** update XGoogle and tick XiaoAi in LSPosed, then use *Restart apps*. Without XiaoAi installed HyperOS turns this gesture off.
+- **"Companion module: files not mounted" / Android Auto error 22:** newer KernelSU builds mount module files only through a mount metamodule. Install Hybrid Mount (or meta-overlayfs) in KernelSU and reboot.
 - **Bootloop or missing features with Mountify:** Mountify can hide the ROM's own system files. Switch the metamodule to Hybrid Mount.
 - **Still stuck:** message [@emcleek](https://t.me/emcleek) on Telegram, with your LSPosed log if possible.
 
@@ -207,6 +208,7 @@ Her özellik uygulamadan ayrı ayrı açılıp kapatılabilir; kapatınca sistem
 - **Alt çubuk Circle to Search açmıyor:** XGoogle'da Circle to Search açık, ek modül kurulu olmalı; XGoogle'ı güncelledikten sonra telefonu yeniden başlatın.
 - **Alt çubuk gizli:** HyperOS, çubuk gizliyken uzun basmayı hiç işlemez; Circle to Search için çubuk görünür olmalı. 3 tuşlu gezinmede Ana Sayfa tuşuna uzun basın.
 - **Kenardan kaydırıp tutunca XiaoAi topu çıkıyor:** XGoogle'ı güncelleyin ve LSPosed'de XiaoAi'yi işaretleyin, sonra *Uygulamaları yeniden başlat*'ı kullanın. XiaoAi kurulu değilse HyperOS bu hareketi kapatır.
+- **"Ek modül: dosyaları yüklenmedi" / Android Auto hata 22:** Yeni KernelSU sürümleri modül dosyalarını yalnızca bir mount metamodülüyle bağlar. KernelSU'ya Hybrid Mount (ya da meta-overlayfs) kurup yeniden başlatın.
 - **Mountify ile açılmama ya da eksik özellik:** Mountify ROM'un kendi sistem dosyalarını gizleyebilir. Metamodülü Hybrid Mount'a çevirin.
 - **Hâlâ çözülmediyse:** Telegram'dan [@emcleek](https://t.me/emcleek)'e yazın; mümkünse LSPosed kaydını ekleyin.
 

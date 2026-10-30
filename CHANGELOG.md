@@ -6,6 +6,8 @@
   Google location accuracy (optional): network location and addresses come from Google Play services instead of Xiaomi's service; if Play services is turned off, Xiaomi's service takes over.
 - Google Takvim senkronu: ek modül Google'ın takvim senkron bağdaştırıcısını bir kez kurar ve hiç ayarlanmamış Google hesaplarında takvim senkronunu açar.
   Google Calendar sync: the companion installs Google's calendar sync adapter once and turns calendar sync on for Google accounts that never had it set.
+- Ek modül dosyaları sisteme bağlanmadıysa (KernelSU'da mount metamodülü yoksa) XGoogle ve ek modülün açıklaması bunu söyler ve Hybrid Mount kurmayı önerir.
+  If the companion's files are not mounted (no mount metamodule on KernelSU), XGoogle and the companion's description say so and suggest installing Hybrid Mount.
 - Ek modül: Çin ROM'unda kapalı gelen yedekleme servisi etkinleştirilir (bmgr).
   Companion: the backup service is activated when a China ROM ships it off (bmgr).
 

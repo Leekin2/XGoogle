@@ -80,6 +80,8 @@
     <string name="companion_ready">Ek modül: kurulu ve etkin</string>
     <string name="companion_pending">Ek modül: kuruldu, yeniden başlatma bekleniyor</string>
     <string name="companion_outdated">Ek modül: güncelleme var</string>
+    <string name="companion_not_mounted">Ek modül: dosyaları yüklenmedi</string>
+    <string name="companion_not_mounted_hint">KernelSU bir mount modülü ister: Hybrid Mount\'u kurup yeniden başlatın</string>
     <string name="companion_installing">Ek modül: kuruluyor…</string>
     <string name="status_title">Modül durumu</string>
     <string name="status_message">LSPosed\'de XGoogle\'ı etkinleştirip önerilen kapsamları işaretleyin. Bir ayarı değiştirdikten sonra Uygulamaları yeniden başlat\'a dokunun veya telefonu yeniden başlatın.\n\nDesteklenen sistem: Xiaomi HyperOS (Çin ROM\'u).</string>

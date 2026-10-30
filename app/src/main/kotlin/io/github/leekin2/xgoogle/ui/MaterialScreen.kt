@@ -220,7 +220,8 @@ private fun StatusCard(state: XGoogleState, t: Texts, onClick: () -> Unit) {
     val scheme = MaterialTheme.colorScheme
     val waiting = state.loading && !state.connected
     val outdated = state.companion == CompanionState.OUTDATED
-    val warn = state.missingScopes.isNotEmpty() || outdated
+    val notMounted = state.companion == CompanionState.NOT_MOUNTED
+    val warn = state.missingScopes.isNotEmpty() || outdated || notMounted
     val (container, content) = when {
         waiting -> scheme.secondaryContainer to scheme.onSecondaryContainer
         !state.connected -> scheme.errorContainer to scheme.onErrorContainer
@@ -243,6 +244,7 @@ private fun StatusCard(state: XGoogleState, t: Texts, onClick: () -> Unit) {
                     !state.connected -> t.inactive
                     state.missingScopes.isNotEmpty() -> t.statusIncomplete
                     outdated -> t.companion(CompanionState.OUTDATED)
+                    notMounted -> t.companion(CompanionState.NOT_MOUNTED)
                     else -> t.statusWorking
                 }, style = MaterialTheme.typography.titleLarge)
                 Text("${t.version(BuildConfig.VERSION_NAME)} · API 102", style = MaterialTheme.typography.bodyMedium,
@@ -253,7 +255,7 @@ private fun StatusCard(state: XGoogleState, t: Texts, onClick: () -> Unit) {
                         Text("• " + (if (name == "system") t.systemFramework else name), style = MaterialTheme.typography.bodyMedium)
                     }
                 }
-                Text(if (outdated && state.missingScopes.isEmpty()) t.companionUpdateTitle else t.statusTap, style = MaterialTheme.typography.labelMedium,
+                Text(if (state.missingScopes.isNotEmpty()) t.statusTap else if (outdated) t.companionUpdateTitle else if (notMounted) t.companionNotMountedHint else t.statusTap, style = MaterialTheme.typography.labelMedium,
                     modifier = Modifier.padding(top = 10.dp).alpha(0.75f))
             }
         }

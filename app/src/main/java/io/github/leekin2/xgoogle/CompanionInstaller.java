@@ -14,14 +14,22 @@ public final class CompanionInstaller {
     /** Moves the old module's saved choices to the new names before they are used. */
     private static final String MIGRATE="for n in keys_backup nav_off double_click_power_key; do "
             +"[ -e /data/adb/coogle_$n ] && [ ! -e /data/adb/xgoogle_$n ] && mv /data/adb/coogle_$n /data/adb/xgoogle_$n; done; ";
-    /** MISSING, DISABLED, PENDING, READY, or OUTDATED when the installed one is older than the bundled one. */
+    /**
+     * A file only the module puts on the system, looked up in init's mount view: newer KernelSU
+     * builds mount module files only through a mount metamodule, and without one nothing shows up.
+     */
+    private static final String MOUNTED="/proc/1/root/product/etc/permissions/coogle-hyperos.xml";
+    /**
+     * MISSING, DISABLED, PENDING, READY, OUTDATED when the installed one is older than the bundled
+     * one, or NOT_MOUNTED when it is installed but its files are not on the system.
+     */
     public static String check(Context context) throws Exception {
         String output = run("d="+DIR+"; u=/data/adb/modules_update/xgoogle_companion; o="+OLD_DIR+"; "
                 +"if [ -f \"$u/module.prop\" ]; then "
                 +"if [ -f \"$u/disable\" ] || [ -f \"$u/remove\" ]; then echo DISABLED; else echo PENDING; fi; "
                 +"elif [ ! -f \"$d/module.prop\" ]; then if [ -f \"$o/module.prop\" ] && [ ! -f \"$o/remove\" ]; then echo OLD; else echo MISSING; fi; "
                 +"elif [ -f \"$d/disable\" ] || [ -f \"$d/remove\" ]; then echo DISABLED; "
-                +"else echo \"READY $(sed -n 's/^versionCode=//p' \"$d/module.prop\")\"; fi",20).trim();
+                +"else echo \"READY $(sed -n 's/^versionCode=//p' \"$d/module.prop\") $([ -f "+MOUNTED+" ] && echo mounted)\"; fi",20).trim();
         String[] last = output.substring(output.lastIndexOf('\n') + 1).trim().split(" ");
         String state = last[0];
         if ("OLD".equals(state)) return "OUTDATED";
@@ -30,6 +38,7 @@ public final class CompanionInstaller {
         if ("READY".equals(state) && last.length > 1) {
             try { if (Integer.parseInt(last[1].trim()) < bundledVersion(context)) return "OUTDATED"; }
             catch (NumberFormatException unreadable) { /* an unreadable version is not reported as outdated */ }
+            if (last.length < 3) return "NOT_MOUNTED";
         }
         return state;
     }

@@ -40,6 +40,11 @@ if [ -z "$(getprop ro.mi.os.version.name)" ]; then
     esac
 fi
 description="[$google | $enrollment | $dsp]"
+# Newer KernelSU builds mount module files only through a mount metamodule; without one none of the
+# above can work, so say what is missing first.
+if [ ! -f /product/etc/permissions/coogle-hyperos.xml ]; then
+    description="[⚠️Module files not mounted: install a mount module (Hybrid Mount) and reboot | ${description#[}"
+fi
 sed '/^description=/d' "$MODDIR/module.prop" > "$MODDIR/module.prop.tmp" || exit 1
 printf 'description=%s\n' "$description" >> "$MODDIR/module.prop.tmp"
 chmod 0644 "$MODDIR/module.prop.tmp"
