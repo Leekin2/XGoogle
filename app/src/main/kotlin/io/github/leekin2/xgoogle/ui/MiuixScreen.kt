@@ -37,6 +37,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.semantics.selected
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.MyLocation
+import androidx.compose.material.icons.rounded.Sensors
 import androidx.compose.material.icons.rounded.Gesture
 import androidx.compose.material.icons.rounded.PanTool
 import androidx.compose.material.icons.rounded.Swipe
@@ -145,6 +146,7 @@ fun MiuixScreen(
     onCheckUpdates: () -> Unit,
     onSupport: () -> Unit,
     onRestore: () -> Unit,
+    onEarthquake: () -> Unit,
     /** Kept by the caller, so switching between the two looks stays on the same tab. */
     tab: Int,
     onTab: (Int) -> Unit
@@ -326,6 +328,8 @@ fun MiuixScreen(
                         ArrowPreference(title = t.restoreBackup, summary = t.restoreBackupSummary,
                             startAction = { RowIcon(Icons.Rounded.SettingsBackupRestore) }, onClick = onRestore,
                             enabled = !state.restoreOpening)
+                        ArrowPreference(title = t.earthquake, summary = t.earthquakeSummary,
+                            startAction = { RowIcon(Icons.Rounded.Sensors) }, onClick = onEarthquake)
                         ArrowPreference(title = t.restartApps, summary = t.restartAppsSummary,
                             startAction = { RowIcon(Icons.Rounded.RestartAlt) }, onClick = onRestartApps,
                             enabled = state.connected && !state.restarting)

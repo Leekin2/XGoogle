@@ -153,6 +153,9 @@
     <string name="restore_backup_summary">Открывает экран Google для восстановления приложений, журнала звонков, SMS и настроек из вашей резервной копии</string>
     <string name="restore_install_title">Нужен Android Switch</string>
     <string name="restore_install_message">Восстановление выполняет приложение Google Android Switch. Открыть его в Play Маркете?\n\nПосле установки снова нажмите на эту строку.</string>
+    <string name="earthquake">Оповещения о землетрясениях</string>
+    <string name="earthquake_summary">Предупреждает о землетрясении поблизости. В настройках HyperOS China нет этого меню</string>
+    <string name="err_earthquake">Не удалось открыть оповещения о землетрясениях. Обновите сервисы Google Play и повторите попытку.</string>
     <string name="err_restore">Не удалось открыть экран восстановления. Обновите Android Switch и попробуйте снова.</string>
     <string name="photos_unlimited">Безлимитная резервная копия Google Фото</string>
     <string name="photos_unlimited_summary">Google Фото видит Pixel 2016 года: новые фото и видео в резервной копии не занимают место в хранилище</string>

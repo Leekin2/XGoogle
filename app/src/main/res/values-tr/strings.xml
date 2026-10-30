@@ -153,6 +153,9 @@
     <string name="restore_backup_summary">Yedeğinizdeki uygulamalar, arama geçmişi, SMS\'ler ve ayarlar için Google\'ın geri yükleme ekranını açar</string>
     <string name="restore_install_title">Android Switch gerekli</string>
     <string name="restore_install_message">Geri yükleme, Google\'ın Android Switch uygulamasıyla yapılır. Play Store\'da açılsın mı?\n\nKurduktan sonra bu satıra yeniden dokunun.</string>
+    <string name="earthquake">Deprem uyarıları</string>
+    <string name="earthquake_summary">Yakında deprem algılanınca uyarır. HyperOS Çin ROM\'unun Ayarlar\'ında bu menü yok</string>
+    <string name="err_earthquake">Deprem uyarıları açılamadı. Google Play Hizmetleri\'ni güncelleyip tekrar deneyin.</string>
     <string name="err_restore">Geri yükleme ekranı açılamadı. Android Switch\'i güncelleyip tekrar deneyin.</string>
     <string name="photos_unlimited">Sınırsız Google Fotoğraflar yedeği</string>
     <string name="photos_unlimited_summary">Google Fotoğraflar\'a telefon 2016 Pixel gibi görünür; yeni yedeklenen fotoğraf ve videolar depolama alanınızdan düşmez</string>

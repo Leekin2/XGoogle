@@ -41,6 +41,7 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.MyLocation
+import androidx.compose.material.icons.rounded.Sensors
 import androidx.compose.material.icons.rounded.Gesture
 import androidx.compose.material.icons.rounded.PanTool
 import androidx.compose.material.icons.rounded.Swipe
@@ -141,6 +142,7 @@ fun MaterialScreen(
     onCheckUpdates: () -> Unit,
     onSupport: () -> Unit,
     onRestore: () -> Unit,
+    onEarthquake: () -> Unit,
     /** Kept by the caller, so switching between the two looks stays on the same tab. */
     tab: Int,
     onTab: (Int) -> Unit
@@ -173,7 +175,7 @@ fun MaterialScreen(
                     .then(if (state.look.blur) Modifier.layerBackdrop(backdrop).background(background) else Modifier)
                     .verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)) {
                     Spacer(Modifier.height(12.dp))
-                    if (tab == 0) HomeTab(state, t, onSetting, onAssistant, onStatus, onRestartApps, onRestore)
+                    if (tab == 0) HomeTab(state, t, onSetting, onAssistant, onStatus, onRestartApps, onRestore, onEarthquake)
                     else SettingsTab(state, t, onIconVisibility, onAbout, onTelegram, onLanguage, onLook, onCheckUpdates, onSupport)
                     // Room for the floating bar.
                     Spacer(Modifier.height(112.dp))
@@ -264,7 +266,7 @@ private fun StatusCard(state: XGoogleState, t: Texts, onClick: () -> Unit) {
 
 @Composable
 private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) -> Unit, onAssistant: () -> Unit,
-    onStatus: () -> Unit, onRestartApps: () -> Unit, onRestore: () -> Unit) {
+    onStatus: () -> Unit, onRestartApps: () -> Unit, onRestore: () -> Unit, onEarthquake: () -> Unit) {
     StatusCard(state, t, onStatus)
     // While connecting, show the cached switches as usable; taps wait for the connection.
     val available = state.connected || state.loading
@@ -355,7 +357,7 @@ private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) 
         // The Google features that need Play services fold under the GMS switch.
         var gmsOpen by rememberSaveable { mutableStateOf(false) }
         val gmsExtra = if (gmsOpen) 6 else 0
-        val systemCount = 3 + gmsExtra
+        val systemCount = 4 + gmsExtra
         val gmsOn = state.features[FeaturePolicy.GMS] == true
         SettingRow(0, systemCount, Icons.Rounded.LockOpen, t.gms, t.gmsSummary, { gmsOpen = !gmsOpen },
             modifier = Modifier.semantics { stateDescription = if (gmsOn) t.switchOn else t.switchOff }) {
@@ -383,7 +385,8 @@ private fun HomeTab(state: XGoogleState, t: Texts, onSetting: (String, Boolean) 
         }
         SettingRow(1 + gmsExtra, systemCount, Icons.Rounded.SettingsBackupRestore, t.restoreBackup, t.restoreBackupSummary,
             onClick = onRestore, enabled = !state.restoreOpening)
-        SettingRow(2 + gmsExtra, systemCount, Icons.Rounded.RestartAlt, t.restartApps, t.restartAppsSummary,
+        SettingRow(2 + gmsExtra, systemCount, Icons.Rounded.Sensors, t.earthquake, t.earthquakeSummary, onClick = onEarthquake)
+        SettingRow(3 + gmsExtra, systemCount, Icons.Rounded.RestartAlt, t.restartApps, t.restartAppsSummary,
             onClick = onRestartApps, enabled = state.connected && !state.restarting)
     }
 }

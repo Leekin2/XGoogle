@@ -60,11 +60,11 @@ class MainActivity : ComponentActivity() {
                 if (state.look.hyper) MiuixScreen(state, ::changeSetting, ::openAssistant, ::changeIconVisibility,
                     ::openModuleManager, ::openRepository, ::openTelegram, ::changeLanguage,
                     ::changeLook, ::confirmDialog, ::dismissDialog, { showDialog(DialogKind.RESTART) }, ::checkUpdates, ::openSupport,
-                    ::openGoogleRestore, tab) { tab = it }
+                    ::openGoogleRestore, ::openEarthquakeAlerts, tab) { tab = it }
                 else MaterialScreen(state, ::changeSetting, ::openAssistant, ::changeIconVisibility,
                     ::openModuleManager, ::openRepository, ::openTelegram, ::changeLanguage,
                     ::changeLook, ::confirmDialog, ::dismissDialog, { showDialog(DialogKind.RESTART) }, ::checkUpdates, ::openSupport,
-                    ::openGoogleRestore, tab) { tab = it }
+                    ::openGoogleRestore, ::openEarthquakeAlerts, tab) { tab = it }
             }
         }
         SettingsConnection.connect(this)
@@ -395,6 +395,27 @@ class MainActivity : ComponentActivity() {
     private fun openSupport() = openUrl("https://t.me/Xgooogle", texts.errSupport)
 
     /**
+     * Google Play services runs the Android Earthquake Alerts System on China ROMs too, but HyperOS
+     * China's Settings has no Safety & emergency page to reach its switch. The screen is not
+     * exported, so it is opened as root.
+     */
+    private fun openEarthquakeAlerts() {
+        val t = texts
+        val user = android.os.Process.myUid() / 100000
+        worker.execute {
+            val result = runCatching {
+                val output = RootShell.run("am start --user $user -n $EARTHQUAKE_ACTIVITY", 15)
+                // am can report a missing activity and still exit 0.
+                if ("Error" in output) throw IOException(output)
+            }
+            runOnUiThread {
+                if (isDestroyed) return@runOnUiThread
+                result.onFailure { error(t.errEarthquake) }
+            }
+        }
+    }
+
+    /**
      * China ROMs have no Google setup wizard, so the Google backup is never offered after a reset.
      * Android Switch's cloud restore needs WRITE_SECURE_SETTINGS. Check the actual grant first:
      * a failed root command must not be ignored, or Switch crashes when Restore is pressed.
@@ -508,4 +529,5 @@ class MainActivity : ComponentActivity() {
 private val COMPANION_FEATURES = setOf(FeaturePolicy.NAVIGATION, FeaturePolicy.LIVE_TRANSLATE)
 
 private const val RESTORE_PACKAGE = "com.google.android.apps.restore"
+private const val EARTHQUAKE_ACTIVITY = "com.google.android.gms/com.google.android.location.settings.EAlertSettingsV31Activity"
 private const val RESTORE_ACTIVITY = "com.google.android.apps.pixelmigrate.cloudrestore.component.CloudRestoreFlowActivity"

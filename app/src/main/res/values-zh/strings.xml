@@ -153,6 +153,9 @@
     <string name="restore_backup_summary">打开 Google 的恢复界面，恢复备份中的应用、通话记录、短信和设置</string>
     <string name="restore_install_title">需要 Android Switch</string>
     <string name="restore_install_message">恢复由 Google 的 Android Switch 应用完成。要在 Play 商店中打开吗？\n\n安装后请再次点按此项。</string>
+    <string name="earthquake">地震警报</string>
+    <string name="earthquake_summary">检测到附近发生地震时提醒您。HyperOS 中国版的设置中没有此菜单</string>
+    <string name="err_earthquake">无法打开地震警报。请更新 Google Play 服务后重试。</string>
     <string name="err_restore">无法打开恢复界面。请更新 Android Switch 后重试。</string>
     <string name="photos_unlimited">Google 相册无限备份</string>
     <string name="photos_unlimited_summary">Google 相册会将手机识别为 2016 款 Pixel，新备份的照片和视频不占用存储空间</string>

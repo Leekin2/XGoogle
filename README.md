@@ -33,6 +33,7 @@
 - ☁️ **Restore from Google backup:** China ROMs have no Google setup wizard, so after a reset XGoogle opens Google's own restore screen (Android Switch) to bring back your apps, call history, SMS and settings
 - 🔑 **Google permissions after a reset:** the companion gives the Google apps the permissions they ask for and allows HyperOS's own prompts for them, so Hey Google stops asking again and again
 - 📅 **Google Calendar sync:** the companion installs Google's calendar sync adapter from HyperOS 4 international, so your Google calendars show up in the Calendar app. Calendar sync is turned on for Google accounts that never had it set; a sync you turn off stays off, and if you uninstall the adapter it is not installed again
+- 🌍 **Earthquake alerts:** opens the settings of Google's Android Earthquake Alerts System from XGoogle; HyperOS China's Settings has no menu for it
 - 🔄 Restart apps without rebooting, and check for updates from the app
 
 Every feature can be turned on or off on its own; turning one off brings back the stock behavior.
@@ -156,6 +157,7 @@ This project is not affiliated with Google or Xiaomi; trademarks belong to their
 - ☁️ **Google yedeğinden geri yükleme:** Çin ROM'larında Google kurulum sihirbazı olmadığı için XGoogle, sıfırlamadan sonra Google'ın kendi geri yükleme ekranını (Android Switch) açar; uygulamalar, arama geçmişi, SMS'ler ve ayarlar geri gelir
 - 🔑 **Sıfırlamadan sonra Google izinleri:** ek modül Google uygulamalarına istedikleri izinleri verir ve HyperOS'un bunlar için sorduğu izinlere izin verir; Hey Google artık durmadan izin istemez
 - 📅 **Google Takvim senkronu:** ek modül HyperOS 4 global'deki Google takvim senkron bağdaştırıcısını kurar, Google takvimleriniz Takvim uygulamasında görünür. Takvim senkronu hiç ayarlanmamış Google hesaplarında açılır; kapattığınız senkron kapalı kalır, bağdaştırıcıyı kaldırırsanız yeniden kurulmaz
+- 🌍 **Deprem uyarıları:** Google'ın Android Deprem Uyarı Sistemi'nin ayar ekranı XGoogle'dan açılır; HyperOS Çin ROM'unun Ayarlar'ında bu menü yok
 - 🔄 Telefonu yeniden başlatmadan uygulamaları yeniden başlatma ve uygulamadan güncelleme kontrolü
 
 Her özellik uygulamadan ayrı ayrı açılıp kapatılabilir; kapatınca sistem eski haline döner.

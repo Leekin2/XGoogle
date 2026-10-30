@@ -153,6 +153,9 @@
     <string name="restore_backup_summary">Abre la pantalla de Google para restaurar las apps, el historial de llamadas, los SMS y los ajustes de tu copia</string>
     <string name="restore_install_title">Se necesita Android Switch</string>
     <string name="restore_install_message">La restauración la hace la app Android Switch de Google. ¿Abrirla en Play Store?\n\nDespués de instalarla, vuelve a tocar esta fila.</string>
+    <string name="earthquake">Alertas de terremotos</string>
+    <string name="earthquake_summary">Le avisa cuando se detecta un terremoto cerca. Los Ajustes de HyperOS China no tienen este menú</string>
+    <string name="err_earthquake">No se pudieron abrir las alertas de terremotos. Actualice los servicios de Google Play e inténtelo de nuevo.</string>
     <string name="err_restore">No se pudo abrir la pantalla de restauración. Actualiza Android Switch e inténtalo de nuevo.</string>
     <string name="photos_unlimited">Copia ilimitada de Google Fotos</string>
     <string name="photos_unlimited_summary">Google Fotos ve un Pixel de 2016: las fotos y vídeos nuevos de la copia no ocupan tu almacenamiento</string>

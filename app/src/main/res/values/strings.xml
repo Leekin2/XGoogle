@@ -153,6 +153,9 @@
     <string name="restore_backup_summary">Opens Google\'s restore screen for the apps, call history, SMS and settings in your backup</string>
     <string name="restore_install_title">Android Switch needed</string>
     <string name="restore_install_message">Restoring is done by Google\'s Android Switch app. Open it in the Play Store?\n\nAfter installing it, tap this row again.</string>
+    <string name="earthquake">Earthquake alerts</string>
+    <string name="earthquake_summary">Warns you when an earthquake is detected nearby. HyperOS China\'s Settings has no menu for it</string>
+    <string name="err_earthquake">Earthquake alerts could not be opened. Update Google Play services and try again.</string>
     <string name="err_restore">The restore screen could not be opened. Update Android Switch and try again.</string>
     <string name="photos_unlimited">Unlimited Google Photos backup</string>
     <string name="photos_unlimited_summary">Google Photos sees the 2016 Pixel; newly backed-up photos and videos do not count against your storage</string>
