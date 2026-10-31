@@ -1,6 +1,6 @@
 # Değişiklikler / Changelog
 
-## Sonraki sürüm / Next release
+## XGoogle 1.4.0
 
 - Google Konum Doğruluğu (isteğe bağlı): ağ konumu ve adres bilgisi Xiaomi'nin servisi yerine Google Play Hizmetleri'nden gelir; Play Hizmetleri kapatılırsa Xiaomi'nin servisi devralır.
   Google location accuracy (optional): network location and addresses come from Google Play services instead of Xiaomi's service; if Play services is turned off, Xiaomi's service takes over.
