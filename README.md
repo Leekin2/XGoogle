@@ -1,5 +1,13 @@
 # XGoogle
 
+> [!IMPORTANT]
+> **XGoogle has moved to [XApps](https://github.com/Leekin2/XApps).** XGoogle, XSecurity and XNotify are now one app and one root module.
+> Download **XApps** from its [latest release](https://github.com/Leekin2/XApps/releases/latest). Flashing the XApps zip moves your XGoogle settings over and removes XGoogle by itself.
+> This repository stays for history; new versions are released only in XApps.
+>
+> **XGoogle artık [XApps](https://github.com/Leekin2/XApps) içinde.** Yeni sürümler yalnızca XApps olarak yayınlanıyor; XApps zip'i ayarlarınızı taşır ve XGoogle'i kendisi kaldırır.
+
+
 **An LSPosed module bringing Google features to the Xiaomi HyperOS 4 China ROM.**
 
 📥 **Download:** [Latest release](https://github.com/Leekin2/XGoogle/releases/latest) · 💬 **Feedback and complaints:** Telegram [@emcleek](https://t.me/emcleek) · 👥 **Support group:** [Xgoogle for HyperOS](https://t.me/Xgooogle)
